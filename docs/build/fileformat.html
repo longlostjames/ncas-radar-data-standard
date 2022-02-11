@@ -1,0 +1,2734 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Filename conventions &mdash; ncas_radar_data_format 1.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Developer’s Guide" href="guide.html" />
+    <link rel="prev" title="Quickstart" href="quickstart.html" />
+    <link href="_static/custom.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> ncas_radar_data_format
+          </a>
+              <div class="version">
+                1.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Filename conventions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#netcdf-conventions">NetCDF conventions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#metadata-global-attributes">Metadata (Global Attributes)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#level-0a-files">Level 0a files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ghz-camra-time-series-files">3GHz CAMRa time-series files</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#level-0b-files">Level 0b files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">3GHz CAMRa time-series files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#model-file">Model file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mwr-file">Mwr file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#radar-file">Radar file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#level-1c-files">Level 1c files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#categorize-file">Categorize file</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#level-2-files">Level 2 files</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#classification-file">Classification file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drizzle-file">Drizzle file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#iwc-file">Iwc file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lwc-file">Lwc file</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guide.html">Developer’s Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ncas_radar_data_format</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Filename conventions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/fileformat.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="filename-conventions">
+<h1>Filename conventions<a class="headerlink" href="#filename-conventions" title="Permalink to this headline">¶</a></h1>
+<p>Each radar file is named as</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;instrument_name&gt;_&lt;platform_name&gt;_&lt;date&gt;-[&lt;time&gt;]_&lt;scan_type&gt;_[&lt;option1&gt;_&lt;option2&gt;_&lt;option3&gt;]_v&lt;version&gt;.nc</span></code></p>
+</div>
+<div class="section" id="netcdf-conventions">
+<h1>NetCDF conventions<a class="headerlink" href="#netcdf-conventions" title="Permalink to this headline">¶</a></h1>
+<p>The NCAS-RADAR convention adheres to the CF/Radial-1.4 format, and its subconventions.</p>
+<div class="section" id="metadata-global-attributes">
+<h2>Metadata (Global Attributes)<a class="headerlink" href="#metadata-global-attributes" title="Permalink to this headline">¶</a></h2>
+<p>As the NCAS RADAR convention uses CF/Radial-1.4 as its basis, all global
+attributes required by the latter must be included.  The following global
+attributes are required by CF/Radial-1.4</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">Conventions</span></code></dt><dd><p>This indicates the conventions/vocabularies that are being followed in the
+generation of the data file. The core convention is that used for CF naming,
+that is CF-1.6.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">title</span></code></dt><dd><p>This is a short description of the file contents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">Moments</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">NCAS</span> <span class="pre">Mobile</span> <span class="pre">X-band</span> <span class="pre">Radar</span> <span class="pre">unit</span> <span class="pre">1</span> <span class="pre">at</span> <span class="pre">Sandwith,</span> <span class="pre">UK</span></code></p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">institution</span></code></dt><dd><p>This is the name of the institution employing the creator.  This is added to help users of the data track down the creator if they need to.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">National</span> <span class="pre">Centre</span> <span class="pre">for</span> <span class="pre">Atmospheric</span> <span class="pre">Science</span> <span class="pre">(NCAS)</span></code></p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">references</span></code></dt><dd><p>References that describe the data or the methods used to produce it.  For example, this may be a paper describing the instrument.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">https://doi.org/10.5194/amt-11-6481-2018</span></code></p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">source</span></code></dt><dd><p>This is a descriptor that uniquely identifies the source of the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">NCAS</span> <span class="pre">Mobile</span> <span class="pre">X-band</span> <span class="pre">Radar</span> <span class="pre">unit</span> <span class="pre">1</span></code></p>
+</dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">history</span></code></dt><dd><p>This is freeform text that gives the history of the data from collection to the present version.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">comment</span></code></dt><dd><p>This is free form text and is used to provide the user with any additional information that may be of use.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">instrument_name</span></code></dt><dd><p>This should be filled with the unique NCAS instrument name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">ncas-mobile-x-band-radar-1</span></code></p>
+</dd>
+</dl>
+</dd>
+</dl>
+</div>
+<div class="section" id="level-0a-files">
+<h2>Level 0a files<a class="headerlink" href="#level-0a-files" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="ghz-camra-time-series-files">
+<h3>3GHz CAMRa time-series files<a class="headerlink" href="#ghz-camra-time-series-files" title="Permalink to this headline">¶</a></h3>
+<p>These files are in NetCDF-3 format with the following content:</p>
+<p><strong>Dimensions:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>time</p></td>
+</tr>
+<tr class="row-odd"><td><p>range</p></td>
+</tr>
+<tr class="row-even"><td><p>unaveraged_range</p></td>
+</tr>
+<tr class="row-odd"><td><p>pulses</p></td>
+</tr>
+<tr class="row-even"><td><p>samples</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variables:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 8%" />
+<col style="width: 13%" />
+<col style="width: 43%" />
+<col style="width: 21%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td rowspan="2"><p>latitude</p></td>
+<td rowspan="2"><p>float32</p></td>
+<td rowspan="2"></td>
+<td rowspan="2"><p>latitude of the antenna</p></td>
+<td><p>Units</p></td>
+</tr>
+<tr class="row-even"><td><p>degree_north</p></td>
+</tr>
+<tr class="row-odd"><td><p>longitude</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>longitude of the antenna</p></td>
+<td><p>degree_east</p></td>
+</tr>
+<tr class="row-even"><td><p>height</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>height of the elevation axis above mean sea level (Ordnance Survey Great Britain)</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>frequency</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>frequency of transmitted radiation</p></td>
+<td><p>GHz</p></td>
+</tr>
+<tr class="row-even"><td><p>prf</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>pulse repetition frequency</p></td>
+<td><p>Hz</p></td>
+</tr>
+<tr class="row-odd"><td><p>beamwidthH</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>horizontal angular beamwidth</p></td>
+<td><p>degree</p></td>
+</tr>
+<tr class="row-even"><td><p>beamwidthV</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>vertical angular beamwidth</p></td>
+<td><p>degree</p></td>
+</tr>
+<tr class="row-odd"><td><p>antenna_diameter</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>antenna diameter</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>pulse_period</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>pulse period</p></td>
+<td><p>us</p></td>
+</tr>
+<tr class="row-odd"><td><p>transmit_power</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>peak transmitted power</p></td>
+<td><p>W</p></td>
+</tr>
+<tr class="row-even"><td><p>clock</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>clock input to ISACTRL</p></td>
+<td><p>Hz</p></td>
+</tr>
+<tr class="row-odd"><td><p>range</p></td>
+<td><p>float32</p></td>
+<td><p>range</p></td>
+<td><p>distance from the antenna to the middle of each range gate</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>unaveraged_range</p></td>
+<td><p>float32</p></td>
+<td><p>unaveraged_range</p></td>
+<td><p>distance from the antenna to the middle of each range gate</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>time</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>time</p></td>
+<td><p>seconds since 2020-09-22 00:00:00 +00:00</p></td>
+</tr>
+<tr class="row-even"><td><p>dish_time</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>dish_time</p></td>
+<td><p>seconds since 2020-09-22 00:00:00 +00:00</p></td>
+</tr>
+<tr class="row-odd"><td><p>elevation</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>elevation angle above the horizon at the start of the beamwidth</p></td>
+<td><p>degree</p></td>
+</tr>
+<tr class="row-even"><td><p>azimuth</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>azimuth angle clockwise from grid north at the start of the beamwidth</p></td>
+<td><p>degree</p></td>
+</tr>
+<tr class="row-odd"><td><p>ZLO</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, samples</p></td>
+<td><p>radar reflectivity factor low</p></td>
+<td><p>counts</p></td>
+</tr>
+<tr class="row-even"><td><p>ZHI</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, samples</p></td>
+<td><p>radar reflectivity factor high</p></td>
+<td><p>counts</p></td>
+</tr>
+<tr class="row-odd"><td><p>ZCX</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, samples</p></td>
+<td><p>crosspolar radar reflectivity factor</p></td>
+<td><p>counts</p></td>
+</tr>
+<tr class="row-even"><td><p>ITX</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, samples</p></td>
+<td><p>TX I channel</p></td>
+<td><p>counts</p></td>
+</tr>
+<tr class="row-odd"><td><p>QTX</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, samples</p></td>
+<td><p>TX Q channel</p></td>
+<td><p>counts</p></td>
+</tr>
+<tr class="row-even"><td><p>IRX</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, samples</p></td>
+<td><p>RX I channel</p></td>
+<td><p>counts</p></td>
+</tr>
+<tr class="row-odd"><td><p>QRX</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, samples</p></td>
+<td><p>RX Q channel</p></td>
+<td><p>counts</p></td>
+</tr>
+<tr class="row-even"><td><p>SPR</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, samples</p></td>
+<td><p>Spare channel</p></td>
+<td><p>counts</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Global attributes:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 71%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>radar</p></td>
+<td><p>CAMRa</p></td>
+</tr>
+<tr class="row-odd"><td><p>source</p></td>
+<td><p>3-GHz Advanced Meteorological Radar (CAMRa)</p></td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">history</div>
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Tue Sep 22 14:58:06 2020 - /usr/local/bin/radar-camra-rec \</div>
+<div class="line">-fix 3600 115 90 -gates 5 201 -cellsize 1 -pulse_pairs 3050 -op rad \</div>
+<div class="line">-id 0 -file 8030 -scan 7530 -date 20200922145806 -tsdump -tssamples 200</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>file_number</p></td>
+<td><p>8030</p></td>
+</tr>
+<tr class="row-even"><td><p>scan_number</p></td>
+<td><p>7530</p></td>
+</tr>
+<tr class="row-odd"><td><p>scantype</p></td>
+<td><p>Fixed</p></td>
+</tr>
+<tr class="row-even"><td><p>experiment_id</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>operator</p></td>
+<td><p>rad</p></td>
+</tr>
+<tr class="row-even"><td><p>scan_velocity</p></td>
+<td><p>0.f</p></td>
+</tr>
+<tr class="row-odd"><td><p>min_range</p></td>
+<td><p>-526.7335f</p></td>
+</tr>
+<tr class="row-even"><td><p>max_range</p></td>
+<td><p>14088.15f</p></td>
+</tr>
+<tr class="row-odd"><td><p>min_angle</p></td>
+<td><p>90.f</p></td>
+</tr>
+<tr class="row-even"><td><p>max_angle</p></td>
+<td><p>90.f</p></td>
+</tr>
+<tr class="row-odd"><td><p>scan_angle</p></td>
+<td><p>25.f</p></td>
+</tr>
+<tr class="row-even"><td><p>scan_datetime</p></td>
+<td><p>20200922145806</p></td>
+</tr>
+<tr class="row-odd"><td><p>ADC_bits_per_sample</p></td>
+<td><p>12</p></td>
+</tr>
+<tr class="row-even"><td><p>samples_per_pulse</p></td>
+<td><p>196</p></td>
+</tr>
+<tr class="row-odd"><td><p>pulses_per_daq_cycle</p></td>
+<td><p>6100</p></td>
+</tr>
+<tr class="row-even"><td><p>ADC_channels</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>delay_clocks</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p>pulses_per_ray</p></td>
+<td><p>6100</p></td>
+</tr>
+<tr class="row-odd"><td><p>pulse_compression</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p>extra_attenuation</p></td>
+<td><p>0.f</p></td>
+</tr>
+<tr class="row-odd"><td><p>radar_constant</p></td>
+<td><p>64.7f</p></td>
+</tr>
+<tr class="row-even"><td><p>receiver_gain</p></td>
+<td><p>45.5f</p></td>
+</tr>
+<tr class="row-odd"><td><p>cable_losses</p></td>
+<td><p>4.8f</p></td>
+</tr>
+<tr class="row-even"><td><p>year</p></td>
+<td><p>2020</p></td>
+</tr>
+<tr class="row-odd"><td><p>month</p></td>
+<td><p>9</p></td>
+</tr>
+<tr class="row-even"><td><p>day</p></td>
+<td><p>22</p></td>
+</tr>
+<tr class="row-odd"><td><p>British_National_Grid_Reference</p></td>
+<td><p>SU394386</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="level-0b-files">
+<h2>Level 0b files<a class="headerlink" href="#level-0b-files" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>3GHz CAMRa time-series files<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Level 0.5 files have been processed to remove redundant dimensions, and to make some changes to global attributes and variables.
+The files are in NetCDF-4 format with the following content:</p>
+<p><strong>Dimensions:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>time</p></td>
+</tr>
+<tr class="row-odd"><td><p>range</p></td>
+</tr>
+<tr class="row-even"><td><p>pulses</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Scalar Variables:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 8%" />
+<col style="width: 9%" />
+<col style="width: 45%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Data type</p></th>
+<th class="head"><p>Dimension</p></th>
+<th class="head"><p>Long name</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>latitude</p></td>
+<td><p>float32</p></td>
+<td><p>none</p></td>
+<td><p>latitude of the antenna</p></td>
+<td><p>degree_north</p></td>
+</tr>
+<tr class="row-odd"><td><p>longitude</p></td>
+<td><p>float32</p></td>
+<td><p>none</p></td>
+<td><p>longitude of the antenna</p></td>
+<td><p>degree_east</p></td>
+</tr>
+<tr class="row-even"><td><p>altitude</p></td>
+<td><p>float32</p></td>
+<td><p>none</p></td>
+<td><p>altitude of the elevation axis above mean sea level (Ordnance Survey Great Britain)</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>frequency</p></td>
+<td><p>float32</p></td>
+<td><p>none</p></td>
+<td><p>frequency of transmitted radiation</p></td>
+<td><p>GHz</p></td>
+</tr>
+<tr class="row-even"><td><p>prf</p></td>
+<td><p>float32</p></td>
+<td><p>none</p></td>
+<td><p>pulse repetition frequency</p></td>
+<td><p>Hz</p></td>
+</tr>
+<tr class="row-odd"><td><p>beamwidthH</p></td>
+<td><p>float32</p></td>
+<td><p>none</p></td>
+<td><p>horizontal angular beamwidth</p></td>
+<td><p>degree</p></td>
+</tr>
+<tr class="row-even"><td><p>beamwidthV</p></td>
+<td><p>float32</p></td>
+<td><p>none</p></td>
+<td><p>vertical angular beamwidth</p></td>
+<td><p>degree</p></td>
+</tr>
+<tr class="row-odd"><td><p>antenna_diameter</p></td>
+<td><p>float32</p></td>
+<td><p>none</p></td>
+<td><p>antenna diameter</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>pulse_width</p></td>
+<td><p>float32</p></td>
+<td><p>none</p></td>
+<td><p>pulse width</p></td>
+<td><p>us</p></td>
+</tr>
+<tr class="row-odd"><td><p>transmit_power</p></td>
+<td><p>float32</p></td>
+<td><p>none</p></td>
+<td><p>peak transmitted power</p></td>
+<td><p>W</p></td>
+</tr>
+<tr class="row-even"><td><p>clock</p></td>
+<td><p>float32</p></td>
+<td><p>none</p></td>
+<td><p>clock input to ISACTRL</p></td>
+<td><p>Hz</p></td>
+</tr>
+<tr class="row-odd"><td><p>samples_per_pulse</p></td>
+<td><p>int</p></td>
+<td><p>none</p></td>
+<td><p>number of samples per pulse</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>pulses_per_daq_cycle</p></td>
+<td><p>int</p></td>
+<td><p>none</p></td>
+<td><p>number of pulses per data acquisition cycle</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>pulses_per_ray</p></td>
+<td><p>int</p></td>
+<td><p>none</p></td>
+<td><p>number of pulses per ray</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>delay_clocks</p></td>
+<td><p>int</p></td>
+<td><p>none</p></td>
+<td><p>clock cycles before sampling is initiated</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>radar_constant</p></td>
+<td><p>float32</p></td>
+<td><p>none</p></td>
+<td><p>radar constant</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-even"><td><p>receiver_gain</p></td>
+<td><p>float32</p></td>
+<td><p>none</p></td>
+<td><p>receiver gain</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-odd"><td><p>cable_losses</p></td>
+<td><p>float32</p></td>
+<td><p>none</p></td>
+<td><p>cable losses</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-even"><td><p>extra_attenuation</p></td>
+<td><p>float32</p></td>
+<td><p>none</p></td>
+<td><p>extra attenuation introduced to receiver chain</p></td>
+<td><p>dB</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Coordinate Variables:</strong></p>
+<p><strong>Field Variables</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 8%" />
+<col style="width: 13%" />
+<col style="width: 41%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Date type</p></th>
+<th class="head"><p>Dimensions</p></th>
+<th class="head"><p>Long name</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ZLO</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, range</p></td>
+<td><p>radar equivalent reflectivity factor low</p></td>
+<td><p>dBZ</p></td>
+</tr>
+<tr class="row-odd"><td><p>ZHI</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, range</p></td>
+<td><p>radar equivalent reflectivity factor high</p></td>
+<td><p>dBZ</p></td>
+</tr>
+<tr class="row-even"><td><p>ZCX</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, range</p></td>
+<td><p>crosspolar radar equivalent reflectivity factor</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-odd"><td><p>ITX</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, range</p></td>
+<td><p>in-phase video signal on transmission</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>QTX</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, range</p></td>
+<td><p>quadrature video signal on transmission</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>IRX</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, range</p></td>
+<td><p>in-phase video signal on reception</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>QRX</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, range</p></td>
+<td><p>quadrature video signal on reception</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p>Field variables are stored in packed form of type <code class="docutils literal notranslate"><span class="pre">short</span></code> and have the following attributes:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 69%" />
+<col style="width: 31%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Attribute name**</p></th>
+<th class="head"><p>Type*</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>scale_factor</p></td>
+<td><p>float32</p></td>
+</tr>
+<tr class="row-odd"><td><p>add_offset</p></td>
+<td><p>float32</p></td>
+</tr>
+<tr class="row-even"><td><p>valid_min</p></td>
+<td><p>short</p></td>
+</tr>
+<tr class="row-odd"><td><p>valid_max</p></td>
+<td><p>short</p></td>
+</tr>
+<tr class="row-even"><td><p>_FillValue</p></td>
+<td><p>short</p></td>
+</tr>
+</tbody>
+</table>
+<p>For example for <code class="docutils literal notranslate"><span class="pre">ZLO</span></code> the packed values derive from the analogue to digital
+converter, and lie in the range <code class="docutils literal notranslate"><span class="pre">[0,4095]</span></code>.
+The attribute <code class="docutils literal notranslate"><span class="pre">valid_max</span></code> is set to <code class="docutils literal notranslate"><span class="pre">3840</span></code>, and only values below this
+threshold should be used.</p>
+<p>Similarly <code class="docutils literal notranslate"><span class="pre">ZHI</span></code> has the attribute <code class="docutils literal notranslate"><span class="pre">valid_min</span></code> set to <code class="docutils literal notranslate"><span class="pre">3841</span></code>, and only
+values above this should be used.</p>
+<p>.ZLO_min    = -70.0,             /* dB       <em>/
+200         .ZLO_scale  =   0.015625,        /</em> dB/count <em>/
+201         .ZHI_min    = -38.0,             /</em> dB       <em>/
+202         .ZHI_scale  =   0.015625,        /</em> dB/count <em>/
+203         .ZCX_min    = -77.0,             /</em> dB       <em>/
+204         .ZCX_scale  =   0.03125,         /</em> dB/count <em>/
+205         .ZLO_thresh = 3840, /</em> 0x0F00 <em>/ /</em> counts   <em>/
+206         .Bias       = 2047, /</em> 0x07FF <em>/ /</em> counts   <em>/
+207         .ADCBits    = 12                 /</em> Bits     <a href="#id2"><span class="problematic" id="id3">*</span></a>/</p>
+<p><strong>Global attributes:</strong></p>
+<p><strong>Variables (CHM15K specific):</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Data type</strong></p></td>
+<td><p><strong>Dimension</strong></p></td>
+<td><p><strong>Long name</strong></p></td>
+<td><p><strong>Unit</strong></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variables (CL51 specific):</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Data type</strong></p></td>
+<td><p><strong>Dimension</strong></p></td>
+<td><p><strong>Long name</strong></p></td>
+<td><p><strong>Unit</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>laser_energy</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Laser pulse energy</p></td>
+<td><p>%</p></td>
+</tr>
+<tr class="row-odd"><td><p>detection_status</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Detection status</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>range_resolution</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Range resolution</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>background_light</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Background light</p></td>
+<td><p>mV</p></td>
+</tr>
+<tr class="row-even"><td><p>message_number</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Message number</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>warning_flags</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Warning flags</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>scale</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Scale</p></td>
+<td><p>%</p></td>
+</tr>
+<tr class="row-odd"><td><p>unit_id</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Ceilometer unit number</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>window_transmission</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Window transmission estimate</p></td>
+<td><p>%</p></td>
+</tr>
+<tr class="row-odd"><td><p>message_subclass</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Message subclass number</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>backscatter_sum</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Sum of detected and normalized backscatter</p></td>
+<td><p>sr-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>software_level</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Software level ID</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>laser_temperature</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Laser temperature</p></td>
+<td><p>C</p></td>
+</tr>
+<tr class="row-odd"><td><p>number_of_gates</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Number of range gates in profile</p></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="model-file">
+<h3>Model file<a class="headerlink" href="#model-file" title="Permalink to this headline">¶</a></h3>
+<p><strong>Dimensions:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>time</p></td>
+</tr>
+<tr class="row-odd"><td><p>level</p></td>
+</tr>
+<tr class="row-even"><td><p>flux_level</p></td>
+</tr>
+<tr class="row-odd"><td><p>frequency</p></td>
+</tr>
+<tr class="row-even"><td><p>soil_level</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variables (all models):</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Data type</strong></p></td>
+<td><p><strong>Dimension</strong></p></td>
+<td><p><strong>Long name</strong></p></td>
+<td><p><strong>Unit</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>specific_liquid_atten</p></td>
+<td><p>float32</p></td>
+<td><p>frequency, time, level</p></td>
+<td><p>Specific one-way attenuation due to liquid water, per unit liquid wat</p></td>
+<td><p>(dB km-1)/(g m-3)</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_pressure</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface pressure</p></td>
+<td><p>Pa</p></td>
+</tr>
+<tr class="row-even"><td><p>qi</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Gridbox-mean ice water mixing ratio</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>q</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Specific humidity</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_wind_u_10m</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Zonal wind at 10m</p></td>
+<td><p>m s-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_wind_v_10m</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Meridional wind at 10m</p></td>
+<td><p>m s-1</p></td>
+</tr>
+<tr class="row-even"><td><p>ql</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Gridbox-mean liquid water mixing ratio</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_net_lw</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface net downward longwave flux</p></td>
+<td><p>W m-2</p></td>
+</tr>
+<tr class="row-even"><td><p>K2</p></td>
+<td><p>float32</p></td>
+<td><p>frequency, time, level</p></td>
+<td><p>Dielectric parameter (K^2) of liquid water</p></td>
+<td><p>dB km-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>time</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Hours UTC</p></td>
+<td><p>hours since 2021-06-21 00:00:00 +00:00</p></td>
+</tr>
+<tr class="row-even"><td><p>uwind</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Zonal wind</p></td>
+<td><p>m s-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>specific_gas_atten</p></td>
+<td><p>float32</p></td>
+<td><p>frequency, time, level</p></td>
+<td><p>Specific one-way attenuation due to atmospheric gases</p></td>
+<td><p>dB km-1</p></td>
+</tr>
+<tr class="row-even"><td><p>flx_height</p></td>
+<td><p>float32</p></td>
+<td><p>time, flux_level</p></td>
+<td><p>Height above ground</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>gas_atten</p></td>
+<td><p>float32</p></td>
+<td><p>frequency, time, level</p></td>
+<td><p>Two-way attenuation from the ground due to atmospheric gases</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_down_sens_heat_flx</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Sensible heat flux</p></td>
+<td><p>W m-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>horizontal_resolution</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Horizontal resolution of model</p></td>
+<td><p>km</p></td>
+</tr>
+<tr class="row-even"><td><p>rh</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Relative humidity</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>specific_saturated_gas_atten</p></td>
+<td><p>float32</p></td>
+<td><p>frequency, time, level</p></td>
+<td><p>Specific one-way attenuation due to atmospheric gases for saturated a</p></td>
+<td><p>dB km-1</p></td>
+</tr>
+<tr class="row-even"><td><p>wwind</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Vertical wind</p></td>
+<td><p>m s-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_ls_rain</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Large-scale rainfall amount</p></td>
+<td><p>kg m-2</p></td>
+</tr>
+<tr class="row-even"><td><p>specific_dry_gas_atten</p></td>
+<td><p>float32</p></td>
+<td><p>frequency, time, level</p></td>
+<td><p>Specific one-way attenuation due to atmospheric gases for dry air (no</p></td>
+<td><p>dB km-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>frequency</p></td>
+<td><p>float32</p></td>
+<td><p>frequency</p></td>
+<td><p>Microwave frequency</p></td>
+<td><p>GHz</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_ls_snow</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Large-scale snowfall amount</p></td>
+<td><p>kg m-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>cloud_fraction</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Cloud fraction</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>pressure</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Pressure</p></td>
+<td><p>Pa</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_net_sw</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface net downward shortwave flux</p></td>
+<td><p>W m-2</p></td>
+</tr>
+<tr class="row-even"><td><p>vwind</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Meridional wind</p></td>
+<td><p>m s-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>temperature</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Temperature</p></td>
+<td><p>K</p></td>
+</tr>
+<tr class="row-even"><td><p>latitude</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Latitude of model gridpoint</p></td>
+<td><p>degrees_N</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_down_lat_heat_flx</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Latent heat flux</p></td>
+<td><p>W m-2</p></td>
+</tr>
+<tr class="row-even"><td><p>longitude</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Longitude of model gridpoint</p></td>
+<td><p>degrees_E</p></td>
+</tr>
+<tr class="row-odd"><td><p>height</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Height above ground</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>forecast_time</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Time since initialization of forecast</p></td>
+<td><p>hours</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variables (HARMONIE-FMI-6-11 specific):</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Data type</strong></p></td>
+<td><p><strong>Dimension</strong></p></td>
+<td><p><strong>Long name</strong></p></td>
+<td><p><strong>Unit</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_down_sw_direct</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Direct downwelling shortwave flux</p></td>
+<td><p>W m-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>qs</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Gridbox-mean snow mixing ratio</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>qg</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Gridbox-mean graupel mixing ratio</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>conv_cloud_fraction</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Convective cloud fraction</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>ls_cloud_fraction</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Large scale cloud fraction</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_total_cloud_fraction</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface total cloud fraction</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_turb_mom_u</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface zonal turbulent momentum flux</p></td>
+<td><p>kg m-2 s-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>soil_depth</p></td>
+<td><p>float32</p></td>
+<td><p>time, soil_level</p></td>
+<td><p>Depth below ground</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>qr</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Gridbox-mean rain mixing ratio</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_temp</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface temperature</p></td>
+<td><p>K</p></td>
+</tr>
+<tr class="row-even"><td><p>tke</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Turbulent kinetic energy</p></td>
+<td><p>J m-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_ls_graupel</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Large-scale graupel amount</p></td>
+<td><p>kg m-2</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_down_lw</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface downwelling longwave flux</p></td>
+<td><p>W m-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>omega</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Vertical wind in pressure coordinates</p></td>
+<td><p>Pa s-1</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_turb_mom_v</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface meridional turbulent momentum flux</p></td>
+<td><p>kg m-2 s-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_down_sw</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface downwelling shortwave flux</p></td>
+<td><p>W m-2</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_pressure_amsl</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface pressure at mean sea level</p></td>
+<td><p>Pa</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_down_sw_direct_normal</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Direct normal downwelling shortwave flux</p></td>
+<td><p>W m-2</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_rh_2m</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Relative humidity at 2m</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variables (ICON-IGLO-12-23 specific):</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Data type</strong></p></td>
+<td><p><strong>Dimension</strong></p></td>
+<td><p><strong>Long name</strong></p></td>
+<td><p><strong>Unit</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>ql_diag</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Total specific liquid water (diagnostic)</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_down_sw_direct</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Direct downwelling shortwave flux</p></td>
+<td><p>W m-2</p></td>
+</tr>
+<tr class="row-even"><td><p>conv_cloud_fraction</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Convective cloud fraction</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>ls_cloud_fraction</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Large scale cloud fraction</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>toa_net_sw</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Top of atmosphere net downward shortwave flux</p></td>
+<td><p>W m-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_cloud_fraction</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface total cloud fraction</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>soil_depth</p></td>
+<td><p>float32</p></td>
+<td><p>time, soil_level</p></td>
+<td><p>Depth below ground</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>qr</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Gridbox-mean rain mixing ratio</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_turb_mom_v</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface meridional turbulent momentum flux</p></td>
+<td><p>kg m-2 s-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>altitude</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Height of station above mean sea level</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>q_diag</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Total specific humidity (diagnostic)</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>turb_heat_coeff</p></td>
+<td><p>float32</p></td>
+<td><p>time, flux_level</p></td>
+<td><p>Turbulent diffusion coefficients for heat</p></td>
+<td><p>m2 s-1</p></td>
+</tr>
+<tr class="row-even"><td><p>soil_temperature</p></td>
+<td><p>float32</p></td>
+<td><p>time, soil_level</p></td>
+<td><p>Soil temperature</p></td>
+<td><p>K</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_wind_gust_10m</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Wind gust at 10m</p></td>
+<td><p>m s-1</p></td>
+</tr>
+<tr class="row-even"><td><p>qs</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Gridbox-mean snow mixing ratio</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_turb_mom_u</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface zonal turbulent momentum flux</p></td>
+<td><p>kg m-2 s-1</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_conv_snow</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Convective snowfall amount</p></td>
+<td><p>kg m-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>turb_mom_coeff</p></td>
+<td><p>float32</p></td>
+<td><p>time, flux_level</p></td>
+<td><p>Turbulent diffusion coefficients for momentum</p></td>
+<td><p>m2 s-1</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_temp</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface temperature</p></td>
+<td><p>K</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_q_2m</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Specific humidity at 2m</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_up_sw_diffuse</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Diffuse upwelling shortwave flux</p></td>
+<td><p>W m-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_roughness_length</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface roughness length</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_dewpoint_temp_2m</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Dew point temperature at 2m</p></td>
+<td><p>K</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_conv_rain</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Convective rainfall amount</p></td>
+<td><p>kg m-2</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_temp_2m</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Temperature at 2m</p></td>
+<td><p>K</p></td>
+</tr>
+<tr class="row-odd"><td><p>toa_net_lw</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Top of atmosphere net downward longwave flux</p></td>
+<td><p>W m-2</p></td>
+</tr>
+<tr class="row-even"><td><p>qi_diag</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Total specific ice water (diagnostic)</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_albedo</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface albedo</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_land_cover</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Land cover</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_height_amsl</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface height above mean sea level</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_down_sw_diffuse</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Diffuse downwelling shortwave flux</p></td>
+<td><p>W m-2</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variables (ECMWF specific):</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Data type</strong></p></td>
+<td><p><strong>Dimension</strong></p></td>
+<td><p><strong>Long name</strong></p></td>
+<td><p><strong>Unit</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_cloud_fraction</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface total cloud fraction</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_conv_snow</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Convective snowfall amount</p></td>
+<td><p>kg m-2</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_bl_height</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Boundary layer height</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_geopotential</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Geopotential</p></td>
+<td><p>m2 s-2</p></td>
+</tr>
+<tr class="row-even"><td><p>omega</p></td>
+<td><p>float32</p></td>
+<td><p>time, level</p></td>
+<td><p>Vertical wind in pressure coordinates</p></td>
+<td><p>Pa s-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_conv_rain</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Convective rainfall amount</p></td>
+<td><p>kg m-2</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_temp_2m</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Temperature at 2m</p></td>
+<td><p>K</p></td>
+</tr>
+<tr class="row-odd"><td><p>sfc_down_sw</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Surface downwelling shortwave flux</p></td>
+<td><p>W m-2</p></td>
+</tr>
+<tr class="row-even"><td><p>sfc_ls_precip_fraction</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Large-scale precipitation fraction</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="mwr-file">
+<h3>Mwr file<a class="headerlink" href="#mwr-file" title="Permalink to this headline">¶</a></h3>
+<p><strong>Dimensions:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>time</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variables (all mwrs):</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Data type</strong></p></td>
+<td><p><strong>Dimension</strong></p></td>
+<td><p><strong>Long name</strong></p></td>
+<td><p><strong>Unit</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>LWP</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Liquid water path</p></td>
+<td><p>g m-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>time</p></td>
+<td><p>int32</p></td>
+<td><p>time</p></td>
+<td><p>Time UTC</p></td>
+<td><p>seconds since 2001-01-01 00:00:00</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="radar-file">
+<h3>Radar file<a class="headerlink" href="#radar-file" title="Permalink to this headline">¶</a></h3>
+<p><strong>Dimensions:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>time</p></td>
+</tr>
+<tr class="row-odd"><td><p>range</p></td>
+</tr>
+<tr class="row-even"><td><p>chirp_sequence</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variables (all radars):</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Data type</strong></p></td>
+<td><p><strong>Dimension</strong></p></td>
+<td><p><strong>Long name</strong></p></td>
+<td><p><strong>Unit</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>v</p></td>
+<td><p>float32</p></td>
+<td><p>time, range</p></td>
+<td><p>Doppler velocity</p></td>
+<td><p>m s-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>time</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Time UTC</p></td>
+<td><p>hours since 2021-06-21 00:00:00</p></td>
+</tr>
+<tr class="row-even"><td><p>latitude</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Latitude of site</p></td>
+<td><p>degrees_north</p></td>
+</tr>
+<tr class="row-odd"><td><p>altitude</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>Altitude of site</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>Ze</p></td>
+<td><p>float32</p></td>
+<td><p>time, range</p></td>
+<td><p>Radar reflectivity factor.</p></td>
+<td><p>dBZ</p></td>
+</tr>
+<tr class="row-odd"><td><p>longitude</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Longitude of site</p></td>
+<td><p>degrees_east</p></td>
+</tr>
+<tr class="row-even"><td><p>height</p></td>
+<td><p>float32</p></td>
+<td><p>range</p></td>
+<td><p>Height above mean sea level</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>nyquist_velocity</p></td>
+<td><p>float32</p></td>
+<td><p>chirp_sequence</p></td>
+<td><p>Nyquist velocity</p></td>
+<td><p>m s-1</p></td>
+</tr>
+<tr class="row-even"><td><p>radar_frequency</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Radar transmit frequency</p></td>
+<td><p>GHz</p></td>
+</tr>
+<tr class="row-odd"><td><p>range</p></td>
+<td><p>float32</p></td>
+<td><p>range</p></td>
+<td><p>Range from instrument</p></td>
+<td><p>m</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variables (RPG-FMCW-94 specific):</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Data type</strong></p></td>
+<td><p><strong>Dimension</strong></p></td>
+<td><p><strong>Long name</strong></p></td>
+<td><p><strong>Unit</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>voltage</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Voltage</p></td>
+<td><p>V</p></td>
+</tr>
+<tr class="row-odd"><td><p>time_ms</p></td>
+<td><p>int32</p></td>
+<td><p>time</p></td>
+<td><p>Time ms</p></td>
+<td><p>ms</p></td>
+</tr>
+<tr class="row-even"><td><p>pc_temperature</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>PC temperature</p></td>
+<td><p>K</p></td>
+</tr>
+<tr class="row-odd"><td><p>azimuth</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Azimuth angle</p></td>
+<td><p>degrees</p></td>
+</tr>
+<tr class="row-even"><td><p>status_flag</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Status flag for heater and blower</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>brightness_temperature</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Brightness temperature</p></td>
+<td><p>K</p></td>
+</tr>
+<tr class="row-even"><td><p>if_power</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>IF power at ACD</p></td>
+<td><p>uW</p></td>
+</tr>
+<tr class="row-odd"><td><p>quality_flag</p></td>
+<td><p>int32</p></td>
+<td><p>time</p></td>
+<td><p>Quality flag</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>antenna_separation</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Antenna separation</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>antenna_gain</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Antenna gain</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-even"><td><p>program_number</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>Program number</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>model_number</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>Model number</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>sample_duration</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Sample duration</p></td>
+<td><p>s</p></td>
+</tr>
+<tr class="row-odd"><td><p>range_resolution</p></td>
+<td><p>float32</p></td>
+<td><p>chirp_sequence</p></td>
+<td><p>Vertical resolution of range</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>dual_polarization</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>Dual polarisation type</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>chirp_start_indices</p></td>
+<td><p>int32</p></td>
+<td><p>chirp_sequence</p></td>
+<td><p>Chirp sequences start indices</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>elevation</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Elevation angle above horizon</p></td>
+<td><p>degrees</p></td>
+</tr>
+<tr class="row-odd"><td><p>noise_threshold</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Noise filter threshold factor</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>wind_direction</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Wind direction</p></td>
+<td><p>degrees</p></td>
+</tr>
+<tr class="row-odd"><td><p>FFT_window</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>FFT window type</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>float32</p></td>
+<td><p>time, range</p></td>
+<td><p>Spectral width</p></td>
+<td><p>m s-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>transmitted_power</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Transmitted power</p></td>
+<td><p>W</p></td>
+</tr>
+<tr class="row-even"><td><p>transmitter_temperature</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Transmitter temperature</p></td>
+<td><p>K</p></td>
+</tr>
+<tr class="row-odd"><td><p>number_of_spectral_samples</p></td>
+<td><p>int32</p></td>
+<td><p>chirp_sequence</p></td>
+<td><p>Number of spectral samples in each chirp sequence</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>file_code</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>File code</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>pressure</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Pressure</p></td>
+<td><p>Pa</p></td>
+</tr>
+<tr class="row-even"><td><p>receiver_temperature</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Receiver temperature</p></td>
+<td><p>K</p></td>
+</tr>
+<tr class="row-odd"><td><p>input_voltage_range</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>ADC input voltage range (+/-)</p></td>
+<td><p>mV</p></td>
+</tr>
+<tr class="row-even"><td><p>lwp</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Liquid water path</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>temperature</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Temperature</p></td>
+<td><p>K</p></td>
+</tr>
+<tr class="row-even"><td><p>wind_speed</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Wind speed</p></td>
+<td><p>m s-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>calibration_interval</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>Calibration interval in samples</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>integration_time</p></td>
+<td><p>float32</p></td>
+<td><p>chirp_sequence</p></td>
+<td><p>Integration time</p></td>
+<td><p>s</p></td>
+</tr>
+<tr class="row-odd"><td><p>antenna_diameter</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Antenna diameter</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>skewness</p></td>
+<td><p>float32</p></td>
+<td><p>time, range</p></td>
+<td><p>Skewness of spectra</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>half_power_beam_width</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Half power beam width</p></td>
+<td><p>degrees</p></td>
+</tr>
+<tr class="row-even"><td><p>number_of_averaged_chirps</p></td>
+<td><p>int32</p></td>
+<td><p>chirp_sequence</p></td>
+<td><p>Number of averaged chirps in sequence</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>rain_rate</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Rain rate</p></td>
+<td><p>mm h-1</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variables (BASTA specific):</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Data type</strong></p></td>
+<td><p><strong>Dimension</strong></p></td>
+<td><p><strong>Long name</strong></p></td>
+<td><p><strong>Unit</strong></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variables (MIRA specific):</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Data type</strong></p></td>
+<td><p><strong>Dimension</strong></p></td>
+<td><p><strong>Long name</strong></p></td>
+<td><p><strong>Unit</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>nfft</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>Number of FFT Points</p></td>
+<td><p>count</p></td>
+</tr>
+<tr class="row-odd"><td><p>zrg</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>Number of Range Gates</p></td>
+<td><p>count</p></td>
+</tr>
+<tr class="row-even"><td><p>width</p></td>
+<td><p>float32</p></td>
+<td><p>time, range</p></td>
+<td><p>Spectral width</p></td>
+<td><p>m s-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>SNR</p></td>
+<td><p>float32</p></td>
+<td><p>time, range</p></td>
+<td><p>Signal-to-noise ratio</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-even"><td><p>ldr</p></td>
+<td><p>float32</p></td>
+<td><p>time, range</p></td>
+<td><p>Linear depolarisation ratio</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-odd"><td><p>rg0</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>Number of Lowest Range Gates</p></td>
+<td><p>count</p></td>
+</tr>
+<tr class="row-even"><td><p>prf</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>Pulse Repetition Frequency</p></td>
+<td><p>Hz</p></td>
+</tr>
+<tr class="row-odd"><td><p>nave</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>Number of Spectral Avreages</p></td>
+<td><p>count</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="level-1c-files">
+<h2>Level 1c files<a class="headerlink" href="#level-1c-files" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="categorize-file">
+<h3>Categorize file<a class="headerlink" href="#categorize-file" title="Permalink to this headline">¶</a></h3>
+<p><strong>Dimensions:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>time</p></td>
+</tr>
+<tr class="row-odd"><td><p>height</p></td>
+</tr>
+<tr class="row-even"><td><p>model_time</p></td>
+</tr>
+<tr class="row-odd"><td><p>model_height</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variables:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Data type</strong></p></td>
+<td><p><strong>Dimension</strong></p></td>
+<td><p><strong>Long name</strong></p></td>
+<td><p><strong>Unit</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>category_bits</p></td>
+<td><p>int32</p></td>
+<td><p>time, height</p></td>
+<td><p>Target categorization bits</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Z_error</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Error in radar reflectivity factor</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-even"><td><p>q</p></td>
+<td><p>float32</p></td>
+<td><p>model_time, model_height</p></td>
+<td><p>Specific humidity</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tw</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Wet-bulb temperature</p></td>
+<td><p>K</p></td>
+</tr>
+<tr class="row-even"><td><p>model_height</p></td>
+<td><p>float32</p></td>
+<td><p>model_height</p></td>
+<td><p>Height of model variables above mean sea level</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>insect_prob</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Insect probability</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>is_undetected_melting</p></td>
+<td><p>int32</p></td>
+<td><p>time</p></td>
+<td><p>Presence of undetected melting layer</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>time</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Time UTC</p></td>
+<td><p>hours since 2021-06-21 00:00:00</p></td>
+</tr>
+<tr class="row-even"><td><p>uwind</p></td>
+<td><p>float32</p></td>
+<td><p>model_time, model_height</p></td>
+<td><p>Zonal wind</p></td>
+<td><p>m s-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Z</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Radar reflectivity factor</p></td>
+<td><p>dBZ</p></td>
+</tr>
+<tr class="row-even"><td><p>beta_error</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Error in attenuated backscatter coefficient</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-odd"><td><p>is_rain</p></td>
+<td><p>int32</p></td>
+<td><p>time</p></td>
+<td><p>Presence of rain</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>beta</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Attenuated backscatter coefficient</p></td>
+<td><p>sr-1 m-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>lwp_error</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Error in liquid water path</p></td>
+<td><p>g m-2</p></td>
+</tr>
+<tr class="row-even"><td><p>Z_sensitivity</p></td>
+<td><p>float32</p></td>
+<td><p>height</p></td>
+<td><p>Minimum detectable radar reflectivity</p></td>
+<td><p>dBZ</p></td>
+</tr>
+<tr class="row-odd"><td><p>beta_bias</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>Bias in attenuated backscatter coefficient</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-even"><td><p>radar_liquid_atten</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Approximate two-way radar attenuation due to liquid water</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-odd"><td><p>lidar_wavelength</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Laser wavelength</p></td>
+<td><p>nm</p></td>
+</tr>
+<tr class="row-even"><td><p>pressure</p></td>
+<td><p>float32</p></td>
+<td><p>model_time, model_height</p></td>
+<td><p>Pressure</p></td>
+<td><p>Pa</p></td>
+</tr>
+<tr class="row-odd"><td><p>lwp</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Liquid water path</p></td>
+<td><p>g m-2</p></td>
+</tr>
+<tr class="row-even"><td><p>v</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Doppler velocity</p></td>
+<td><p>m s-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>v_sigma</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Standard deviation of mean Doppler velocity</p></td>
+<td><p>m s-1</p></td>
+</tr>
+<tr class="row-even"><td><p>vwind</p></td>
+<td><p>float32</p></td>
+<td><p>model_time, model_height</p></td>
+<td><p>Meridional wind</p></td>
+<td><p>m s-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>temperature</p></td>
+<td><p>float32</p></td>
+<td><p>model_time, model_height</p></td>
+<td><p>Temperature</p></td>
+<td><p>K</p></td>
+</tr>
+<tr class="row-even"><td><p>latitude</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Latitude of site</p></td>
+<td><p>degrees_north</p></td>
+</tr>
+<tr class="row-odd"><td><p>altitude</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>Altitude of site</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>model_time</p></td>
+<td><p>float32</p></td>
+<td><p>model_time</p></td>
+<td><p>Model time UTC</p></td>
+<td><p>decimal hours since midnight</p></td>
+</tr>
+<tr class="row-odd"><td><p>Z_bias</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>Bias in radar reflectivity factor</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-even"><td><p>longitude</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Longitude of site</p></td>
+<td><p>degrees_east</p></td>
+</tr>
+<tr class="row-odd"><td><p>radar_gas_atten</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Two-way radar attenuation due to atmospheric gases</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-even"><td><p>quality_bits</p></td>
+<td><p>int32</p></td>
+<td><p>time, height</p></td>
+<td><p>Data quality bits</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>height</p></td>
+<td><p>float32</p></td>
+<td><p>height</p></td>
+<td><p>Height above mean sea level</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>radar_frequency</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Radar transmit frequency</p></td>
+<td><p>GHz</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="level-2-files">
+<h2>Level 2 files<a class="headerlink" href="#level-2-files" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classification-file">
+<h3>Classification file<a class="headerlink" href="#classification-file" title="Permalink to this headline">¶</a></h3>
+<p><strong>Dimensions:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>time</p></td>
+</tr>
+<tr class="row-odd"><td><p>height</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variables:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Data type</strong></p></td>
+<td><p><strong>Dimension</strong></p></td>
+<td><p><strong>Long name</strong></p></td>
+<td><p><strong>Unit</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>cloud_top_height_amsl</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Height of cloud top above mean sea level</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>time</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Time UTC</p></td>
+<td><p>hours since 2021-06-21 00:00:00</p></td>
+</tr>
+<tr class="row-even"><td><p>detection_status</p></td>
+<td><p>int32</p></td>
+<td><p>time, height</p></td>
+<td><p>Radar and lidar detection status</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>latitude</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Latitude of site</p></td>
+<td><p>degrees_north</p></td>
+</tr>
+<tr class="row-even"><td><p>altitude</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>Altitude of site</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>cloud_base_height_amsl</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Height of cloud base above mean sea level</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>longitude</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Longitude of site</p></td>
+<td><p>degrees_east</p></td>
+</tr>
+<tr class="row-odd"><td><p>target_classification</p></td>
+<td><p>int32</p></td>
+<td><p>time, height</p></td>
+<td><p>Target classification</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>height</p></td>
+<td><p>float32</p></td>
+<td><p>height</p></td>
+<td><p>Height above mean sea level</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>cloud_base_height_agl</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Height of cloud base above ground level</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>cloud_top_height_agl</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Height of cloud top above ground level</p></td>
+<td><p>m</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="drizzle-file">
+<h3>Drizzle file<a class="headerlink" href="#drizzle-file" title="Permalink to this headline">¶</a></h3>
+<p><strong>Dimensions:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>time</p></td>
+</tr>
+<tr class="row-odd"><td><p>height</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variables:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Data type</strong></p></td>
+<td><p><strong>Dimension</strong></p></td>
+<td><p><strong>Long name</strong></p></td>
+<td><p><strong>Unit</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>drizzle_lwf_error</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Random error in drizzle liquid water flux</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-odd"><td><p>drizzle_lwf_bias</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Possible bias in drizzle liquid water flux</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-even"><td><p>drizzle_lwc_bias</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Possible bias in drizzle liquid water content</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-odd"><td><p>Do_error</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Random error in drizzle median diameter</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-even"><td><p>time</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Time UTC</p></td>
+<td><p>hours since 2021-06-21 00:00:00</p></td>
+</tr>
+<tr class="row-odd"><td><p>drizzle_N</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Drizzle number concentration</p></td>
+<td><p>m-3</p></td>
+</tr>
+<tr class="row-even"><td><p>Do</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Drizzle median diameter</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>drizzle_N_error</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Random error in drizzle number concentration</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-even"><td><p>beta_corr</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Lidar backscatter correction factor</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>drizzle_lwc_error</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Random error in drizzle liquid water content</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-even"><td><p>v_drizzle</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Drizzle droplet fall velocity</p></td>
+<td><p>m s-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>mu_error</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Random error in drizzle droplet size distribution shape parameter</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-even"><td><p>S</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Lidar backscatter-to-extinction ratio</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>drizzle_lwc</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Drizzle liquid water content</p></td>
+<td><p>kg m-3</p></td>
+</tr>
+<tr class="row-even"><td><p>Do_bias</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Possible bias in drizzle median diameter</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-odd"><td><p>v_air</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Vertical air velocity</p></td>
+<td><p>m s-1</p></td>
+</tr>
+<tr class="row-even"><td><p>mu</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Drizzle droplet size distribution shape parameter</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>latitude</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Latitude of site</p></td>
+<td><p>degrees_north</p></td>
+</tr>
+<tr class="row-even"><td><p>drizzle_lwf</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Drizzle liquid water flux</p></td>
+<td><p>kg m-2 s-1</p></td>
+</tr>
+<tr class="row-odd"><td><p>altitude</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>Altitude of site</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>drizzle_retrieval_status</p></td>
+<td><p>int32</p></td>
+<td><p>time, height</p></td>
+<td><p>Drizzle parameter retrieval status</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>longitude</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Longitude of site</p></td>
+<td><p>degrees_east</p></td>
+</tr>
+<tr class="row-even"><td><p>S_error</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Random error in lidar backscatter-to-extinction ratio</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-odd"><td><p>v_drizzle_error</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Random error in drizzle droplet fall velocity</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-even"><td><p>height</p></td>
+<td><p>float32</p></td>
+<td><p>height</p></td>
+<td><p>Height above mean sea level</p></td>
+<td><p>m</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="iwc-file">
+<h3>Iwc file<a class="headerlink" href="#iwc-file" title="Permalink to this headline">¶</a></h3>
+<p><strong>Dimensions:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>time</p></td>
+</tr>
+<tr class="row-odd"><td><p>height</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variables:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Data type</strong></p></td>
+<td><p><strong>Dimension</strong></p></td>
+<td><p><strong>Long name</strong></p></td>
+<td><p><strong>Unit</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>iwc_inc_rain</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Ice water content including rain</p></td>
+<td><p>kg m-3</p></td>
+</tr>
+<tr class="row-odd"><td><p>time</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Time UTC</p></td>
+<td><p>hours since 2021-06-21 00:00:00</p></td>
+</tr>
+<tr class="row-even"><td><p>latitude</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Latitude of site</p></td>
+<td><p>degrees_north</p></td>
+</tr>
+<tr class="row-odd"><td><p>altitude</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>Altitude of site</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>iwc</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Ice water content</p></td>
+<td><p>kg m-3</p></td>
+</tr>
+<tr class="row-odd"><td><p>iwc_bias</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Possible bias in ice water content, one standard deviation</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-even"><td><p>longitude</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Longitude of site</p></td>
+<td><p>degrees_east</p></td>
+</tr>
+<tr class="row-odd"><td><p>iwc_retrieval_status</p></td>
+<td><p>int32</p></td>
+<td><p>time, height</p></td>
+<td><p>Ice water content retrieval status</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>iwc_sensitivity</p></td>
+<td><p>float32</p></td>
+<td><p>height</p></td>
+<td><p>Minimum detectable ice water content</p></td>
+<td><p>kg m-3</p></td>
+</tr>
+<tr class="row-odd"><td><p>height</p></td>
+<td><p>float32</p></td>
+<td><p>height</p></td>
+<td><p>Height above mean sea level</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>iwc_error</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Random error in ice water content, one standard deviation</p></td>
+<td><p>dB</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="lwc-file">
+<h3>Lwc file<a class="headerlink" href="#lwc-file" title="Permalink to this headline">¶</a></h3>
+<p><strong>Dimensions:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>time</p></td>
+</tr>
+<tr class="row-odd"><td><p>height</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Variables:</strong></p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 39%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Name</strong></p></td>
+<td><p><strong>Data type</strong></p></td>
+<td><p><strong>Dimension</strong></p></td>
+<td><p><strong>Long name</strong></p></td>
+<td><p><strong>Unit</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>lwp_error</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Error in liquid water path</p></td>
+<td><p>g m-2</p></td>
+</tr>
+<tr class="row-odd"><td><p>time</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Time UTC</p></td>
+<td><p>hours since 2021-06-21 00:00:00</p></td>
+</tr>
+<tr class="row-even"><td><p>latitude</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Latitude of site</p></td>
+<td><p>degrees_north</p></td>
+</tr>
+<tr class="row-odd"><td><p>altitude</p></td>
+<td><p>int32</p></td>
+<td></td>
+<td><p>Altitude of site</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>longitude</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>Longitude of site</p></td>
+<td><p>degrees_east</p></td>
+</tr>
+<tr class="row-odd"><td><p>lwc_retrieval_status</p></td>
+<td><p>int32</p></td>
+<td><p>time, height</p></td>
+<td><p>Liquid water content retrieval status</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>lwc_error</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Random error in liquid water content, one standard deviation</p></td>
+<td><p>dB</p></td>
+</tr>
+<tr class="row-odd"><td><p>lwc</p></td>
+<td><p>float32</p></td>
+<td><p>time, height</p></td>
+<td><p>Liquid water content</p></td>
+<td><p>kg m-3</p></td>
+</tr>
+<tr class="row-even"><td><p>height</p></td>
+<td><p>float32</p></td>
+<td><p>height</p></td>
+<td><p>Height above mean sea level</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>lwp</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>Liquid water path</p></td>
+<td><p>g m-2</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="guide.html" class="btn btn-neutral float-right" title="Developer’s Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, UK Research and Innovation.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -55,6 +55,172 @@ attributes are required by CF/Radial-1.4
 
   :Example: ``ncas-mobile-x-band-radar-1``
 
+The following global attributes are optional within CF/Radial-1.4, but are required by NCAS-Radar-1.0:
+
+**``platform_is_mobile``**
+
+  :Example: true
+
+The following global attributes are required by NCAS-Radar-1.0 but are not part of the CF/Radial-1.4 convention:
+
+**``instrument_manufacturer``**
+  The name of the instrument manufacturer
+
+  :Example: ``Meteorologische Messtechnik (Metek) GmbH``
+
+**``instrument_model``**
+  The instrument model name
+
+  :Example: MIRA-35
+
+**``instrument_serial_number``**
+  The instrument serial number which is registered to the instrument name used
+  in the file name and linked to the “source”
+
+  :Example: 63270V
+
+**``instrument_software``**
+  If known this is the name of the software running on the instrument that
+  actually controls and makes the measurement.
+
+  :Example: ``radar-camra-rec``
+
+**``instrument_software_version``**
+  Manufacturers often update instrument software and subtle changes in this
+  code can result in changes in the quality of the data provided. To be able
+  to trace any such effect the version of software running is embedded in the
+  metadata.
+
+  :Example: v2.08.11
+
+**``creator_name``**
+  This is the name of the person who generated the file. This is the person to
+  contact if there are any questions about the data presented and how they were
+  produced.
+
+  :Example: A. Person
+
+**``creator_email``**
+  The contact email for the person who created the file. People move and this
+  may not always be valid.
+
+  :Example: A.Person@aplace.ac.uk
+
+**``creator_url``**
+  The ORCID URL of the person who created the file is something that goes with
+  them and unlike email using this to trace the creator has a greater chance of
+  success.
+
+  :Example: ``https://orcid.org/0000-0000-0000-0000``
+
+**``processing_software_url``**
+  To go from the level 0 data produced by the source to the files archived
+  requires the creator to do some sort of data processing. This processing may
+  involve various levels of QC and data formatting so that it meets the archive
+  standard. Where this code is developed by the creator it is deposited on an
+  open repository - usually GitHub and this is the url to that code. The use of
+  a repository means that the code is version controlled and the exact version
+  used to create the file is accessible.
+
+  This only applies to creator developed code - no manufacturer proprietary
+  software is ever deposited to the repository
+
+  :Example: ``https://github.com/name1/name2/``
+
+**``processing_software_version``**
+  This is the version of the processing software.
+
+  :Example: v1.3
+
+  Calibrations are often accompanied by a certificate that is dated and if not 
+  there is always a date as to when the calibration for the data provided was
+  done. The date provided here is either when the calibration was done and if there is a certificate the date of this
+
+
+  product_version
+  Over time, errors or new calibrations means that the data may need to be reissued: it is the same data but just a different version. The version number is part of the file name and should match this value. Major revisions occur when a new calibration or processing method is applied while minor revisions occur to correct typos. The reason for a the revision is detailed in the history field
+
+  Example: v <n.m> n - major revision, m - minor revision
+  processing_level
+  This indicated the amount of quality control that has been put into the data. See the “Data Processing Levels” section for a full discussion.
+
+  Options: 1, 2, or 3
+  last_revised_date
+  This is the date that this data file was processed. The time is UTC and is given in ISO format.
+
+  Example: 2013-06-06T12:00:00
+  project
+  This is the full name and associated acronym of the project and should match that on official funding documents.
+
+  Example: Dynamics-aerosol-chemistry-cloud interactions in West Africa. (DACCIWA)
+  project_principal_investigator
+  The name of the project Principal Investigator
+
+  Example: B. Person
+  project_principal_investigator_email
+  Contact email for project PI
+
+  Example: B.Person@someplace.com
+  project_principal_investigator_url
+  ORCID URL of PI.
+
+  Example: https://orcid.org/0000-0000-0000-0000
+  licence
+  The UK Government Licensing Framework (UKGLF) provides a policy and legal overview of the arrangements for licensing the use and re-use of public sector information, both in central government and the wider public sector. It sets out best practice, standardises the licensing principles for government information, mandates the Open Government Licence (OGL) as the default licence for Crown bodies and recommends OGL for other public sector bodies.
+
+  Example: Data usage licence - UK Government Open Licence agreement: http://www.nationalarchives.gov.uk/doc/open-government-licence
+  acknowledgement
+  Obtaining and producing these data represents a substantial amount of effort and investment of resources. It is expected that users of this data acknowledge this by following the request directive given in this field.
+
+  Example: Acknowledgement of NCAS as the data provider is required whenever and wherever these data are used
+  platform
+  The platform is where or on what the instrument was deployed for example if it was deployed at Christmas Island then the value in this field would be “christmas island”. If the instrument was deployed on a ship called Oden then the value in this field would be “oden”
+  platform_type
+  This indicates the type of platform the instrument was deployed on and the value in this field is either staionary_platform or moving_platform.
+  deployment_mode
+  Instruments can be deployed either on land, sea or air. The value in this field indicates which.
+  title
+  This is the title that describes the data in the file. This is a descriptor that is used for searching.
+
+  Example: Time series of Temperature, Pressure, Relative Humidity, Wind Speed, Wind Direction, Down Welling Radiation from the NCAS Davis Automatic Weather Station.
+  featureType
+  This is a CF term that describes the type of data and the field will be either timeSeries, timeSeriesProfile, or trajectory. Type timeSeries is associated with a time series of data that has no vertical dimension: for example a temperature measurement at a specific height.Type timeSeriesProfile is associated with a time series of vertical profiles: for example data from wind profiler. The type trajectory is used when the data is  time series that is also positional and altitude dependent: for example that from a radiosonde
+  time_coverage_start
+  This is the time value of the first data point in the file. The time is UTC and in ISO format.
+
+  Example: 2013-02-01T00:00:00
+  time_coverage_end
+  This is the time value of the last data point in the file. The time is UTC and in ISO format.
+
+  Example: 2013-03-31T23:59:59
+  geospatial_bounds
+  This field defines the latitude and longitude range associated with the file. For a stationary_paltform this is just the latitude longitude part (signed decimal). For moving_platform it is the bounding box: : top left corner, bottom right corner presented as : latitude longitude, latitude longitude (signed decima)
+
+  Example:
+  Point deployment: -111.29N 40.26E
+             	Bounding box: -111.29N  40.26E, -110.29N  41.26E
+  platform_altitude
+  This is the altitude, wrt WGS84, of the ground at the point of deployment. All instrument deployment heights are given with respect to this. Where altitude is a variable this is given with respect to WGS84 and not respect to the local ground.
+
+  Example: 263m or 263 m
+  location_keywords
+  These are words with geographical relevance that aid archival searching.
+
+  Example: africa, ghana, kumasi, knust
+  amf_vocabularies_release
+  This is the url to the version controlled vocabulary used in defining the data file.
+
+  Example: https://github.com/ncasuk/AMF_CVs/releases
+  history
+  This is freeform text that gives the history of the data from collection to the present version. Where there have been data revisions the data and reason for that revision is included.
+
+  Example: Data collected June - July 2016, processed & QC'd Oct 2016
+  comment
+  This is free form text and is used to provide the user with any additional information that may be of use: for example the height of an instrument above ground, the local magnet variance, the doppler +’ve direction.
+
+  Example: All AWS sensors mounted on a 2m mast - sensors are at a height of +2m with respect to platform_height. Positive indicates upward direction.
+
+
 
 Level 0a files
 --------------

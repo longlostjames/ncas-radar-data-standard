@@ -48,7 +48,6 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.autosummary',
     'sphinx.ext.autosectionlabel',
-    'rst2pdf.pdfbuilder',
 ]
 
 

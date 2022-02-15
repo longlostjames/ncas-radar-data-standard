@@ -15,7 +15,7 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../..'))
-sys.path.insert(0, os.path.abspath('../../ncas_radar_data_format/'))
+sys.path.insert(0, os.path.abspath('../../ncas-radar_data-format/'))
 
 
 # -- Project information -----------------------------------------------------
@@ -125,7 +125,7 @@ def setup(app):
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'wivern2doc'
+htmlhelp_basename = 'ncas_radar_data_standard'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -152,7 +152,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'ncas_radar_data_format.tex', 'ncas_radar_data_format Documentation',
+    (master_doc, 'ncas_radar_data_standard.tex', 'ncas_radar_data_standard Documentation',
      'UK Research and Innovation', 'manual'),
 ]
 
@@ -162,7 +162,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'ncas_radar_data_format', 'ncas_radar_data_format Documentation',
+    (master_doc, 'ncas_radar_data_standard', 'ncas_radar_data_standard Documentation',
      [author], 1)
 ]
 
@@ -173,8 +173,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'ncas_radar_data_format', 'ncas_radar_data_format Documentation',
-     author, 'Chris Walden', 'Documentation for the NCAS Radar Data Format',
+    (master_doc, 'ncas_radar_data_standard', 'ncas_radar_data_standard Documentation',
+     author, 'Chris Walden', 'Documentation for the NCAS Radar Data Standard',
      'Miscellaneous'),
 ]
 

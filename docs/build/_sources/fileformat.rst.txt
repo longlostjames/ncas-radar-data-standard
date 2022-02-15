@@ -1,91 +1,290 @@
-Filename conventions
-====================
+..sectnum:: Filename conventions
+            ====================
 
 Each radar file is named as
 
 ``<instrument_name>_<platform_name>_<date>-[<time>]_<scan_type>_[<option1>_<option2>_<option3>]_v<version>.nc``
 
-NetCDF conventions
-==================
+..sectnum::  NetCDF conventions
+             ==================
 
-The NCAS-RADAR convention adheres to the CF/Radial-1.4 format, and its subconventions.
+The NCAS-RADAR convention adheres to the CfRadial-1.4 format, and its subconventions.
+
+
+Data types
+All data conform to defined data types. Depending on the software used to interrogate the files data types may be given a different name to that used here. To be precise:
+
+Python3 name
+Definition
+Range
+byte
+8-bit unsigned integer
+0 to 255
+int32
+32-bit signed integer
+-2,147,483,648 to +2,147,483,647
+int64
+64-bit signed integer
+-9,223,372,036,854,775,808 to +9,223,372,036,854,775,807
+
+
+float32
+32-bit Single-precision floating-point
+-3.4E+38 to +3.4E+38
+float64
+64-bit Double-precision floating-point
+-1.7E+308 to +1.7E+308
+
+
+Note the data type is not given as an explicit variable attribute.
+
 
 Metadata (Global Attributes)
 ----------------------------
 
-As the NCAS RADAR convention uses CF/Radial-1.4 as its basis, all global
+As the NCAS RADAR convention uses CfRadial-1.4 as its basis, all global
 attributes required by the latter must be included.  The following global
-attributes are required by CF/Radial-1.4
+attributes are required by CfRadial-1.4:
 
-``Conventions``
-   This indicates the conventions/vocabularies that are being followed in the
-   generation of the data file. The core convention is that used for CF naming,
-   that is CF-1.6.
+Conventions
+   A comma-separated list of the conventions that are followed by the dataset.
 
-``title``
+  :Example: CfRadial-1.4, NCAS-RADAR-1.0
+
+title
   This is a short description of the file contents.
 
   :Example: ``Moments from the NCAS Mobile X-band Radar unit 1 at Sandwith, UK``
 
-``institution``
-  This is the name of the institution employing the creator.  This is added to help users of the data track down the creator if they need to.
+institution
+  This is the name of the institution employing the creator.  This is added to
+  help users of the data track down the creator if they need to.
 
   :Example: ``National Centre for Atmospheric Science (NCAS)``
 
-``references``
+references
   References that describe the data or the methods used to produce it.  For example, this may be a paper describing the instrument.
 
   :Example: ``https://doi.org/10.5194/amt-11-6481-2018``
 
-``source``
+source
   This is a descriptor that uniquely identifies the source of the data.
 
   :Example: ``NCAS Mobile X-band Radar unit 1``
 
-``history``
-  This is freeform text that gives the history of the data from collection to the present version.
+history
+  This is freeform text that gives the history of the data from collection to
+  the present version.
 
-``comment``
-  This is free form text and is used to provide the user with any additional information that may be of use.
+comment
+  This is free form text and is used to provide the user with any additional
+  information that may be of use.
 
   :Example:
 
-``instrument_name``
+instrument_name
   This should be filled with the unique NCAS instrument name
 
   :Example: ``ncas-mobile-x-band-radar-1``
 
+The following global attributes are optional within CF/Radial-1.4, but are required by NCAS-Radar-1.0:
 
-Level 0a files
---------------
+platform_is_mobile
 
-3GHz CAMRa time-series files
-............................
+  :Example: false
 
-These files are in NetCDF-3 format with the following content:
+The following global attributes are required by NCAS-Radar-1.0 but are not part
+of the CfRadial-1.4 convention:
 
-**Dimensions:**
+instrument_manufacturer
+  The name of the instrument manufacturer
 
-+------------------------------+
-|**Name**                      |
-+------------------------------+
-|time                          |
-+------------------------------+
-|range                         |
-+------------------------------+
-|unaveraged_range              |
-+------------------------------+
-|pulses                        |
-+------------------------------+
-|samples                       |
-+------------------------------+
+  :Example: ``Meteorologische Messtechnik (Metek) GmbH``
 
-**Variables:**
+instrument_model
+  The instrument model name
+
+  :Example: MIRA-35
+
+instrument_serial_number
+  The instrument serial number which is registered to the instrument name used
+  in the file name and linked to the “source”
+
+  :Example: 63270V
+
+instrument_software
+  If known this is the name of the software running on the instrument that
+  actually controls and makes the measurement.
+
+  :Example: ``radar-camra-rec``
+
+instrument_software_version
+  Manufacturers often update instrument software and subtle changes in this
+  code can result in changes in the quality of the data provided. To be able
+  to trace any such effect the version of software running is embedded in the
+  metadata.
+
+  :Example: v2.08.11
+
+creator_name
+  This is the name of the person who generated the file. This is the person to
+  contact if there are any questions about the data presented and how they were
+  produced.
+
+  :Example: A. Person
+
+creator_email
+  The contact email for the person who created the file. People move and this
+  may not always be valid.
+
+  :Example: A.Person@aplace.ac.uk
+
+creator_url
+  The ORCID URL of the person who created the file is something that goes with
+  them and unlike email using this to trace the creator has a greater chance of
+  success.
+
+  :Example: ``https://orcid.org/0000-0000-0000-0000``
+
+processing_software_url
+  To go from the level 0 data produced by the source to the files archived
+  requires the creator to do some sort of data processing. This processing may
+  involve various levels of QC and data formatting so that it meets the archive
+  standard. Where this code is developed by the creator it is deposited on an
+  open repository - usually GitHub and this is the url to that code. The use of
+  a repository means that the code is version controlled and the exact version
+  used to create the file is accessible.
+
+  This only applies to creator developed code - no manufacturer proprietary
+  software is ever deposited to the repository
+
+  :Example: ``https://github.com/name1/name2/``
+
+processing_software_version
+  This is the version of the processing software.
+
+  :Example: v1.3
+
+  Calibrations are often accompanied by a certificate that is dated and if not
+  there is always a date as to when the calibration for the data provided was
+  done. The date provided here is either when the calibration was done and if there is a certificate the date of this
+
+
+product_version
+  Over time, errors or new calibrations means that the data may need to be
+  reissued: it is the same data but just a different version. The version number
+  is part of the file name and should match this value. Major revisions occur
+  when a new calibration or processing method is applied while minor revisions
+  occur to correct typos. The reason for a the revision is detailed in the
+  history field
+
+  :Example: v <n.m> n - major revision, m - minor revision
+
+processing_level
+  This indicated the amount of quality control that has been put into the data.
+  See the “Data Processing Levels” section for a full discussion.
+  Options: 1, 2, or 3
+
+last_revised_date
+  This is the date that this data file was processed. The time is UTC and is
+  given in ISO format.
+
+  :Example: 2013-06-06T12:00:00
+
+project
+  This is the full name and associated acronym of the project and should match
+  that on official funding documents.
+
+  :Example: Dynamics-aerosol-chemistry-cloud interactions in West Africa. (DACCIWA)
+
+project_principal_investigator
+  The name of the project Principal Investigator
+
+  :Example: B. Person
+
+project_principal_investigator_email
+  Contact email for project PI
+
+  :Example: B.Person@someplace.com
+
+project_principal_investigator_url
+  ORCID URL of PI.
+
+  :Example: ``https://orcid.org/0000-0000-0000-0000``
+
+licence
+  The UK Government Licensing Framework (UKGLF) provides a policy and legal
+  overview of the arrangements for licensing the use and re-use of public sector
+  information, both in central government and the wider public sector. It sets
+  out best practice, standardises the licensing principles for government
+  information, mandates the Open Government Licence (OGL) as the default
+  licence for Crown bodies and recommends OGL for other public sector bodies.
+
+  :Example: ``Data usage licence - UK Government Open Licence agreement:
+  http://www.nationalarchives.gov.uk/doc/open-government-licence``
+
+acknowledgement
+  Obtaining and producing these data represents a substantial amount of effort
+  and investment of resources. It is expected that users of this data
+  acknowledge this by following the request directive given in this field.
+
+  :Example: Acknowledgement of NCAS as the data provider is required whenever
+  and wherever these data are used
+
+platform
+  The platform is where or on what the instrument was deployed for example if
+  it was deployed at Christmas Island then the value in this field would be
+  ``"christmas island”``. If the instrument was deployed on a ship called Oden then
+  the value in this field would be ``“oden”``
+
+time_coverage_start
+  This is the time value of the first ray of data in the file. The time is UTC
+  and in ISO format.
+
+  :Example: ``2013-02-01T00:00:00Z``
+
+time_coverage_end
+  This is the time value of the last ray of data in the file. The time is UTC
+  and in ISO format.
+
+  :Example: ``2013-03-31T23:59:59Z``
+
+geospatial_bounds
+  This field defines the latitude and longitude range associated with the file.
+  For a stationary_platform this is just the latitude and longitude part
+  (signed decimal). For a moving_platform it is the bounding box: : top left corner, bottom right corner presented as : latitude longitude, latitude longitude (signed decima)
+
+  :Example: -111.29N 40.26E
+             	Bounding box: -111.29N  40.26E, -110.29N  41.26E
+
+**``platform_altitude``**
+  This is the altitude above the WGS84 geoid of the ground at the point of
+  deployment. All instrument deployment heights are given with respect to this.
+  Where altitude is a variable this is given with respect to WGS84 and not respect to the local ground.
+
+  Example: 263m or 263 m
+  location_keywords
+  These are words with geographical relevance that aid archival searching.
+
+  Example: africa, ghana, kumasi, knust
+  amf_vocabularies_release
+  This is the url to the version controlled vocabulary used in defining the data file.
+
+  Example: https://github.com/ncasuk/AMF_CVs/releases
+
+
+Global Variables
+----------------
 
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
 |**Name**                      |**Data type**  |**Dimension**            |Long name                                                                          |Units                                   |
-+==============================+===============+=========================+===================================================================================+----------------------------------------+
-|latitude                      |float32        |                         |latitude of the antenna                                                            |degree_north                            |
++==============================+===============+=========================+===================================================================================+========================================+
+| volume_number                | int           | none                    | | Volume numbers are sequential, relative to some arbitrary start time,           |1                                       |
+|                              |               |                         | | and may wrap.                                                                   |                                        |
++------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
+| platform_type                | char          | (string_length)         | | Options are: *"fixed"*, *"vehicle"*, *"ship"*, *"aircraft"*, *"aircraft_fore"*, |none                                    |
+|                              |               |                         | | *"aircraft_aft"*, *"aircraft_tail"*, *"aircraft_belly"*, *"aircraft_roof"*,     |                                        |
+|                              |               |                         | | *"aircraft_nose"*, *"satellite_orbit"*, *"satellite_geostat"*                   |                                        |
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
 |longitude                     |float32        |                         |longitude of the antenna                                                           |degree_east                             |
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
@@ -135,6 +334,34 @@ These files are in NetCDF-3 format with the following content:
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
 |SPR                           |short          |time, pulses, samples    |Spare channel                                                                      |counts                                  |
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
+
+
+Level 0a files
+--------------
+
+3GHz CAMRa time-series files
+............................
+
+These files are in NetCDF-3 format with the following content:
+
+**Dimensions:**
+
++------------------------------+
+|**Name**                      |
++------------------------------+
+|time                          |
++------------------------------+
+|range                         |
++------------------------------+
+|unaveraged_range              |
++------------------------------+
+|pulses                        |
++------------------------------+
+|samples                       |
++------------------------------+
+
+**Variables:**
+
 
 
 **Global attributes:**
@@ -204,6 +431,142 @@ These files are in NetCDF-3 format with the following content:
 +--------------------------------+------------------------------------------------------------------------------+
 |British_National_Grid_Reference |SU394386                                                                      |
 +--------------------------------+------------------------------------------------------------------------------+
+
+Data Quality Flags
+The data provided will have had some level of processing performed upon: be that instrument or post processing averaging, motion correction, or the variable may be derived from such core variables. These concepts were introduced in section 3. The quality of the data is provided via the Data Quality Control Flag. This flag is a mask and represents the provider's considered opinion. Data users can apply the mask to the data or not - it is the user's choice. By taking this approach, the data provided is of greatest versatility.
+
+A file containing just one data quality flag will contain the variable qc_flag. Where a  file contains more that on data quality flag variable the data quality flag named is structured as:  qc_flag_<name>
+qc_flag_temperature
+qc_flag_relative_humidity
+qc_flag_pressure
+qc_flag_wind
+qc_flag_radiation
+qc_flag_precipitation
+
+Flag variables are always of data type byte and are defined such that they have the same dimensions as the variables they are associated with: there is a flag value associated with every data point. They all follow a standard structure with the following attributes:
+units
+Definition: Units of a variable’s content. Where a variable is unit less the value 1 is used.
+Example: 1
+long_name
+Definition: Long descriptive name which is often used for labelling plots
+Example: Data Quality flag: Temperature
+flag_values
+Definition: Values the data flag can have
+Example: 0b, 1b, 2b, 3b
+flag_meanings
+Definition: How the flag should be interpreted
+Example:
+not_used
+good_data
+suspect_data_unspecified_instrument_performance_issues_contact_data_originator_for_more_information
+Suspect_data_time_stamp_error
+
+To reflect the fact that what affects data quality can vary, the flag_values and flag_meanings are not rigidly tied down. That is they may vary on a file-by-file basis. What does not vary is the structure and the usage: the qc_flag variable is structured and used so that for every flag_value there is a corresponding flag_meaning. In this standard we use an integer value in the range 0 to n (being of data type byte the maximum value of n is 255):
+0 is reserved for future use and is not used
+1 is always good data.
+
+Consider the variable air_temperature which has data:
+-20
+-3
+-2
+-1
+-2
+-3
+-2
+-1
+0
+-1
+0
+2
+3
+4
+2
+3
+20
+4
+3
+2
+
+While qc_flag_temperature has data:
+3
+1
+2
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+2
+1
+1
+3
+2
+1
+1
+
+The flag_values attribute is “0b, 1b, 2b, 3b” and the flag_meanings attribute gives:
+not_used
+good_data
+suspect_data_unspecified_instrument_performance_issues_contact_data_originator_for_more_information
+Bad_data_value_outside_instrument_measurement_range
+
+If the user wanted only to see “good” data (indicated by a qc_flag value of 1) all they would need to do would be to:
+Make a copy of the variable data array
+Set the value of the elements in the duplicate data array that correspond to elements on the qc_flag that have a value not equal to 1 to NaN.
+This will result in the temporary data variable looking like:
+NaN
+-3
+NaN
+-1
+-2
+-3
+-2
+-1
+0
+-1
+0
+2
+3
+NaN
+2
+3
+NaN
+NaN
+3
+2
+
+
+If the user wanted to accept “suspect” data in addition to “good” data (indicated by a qc_flag value of 1 and ) all they would need to do would be to:
+Make a copy of the variable data array
+Set the value of the elements in the duplicate data array that correspond to elements on the qc_flag that have a value not equal to 1 or 2 to NaN.
+This will result in the temporary data variable looking like:
+NaN
+-3
+-2
+-1
+-2
+-3
+-2
+-1
+0
+-1
+0
+2
+3
+4
+2
+3
+NaN
+4
+3
+2
+
+
 
 
 Level 0b files

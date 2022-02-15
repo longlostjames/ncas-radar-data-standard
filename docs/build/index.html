@@ -42,10 +42,13 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fileformat.html">Filename conventions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fileformat.html#netcdf-conventions">NetCDF conventions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">Developer’s Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileformat.html">Metadata (Global Attributes)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileformat.html#global-variables">Global Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileformat.html#level-0a-files">Level 0a files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileformat.html#level-0b-files">Level 0b files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileformat.html#level-1c-files">Level 1c files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileformat.html#level-2-files">Level 2 files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
 
         </div>
@@ -74,60 +77,38 @@
              
   <div class="section" id="ncas-radar-data-standard">
 <h1>NCAS Radar Data Standard<a class="headerlink" href="#ncas-radar-data-standard" title="Permalink to this headline">¶</a></h1>
-<p>Documentation for ncas-radar-data-format.</p>
+<p>Documentation for ncas-radar-data-standard.</p>
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="overview.html#wivern-2-chilbolton-processing-routines">WIVERN-2 Chilbolton processing routines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overview.html#ncas-radar-data-standard">NCAS Radar Data Standard</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#radar-processing">Radar processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#lidar-processing">Lidar processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#mwr-processing">MWR processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#model-data">Model data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#categorize-processing">Categorize processing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="quickstart.html#processing-products">Processing products</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileformat.html">Metadata (Global Attributes)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileformat.html#global-variables">Global Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileformat.html#level-0a-files">Level 0a files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fileformat.html#ghz-camra-time-series-files">3GHz CAMRa time-series files</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="fileformat.html">Filename conventions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="fileformat.html#netcdf-conventions">NetCDF conventions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="fileformat.html#metadata-global-attributes">Metadata (Global Attributes)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="fileformat.html#level-0a-files">Level 0a files</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="fileformat.html#ghz-camra-time-series-files">3GHz CAMRa time-series files</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileformat.html#level-0b-files">Level 0b files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fileformat.html#id3">3GHz CAMRa time-series files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fileformat.html#model-file">Model file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fileformat.html#mwr-file">Mwr file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fileformat.html#radar-file">Radar file</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="fileformat.html#level-0b-files">Level 0b files</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="fileformat.html#id1">3GHz CAMRa time-series files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fileformat.html#model-file">Model file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fileformat.html#mwr-file">Mwr file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fileformat.html#radar-file">Radar file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileformat.html#level-1c-files">Level 1c files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fileformat.html#categorize-file">Categorize file</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="fileformat.html#level-1c-files">Level 1c files</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="fileformat.html#categorize-file">Categorize file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileformat.html#level-2-files">Level 2 files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="fileformat.html#classification-file">Classification file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fileformat.html#drizzle-file">Drizzle file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fileformat.html#iwc-file">Iwc file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="fileformat.html#lwc-file">Lwc file</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="fileformat.html#level-2-files">Level 2 files</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="fileformat.html#classification-file">Classification file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fileformat.html#drizzle-file">Drizzle file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fileformat.html#iwc-file">Iwc file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="fileformat.html#lwc-file">Lwc file</a></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">Developer’s Guide</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="guide.html#how-to-contribute">How to contribute</a></li>
-<li class="toctree-l2"><a class="reference internal" href="guide.html#testing">Testing</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="guide.html#testing-environment">Testing environment</a></li>
-<li class="toctree-l3"><a class="reference internal" href="guide.html#unit-tests">Unit tests</a></li>
-<li class="toctree-l3"><a class="reference internal" href="guide.html#end-to-end-test">End-to-end test</a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="guide.html#coding-guidelines">Coding guidelines</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
 </ul>
 </div>
 <div class="section" id="indices-and-tables">

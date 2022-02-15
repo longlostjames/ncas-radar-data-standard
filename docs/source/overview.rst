@@ -6,14 +6,12 @@ NCAS Radar Data Standard
 ------------------------
 
 NCAS currently operates a variety of radars as part of its programme of
-observational science and facility provision.  These range in capbabilty, some
-incroporating scanning antennas, and some operating in fixed, zenith pointing
-mode.  This document outlines the specification for a data standard developed for
+observational science and facility provision.  These range in capabilty, some
+incorporating scanning antennas, and some operating in fixed, zenith pointing
+mode.  This document outlines the specification of a data standard developed for
 NCAS radar data. It forms part of a wider standardisation of data formats for
-NCAS observational data.  The guiding priciples are those of FAIR_ (Findable
-Accessible Interoperable Reusable) data management.
-
-.. _FAIR: “FAIR Guiding Principles for scientific data management and stewardship’’, Wilkinson et al., 2016, https://doi.org/10.1038/sdata.2016.18.
+NCAS observational data.  The guiding principles are those of FAIR (Findable
+Accessible Interoperable Reusable) data management [FAIR2016]_.
 
 There are now substantial drivers for data providers to implement the FAIR principles. These include:
 The G20 group of nations: At the 2016 Hangzhou summit, the G20 leaders issued a statement endorsing the application of FAIR principles to research.

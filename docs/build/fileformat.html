@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Filename conventions &mdash; ncas_radar_data_format 1.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>Metadata (Global Attributes) &mdash; ncas_radar_data_format 1.0.0 documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -17,8 +17,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Developer’s Guide" href="guide.html" />
-    <link rel="prev" title="Quickstart" href="quickstart.html" />
+    <link rel="prev" title="Overview" href="overview.html" />
     <link href="_static/custom.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -43,35 +42,30 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
-<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Filename conventions</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#netcdf-conventions">NetCDF conventions</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#metadata-global-attributes">Metadata (Global Attributes)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#level-0a-files">Level 0a files</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#ghz-camra-time-series-files">3GHz CAMRa time-series files</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Metadata (Global Attributes)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#global-variables">Global Variables</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#level-0a-files">Level 0a files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ghz-camra-time-series-files">3GHz CAMRa time-series files</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#level-0b-files">Level 0b files</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id1">3GHz CAMRa time-series files</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#model-file">Model file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#mwr-file">Mwr file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#radar-file">Radar file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#level-0b-files">Level 0b files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id3">3GHz CAMRa time-series files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#model-file">Model file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mwr-file">Mwr file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#radar-file">Radar file</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#level-1c-files">Level 1c files</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#categorize-file">Categorize file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#level-1c-files">Level 1c files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#categorize-file">Categorize file</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#level-2-files">Level 2 files</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#classification-file">Classification file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#drizzle-file">Drizzle file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#iwc-file">Iwc file</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#lwc-file">Lwc file</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#level-2-files">Level 2 files</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#classification-file">Classification file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#drizzle-file">Drizzle file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#iwc-file">Iwc file</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lwc-file">Lwc file</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="guide.html">Developer’s Guide</a></li>
 </ul>
 
         </div>
@@ -88,7 +82,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Filename conventions</li>
+      <li>Metadata (Global Attributes)</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/fileformat.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -98,61 +92,91 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="filename-conventions">
-<h1>Filename conventions<a class="headerlink" href="#filename-conventions" title="Permalink to this headline">¶</a></h1>
+  <dl class="simple">
+<dt>..sectnum:: Filename conventions</dt><dd></dd>
+</dl>
 <p>Each radar file is named as</p>
 <p><code class="docutils literal notranslate"><span class="pre">&lt;instrument_name&gt;_&lt;platform_name&gt;_&lt;date&gt;-[&lt;time&gt;]_&lt;scan_type&gt;_[&lt;option1&gt;_&lt;option2&gt;_&lt;option3&gt;]_v&lt;version&gt;.nc</span></code></p>
-</div>
-<div class="section" id="netcdf-conventions">
-<h1>NetCDF conventions<a class="headerlink" href="#netcdf-conventions" title="Permalink to this headline">¶</a></h1>
-<p>The NCAS-RADAR convention adheres to the CF/Radial-1.4 format, and its subconventions.</p>
-<div class="section" id="metadata-global-attributes">
-<h2>Metadata (Global Attributes)<a class="headerlink" href="#metadata-global-attributes" title="Permalink to this headline">¶</a></h2>
-<p>As the NCAS RADAR convention uses CF/Radial-1.4 as its basis, all global
-attributes required by the latter must be included.  The following global
-attributes are required by CF/Radial-1.4</p>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">Conventions</span></code></dt><dd><p>This indicates the conventions/vocabularies that are being followed in the
-generation of the data file. The core convention is that used for CF naming,
-that is CF-1.6.</p>
+<dt>..sectnum::  NetCDF conventions</dt><dd></dd>
+</dl>
+<p>The NCAS-RADAR convention adheres to the CfRadial-1.4 format, and its subconventions.</p>
+<p>Data types
+All data conform to defined data types. Depending on the software used to interrogate the files data types may be given a different name to that used here. To be precise:</p>
+<p>Python3 name
+Definition
+Range
+byte
+8-bit unsigned integer
+0 to 255
+int32
+32-bit signed integer
+-2,147,483,648 to +2,147,483,647
+int64
+64-bit signed integer
+-9,223,372,036,854,775,808 to +9,223,372,036,854,775,807</p>
+<p>float32
+32-bit Single-precision floating-point
+-3.4E+38 to +3.4E+38
+float64
+64-bit Double-precision floating-point
+-1.7E+308 to +1.7E+308</p>
+<p>Note the data type is not given as an explicit variable attribute.</p>
+<div class="section" id="metadata-global-attributes">
+<h1>Metadata (Global Attributes)<a class="headerlink" href="#metadata-global-attributes" title="Permalink to this headline">¶</a></h1>
+<p>As the NCAS RADAR convention uses CfRadial-1.4 as its basis, all global
+attributes required by the latter must be included.  The following global
+attributes are required by CfRadial-1.4:</p>
+<dl>
+<dt>Conventions</dt><dd><blockquote>
+<div><p>A comma-separated list of the conventions that are followed by the dataset.</p>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p>CfRadial-1.4, NCAS-RADAR-1.0</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">title</span></code></dt><dd><p>This is a short description of the file contents.</p>
+</dl>
+</dd>
+<dt>title</dt><dd><p>This is a short description of the file contents.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Example</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">Moments</span> <span class="pre">from</span> <span class="pre">the</span> <span class="pre">NCAS</span> <span class="pre">Mobile</span> <span class="pre">X-band</span> <span class="pre">Radar</span> <span class="pre">unit</span> <span class="pre">1</span> <span class="pre">at</span> <span class="pre">Sandwith,</span> <span class="pre">UK</span></code></p>
 </dd>
 </dl>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">institution</span></code></dt><dd><p>This is the name of the institution employing the creator.  This is added to help users of the data track down the creator if they need to.</p>
+<dt>institution</dt><dd><p>This is the name of the institution employing the creator.  This is added to
+help users of the data track down the creator if they need to.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Example</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">National</span> <span class="pre">Centre</span> <span class="pre">for</span> <span class="pre">Atmospheric</span> <span class="pre">Science</span> <span class="pre">(NCAS)</span></code></p>
 </dd>
 </dl>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">references</span></code></dt><dd><p>References that describe the data or the methods used to produce it.  For example, this may be a paper describing the instrument.</p>
+<dt>references</dt><dd><p>References that describe the data or the methods used to produce it.  For example, this may be a paper describing the instrument.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Example</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">https://doi.org/10.5194/amt-11-6481-2018</span></code></p>
 </dd>
 </dl>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">source</span></code></dt><dd><p>This is a descriptor that uniquely identifies the source of the data.</p>
+<dt>source</dt><dd><p>This is a descriptor that uniquely identifies the source of the data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Example</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">NCAS</span> <span class="pre">Mobile</span> <span class="pre">X-band</span> <span class="pre">Radar</span> <span class="pre">unit</span> <span class="pre">1</span></code></p>
 </dd>
 </dl>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">history</span></code></dt><dd><p>This is freeform text that gives the history of the data from collection to the present version.</p>
+<dt>history</dt><dd><p>This is freeform text that gives the history of the data from collection to
+the present version.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">comment</span></code></dt><dd><p>This is free form text and is used to provide the user with any additional information that may be of use.</p>
+<dt>comment</dt><dd><p>This is free form text and is used to provide the user with any additional
+information that may be of use.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Example</dt>
 <dd class="field-odd"><p></p></dd>
 </dl>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">instrument_name</span></code></dt><dd><p>This should be filled with the unique NCAS instrument name</p>
+<dt>instrument_name</dt><dd><p>This should be filled with the unique NCAS instrument name</p>
 <dl class="field-list simple">
 <dt class="field-odd">Example</dt>
 <dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">ncas-mobile-x-band-radar-1</span></code></p>
@@ -160,11 +184,424 @@ that is CF-1.6.</p>
 </dl>
 </dd>
 </dl>
+<p>The following global attributes are optional within CF/Radial-1.4, but are required by NCAS-Radar-1.0:</p>
+<p>platform_is_mobile</p>
+<blockquote>
+<div><dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p>false</p>
+</dd>
+</dl>
+</div></blockquote>
+<p>The following global attributes are required by NCAS-Radar-1.0 but are not part
+of the CfRadial-1.4 convention:</p>
+<dl>
+<dt>instrument_manufacturer</dt><dd><p>The name of the instrument manufacturer</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">Meteorologische</span> <span class="pre">Messtechnik</span> <span class="pre">(Metek)</span> <span class="pre">GmbH</span></code></p>
+</dd>
+</dl>
+</dd>
+<dt>instrument_model</dt><dd><p>The instrument model name</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p>MIRA-35</p>
+</dd>
+</dl>
+</dd>
+<dt>instrument_serial_number</dt><dd><p>The instrument serial number which is registered to the instrument name used
+in the file name and linked to the “source”</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p>63270V</p>
+</dd>
+</dl>
+</dd>
+<dt>instrument_software</dt><dd><p>If known this is the name of the software running on the instrument that
+actually controls and makes the measurement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">radar-camra-rec</span></code></p>
+</dd>
+</dl>
+</dd>
+<dt>instrument_software_version</dt><dd><p>Manufacturers often update instrument software and subtle changes in this
+code can result in changes in the quality of the data provided. To be able
+to trace any such effect the version of software running is embedded in the
+metadata.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p>v2.08.11</p>
+</dd>
+</dl>
+</dd>
+<dt>creator_name</dt><dd><p>This is the name of the person who generated the file. This is the person to
+contact if there are any questions about the data presented and how they were
+produced.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><ol class="upperalpha simple">
+<li><p>Person</p></li>
+</ol>
+</dd>
+</dl>
+</dd>
+<dt>creator_email</dt><dd><p>The contact email for the person who created the file. People move and this
+may not always be valid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p><a class="reference external" href="mailto:A&#46;Person&#37;&#52;&#48;aplace&#46;ac&#46;uk">A<span>&#46;</span>Person<span>&#64;</span>aplace<span>&#46;</span>ac<span>&#46;</span>uk</a></p>
+</dd>
+</dl>
+</dd>
+<dt>creator_url</dt><dd><p>The ORCID URL of the person who created the file is something that goes with
+them and unlike email using this to trace the creator has a greater chance of
+success.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">https://orcid.org/0000-0000-0000-0000</span></code></p>
+</dd>
+</dl>
+</dd>
+<dt>processing_software_url</dt><dd><p>To go from the level 0 data produced by the source to the files archived
+requires the creator to do some sort of data processing. This processing may
+involve various levels of QC and data formatting so that it meets the archive
+standard. Where this code is developed by the creator it is deposited on an
+open repository - usually GitHub and this is the url to that code. The use of
+a repository means that the code is version controlled and the exact version
+used to create the file is accessible.</p>
+<p>This only applies to creator developed code - no manufacturer proprietary
+software is ever deposited to the repository</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">https://github.com/name1/name2/</span></code></p>
+</dd>
+</dl>
+</dd>
+<dt>processing_software_version</dt><dd><p>This is the version of the processing software.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p>v1.3</p>
+</dd>
+</dl>
+<p>Calibrations are often accompanied by a certificate that is dated and if not
+there is always a date as to when the calibration for the data provided was
+done. The date provided here is either when the calibration was done and if there is a certificate the date of this</p>
+</dd>
+<dt>product_version</dt><dd><p>Over time, errors or new calibrations means that the data may need to be
+reissued: it is the same data but just a different version. The version number
+is part of the file name and should match this value. Major revisions occur
+when a new calibration or processing method is applied while minor revisions
+occur to correct typos. The reason for a the revision is detailed in the
+history field</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p>v &lt;n.m&gt; n - major revision, m - minor revision</p>
+</dd>
+</dl>
+</dd>
+<dt>processing_level</dt><dd><p>This indicated the amount of quality control that has been put into the data.
+See the “Data Processing Levels” section for a full discussion.
+Options: 1, 2, or 3</p>
+</dd>
+<dt>last_revised_date</dt><dd><p>This is the date that this data file was processed. The time is UTC and is
+given in ISO format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p>2013-06-06T12:00:00</p>
+</dd>
+</dl>
+</dd>
+<dt>project</dt><dd><p>This is the full name and associated acronym of the project and should match
+that on official funding documents.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p>Dynamics-aerosol-chemistry-cloud interactions in West Africa. (DACCIWA)</p>
+</dd>
+</dl>
+</dd>
+<dt>project_principal_investigator</dt><dd><p>The name of the project Principal Investigator</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><ol class="upperalpha simple" start="2">
+<li><p>Person</p></li>
+</ol>
+</dd>
+</dl>
+</dd>
+<dt>project_principal_investigator_email</dt><dd><p>Contact email for project PI</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p><a class="reference external" href="mailto:B&#46;Person&#37;&#52;&#48;someplace&#46;com">B<span>&#46;</span>Person<span>&#64;</span>someplace<span>&#46;</span>com</a></p>
+</dd>
+</dl>
+</dd>
+<dt>project_principal_investigator_url</dt><dd><p>ORCID URL of PI.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">https://orcid.org/0000-0000-0000-0000</span></code></p>
+</dd>
+</dl>
+</dd>
+<dt>licence</dt><dd><p>The UK Government Licensing Framework (UKGLF) provides a policy and legal
+overview of the arrangements for licensing the use and re-use of public sector
+information, both in central government and the wider public sector. It sets
+out best practice, standardises the licensing principles for government
+information, mandates the Open Government Licence (OGL) as the default
+licence for Crown bodies and recommends OGL for other public sector bodies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p><a href="#id1"><span class="problematic" id="id2">``</span></a>Data usage licence - UK Government Open Licence agreement:</p>
+</dd>
+</dl>
+<p><a class="reference external" href="http://www.nationalarchives.gov.uk/doc/open-government">http://www.nationalarchives.gov.uk/doc/open-government</a>-licence``</p>
+</dd>
+<dt>acknowledgement</dt><dd><p>Obtaining and producing these data represents a substantial amount of effort
+and investment of resources. It is expected that users of this data
+acknowledge this by following the request directive given in this field.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p>Acknowledgement of NCAS as the data provider is required whenever</p>
+</dd>
+</dl>
+<p>and wherever these data are used</p>
+</dd>
+<dt>platform</dt><dd><p>The platform is where or on what the instrument was deployed for example if
+it was deployed at Christmas Island then the value in this field would be
+<code class="docutils literal notranslate"><span class="pre">&quot;christmas</span> <span class="pre">island”</span></code>. If the instrument was deployed on a ship called Oden then
+the value in this field would be <code class="docutils literal notranslate"><span class="pre">“oden”</span></code></p>
+</dd>
+<dt>time_coverage_start</dt><dd><p>This is the time value of the first ray of data in the file. The time is UTC
+and in ISO format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">2013-02-01T00:00:00Z</span></code></p>
+</dd>
+</dl>
+</dd>
+<dt>time_coverage_end</dt><dd><p>This is the time value of the last ray of data in the file. The time is UTC
+and in ISO format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">2013-03-31T23:59:59Z</span></code></p>
+</dd>
+</dl>
+</dd>
+<dt>geospatial_bounds</dt><dd><p>This field defines the latitude and longitude range associated with the file.
+For a stationary_platform this is just the latitude and longitude part
+(signed decimal). For a moving_platform it is the bounding box: : top left corner, bottom right corner presented as : latitude longitude, latitude longitude (signed decima)</p>
+<dl class="field-list simple">
+<dt class="field-odd">Example</dt>
+<dd class="field-odd"><p>-111.29N 40.26E
+Bounding box: -111.29N  40.26E, -110.29N  41.26E</p>
+</dd>
+</dl>
+</dd>
+<dt><strong>``platform_altitude``</strong></dt><dd><p>This is the altitude above the WGS84 geoid of the ground at the point of
+deployment. All instrument deployment heights are given with respect to this.
+Where altitude is a variable this is given with respect to WGS84 and not respect to the local ground.</p>
+<p>Example: 263m or 263 m
+location_keywords
+These are words with geographical relevance that aid archival searching.</p>
+<p>Example: africa, ghana, kumasi, knust
+amf_vocabularies_release
+This is the url to the version controlled vocabulary used in defining the data file.</p>
+<p>Example: <a class="reference external" href="https://github.com/ncasuk/AMF_CVs/releases">https://github.com/ncasuk/AMF_CVs/releases</a></p>
+</dd>
+</dl>
+</div>
+<div class="section" id="global-variables">
+<h1>Global Variables<a class="headerlink" href="#global-variables" title="Permalink to this headline">¶</a></h1>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 8%" />
+<col style="width: 13%" />
+<col style="width: 43%" />
+<col style="width: 21%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Name</strong></p></th>
+<th class="head"><p><strong>Data type</strong></p></th>
+<th class="head"><p><strong>Dimension</strong></p></th>
+<th class="head"><p>Long name</p></th>
+<th class="head"><p>Units</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>volume_number</p></td>
+<td><p>int</p></td>
+<td><p>none</p></td>
+<td><div class="line-block">
+<div class="line">Volume numbers are sequential, relative to some arbitrary start time,</div>
+<div class="line">and may wrap.</div>
+</div>
+</td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>platform_type</p></td>
+<td><p>char</p></td>
+<td><p>(string_length)</p></td>
+<td><div class="line-block">
+<div class="line">Options are: <em>“fixed”</em>, <em>“vehicle”</em>, <em>“ship”</em>, <em>“aircraft”</em>, <em>“aircraft_fore”</em>,</div>
+<div class="line"><em>“aircraft_aft”</em>, <em>“aircraft_tail”</em>, <em>“aircraft_belly”</em>, <em>“aircraft_roof”</em>,</div>
+<div class="line"><em>“aircraft_nose”</em>, <em>“satellite_orbit”</em>, <em>“satellite_geostat”</em></div>
+</div>
+</td>
+<td><p>none</p></td>
+</tr>
+<tr class="row-even"><td><p>longitude</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>longitude of the antenna</p></td>
+<td><p>degree_east</p></td>
+</tr>
+<tr class="row-odd"><td><p>height</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>height of the elevation axis above mean sea level (Ordnance Survey Great Britain)</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>frequency</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>frequency of transmitted radiation</p></td>
+<td><p>GHz</p></td>
+</tr>
+<tr class="row-odd"><td><p>prf</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>pulse repetition frequency</p></td>
+<td><p>Hz</p></td>
+</tr>
+<tr class="row-even"><td><p>beamwidthH</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>horizontal angular beamwidth</p></td>
+<td><p>degree</p></td>
+</tr>
+<tr class="row-odd"><td><p>beamwidthV</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>vertical angular beamwidth</p></td>
+<td><p>degree</p></td>
+</tr>
+<tr class="row-even"><td><p>antenna_diameter</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>antenna diameter</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>pulse_period</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>pulse period</p></td>
+<td><p>us</p></td>
+</tr>
+<tr class="row-even"><td><p>transmit_power</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>peak transmitted power</p></td>
+<td><p>W</p></td>
+</tr>
+<tr class="row-odd"><td><p>clock</p></td>
+<td><p>float32</p></td>
+<td></td>
+<td><p>clock input to ISACTRL</p></td>
+<td><p>Hz</p></td>
+</tr>
+<tr class="row-even"><td><p>range</p></td>
+<td><p>float32</p></td>
+<td><p>range</p></td>
+<td><p>distance from the antenna to the middle of each range gate</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-odd"><td><p>unaveraged_range</p></td>
+<td><p>float32</p></td>
+<td><p>unaveraged_range</p></td>
+<td><p>distance from the antenna to the middle of each range gate</p></td>
+<td><p>m</p></td>
+</tr>
+<tr class="row-even"><td><p>time</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>time</p></td>
+<td><p>seconds since 2020-09-22 00:00:00 +00:00</p></td>
+</tr>
+<tr class="row-odd"><td><p>dish_time</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>dish_time</p></td>
+<td><p>seconds since 2020-09-22 00:00:00 +00:00</p></td>
+</tr>
+<tr class="row-even"><td><p>elevation</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>elevation angle above the horizon at the start of the beamwidth</p></td>
+<td><p>degree</p></td>
+</tr>
+<tr class="row-odd"><td><p>azimuth</p></td>
+<td><p>float32</p></td>
+<td><p>time</p></td>
+<td><p>azimuth angle clockwise from grid north at the start of the beamwidth</p></td>
+<td><p>degree</p></td>
+</tr>
+<tr class="row-even"><td><p>ZLO</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, samples</p></td>
+<td><p>radar reflectivity factor low</p></td>
+<td><p>counts</p></td>
+</tr>
+<tr class="row-odd"><td><p>ZHI</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, samples</p></td>
+<td><p>radar reflectivity factor high</p></td>
+<td><p>counts</p></td>
+</tr>
+<tr class="row-even"><td><p>ZCX</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, samples</p></td>
+<td><p>crosspolar radar reflectivity factor</p></td>
+<td><p>counts</p></td>
+</tr>
+<tr class="row-odd"><td><p>ITX</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, samples</p></td>
+<td><p>TX I channel</p></td>
+<td><p>counts</p></td>
+</tr>
+<tr class="row-even"><td><p>QTX</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, samples</p></td>
+<td><p>TX Q channel</p></td>
+<td><p>counts</p></td>
+</tr>
+<tr class="row-odd"><td><p>IRX</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, samples</p></td>
+<td><p>RX I channel</p></td>
+<td><p>counts</p></td>
+</tr>
+<tr class="row-even"><td><p>QRX</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, samples</p></td>
+<td><p>RX Q channel</p></td>
+<td><p>counts</p></td>
+</tr>
+<tr class="row-odd"><td><p>SPR</p></td>
+<td><p>short</p></td>
+<td><p>time, pulses, samples</p></td>
+<td><p>Spare channel</p></td>
+<td><p>counts</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="section" id="level-0a-files">
-<h2>Level 0a files<a class="headerlink" href="#level-0a-files" title="Permalink to this headline">¶</a></h2>
+<h1>Level 0a files<a class="headerlink" href="#level-0a-files" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="ghz-camra-time-series-files">
-<h3>3GHz CAMRa time-series files<a class="headerlink" href="#ghz-camra-time-series-files" title="Permalink to this headline">¶</a></h3>
+<h2>3GHz CAMRa time-series files<a class="headerlink" href="#ghz-camra-time-series-files" title="Permalink to this headline">¶</a></h2>
 <p>These files are in NetCDF-3 format with the following content:</p>
 <p><strong>Dimensions:</strong></p>
 <table class="docutils align-default">
@@ -187,169 +624,6 @@ that is CF-1.6.</p>
 </tbody>
 </table>
 <p><strong>Variables:</strong></p>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 8%" />
-<col style="width: 13%" />
-<col style="width: 43%" />
-<col style="width: 21%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td rowspan="2"><p>latitude</p></td>
-<td rowspan="2"><p>float32</p></td>
-<td rowspan="2"></td>
-<td rowspan="2"><p>latitude of the antenna</p></td>
-<td><p>Units</p></td>
-</tr>
-<tr class="row-even"><td><p>degree_north</p></td>
-</tr>
-<tr class="row-odd"><td><p>longitude</p></td>
-<td><p>float32</p></td>
-<td></td>
-<td><p>longitude of the antenna</p></td>
-<td><p>degree_east</p></td>
-</tr>
-<tr class="row-even"><td><p>height</p></td>
-<td><p>float32</p></td>
-<td></td>
-<td><p>height of the elevation axis above mean sea level (Ordnance Survey Great Britain)</p></td>
-<td><p>m</p></td>
-</tr>
-<tr class="row-odd"><td><p>frequency</p></td>
-<td><p>float32</p></td>
-<td></td>
-<td><p>frequency of transmitted radiation</p></td>
-<td><p>GHz</p></td>
-</tr>
-<tr class="row-even"><td><p>prf</p></td>
-<td><p>float32</p></td>
-<td></td>
-<td><p>pulse repetition frequency</p></td>
-<td><p>Hz</p></td>
-</tr>
-<tr class="row-odd"><td><p>beamwidthH</p></td>
-<td><p>float32</p></td>
-<td></td>
-<td><p>horizontal angular beamwidth</p></td>
-<td><p>degree</p></td>
-</tr>
-<tr class="row-even"><td><p>beamwidthV</p></td>
-<td><p>float32</p></td>
-<td></td>
-<td><p>vertical angular beamwidth</p></td>
-<td><p>degree</p></td>
-</tr>
-<tr class="row-odd"><td><p>antenna_diameter</p></td>
-<td><p>float32</p></td>
-<td></td>
-<td><p>antenna diameter</p></td>
-<td><p>m</p></td>
-</tr>
-<tr class="row-even"><td><p>pulse_period</p></td>
-<td><p>float32</p></td>
-<td></td>
-<td><p>pulse period</p></td>
-<td><p>us</p></td>
-</tr>
-<tr class="row-odd"><td><p>transmit_power</p></td>
-<td><p>float32</p></td>
-<td></td>
-<td><p>peak transmitted power</p></td>
-<td><p>W</p></td>
-</tr>
-<tr class="row-even"><td><p>clock</p></td>
-<td><p>float32</p></td>
-<td></td>
-<td><p>clock input to ISACTRL</p></td>
-<td><p>Hz</p></td>
-</tr>
-<tr class="row-odd"><td><p>range</p></td>
-<td><p>float32</p></td>
-<td><p>range</p></td>
-<td><p>distance from the antenna to the middle of each range gate</p></td>
-<td><p>m</p></td>
-</tr>
-<tr class="row-even"><td><p>unaveraged_range</p></td>
-<td><p>float32</p></td>
-<td><p>unaveraged_range</p></td>
-<td><p>distance from the antenna to the middle of each range gate</p></td>
-<td><p>m</p></td>
-</tr>
-<tr class="row-odd"><td><p>time</p></td>
-<td><p>float32</p></td>
-<td><p>time</p></td>
-<td><p>time</p></td>
-<td><p>seconds since 2020-09-22 00:00:00 +00:00</p></td>
-</tr>
-<tr class="row-even"><td><p>dish_time</p></td>
-<td><p>float32</p></td>
-<td><p>time</p></td>
-<td><p>dish_time</p></td>
-<td><p>seconds since 2020-09-22 00:00:00 +00:00</p></td>
-</tr>
-<tr class="row-odd"><td><p>elevation</p></td>
-<td><p>float32</p></td>
-<td><p>time</p></td>
-<td><p>elevation angle above the horizon at the start of the beamwidth</p></td>
-<td><p>degree</p></td>
-</tr>
-<tr class="row-even"><td><p>azimuth</p></td>
-<td><p>float32</p></td>
-<td><p>time</p></td>
-<td><p>azimuth angle clockwise from grid north at the start of the beamwidth</p></td>
-<td><p>degree</p></td>
-</tr>
-<tr class="row-odd"><td><p>ZLO</p></td>
-<td><p>short</p></td>
-<td><p>time, pulses, samples</p></td>
-<td><p>radar reflectivity factor low</p></td>
-<td><p>counts</p></td>
-</tr>
-<tr class="row-even"><td><p>ZHI</p></td>
-<td><p>short</p></td>
-<td><p>time, pulses, samples</p></td>
-<td><p>radar reflectivity factor high</p></td>
-<td><p>counts</p></td>
-</tr>
-<tr class="row-odd"><td><p>ZCX</p></td>
-<td><p>short</p></td>
-<td><p>time, pulses, samples</p></td>
-<td><p>crosspolar radar reflectivity factor</p></td>
-<td><p>counts</p></td>
-</tr>
-<tr class="row-even"><td><p>ITX</p></td>
-<td><p>short</p></td>
-<td><p>time, pulses, samples</p></td>
-<td><p>TX I channel</p></td>
-<td><p>counts</p></td>
-</tr>
-<tr class="row-odd"><td><p>QTX</p></td>
-<td><p>short</p></td>
-<td><p>time, pulses, samples</p></td>
-<td><p>TX Q channel</p></td>
-<td><p>counts</p></td>
-</tr>
-<tr class="row-even"><td><p>IRX</p></td>
-<td><p>short</p></td>
-<td><p>time, pulses, samples</p></td>
-<td><p>RX I channel</p></td>
-<td><p>counts</p></td>
-</tr>
-<tr class="row-odd"><td><p>QRX</p></td>
-<td><p>short</p></td>
-<td><p>time, pulses, samples</p></td>
-<td><p>RX Q channel</p></td>
-<td><p>counts</p></td>
-</tr>
-<tr class="row-even"><td><p>SPR</p></td>
-<td><p>short</p></td>
-<td><p>time, pulses, samples</p></td>
-<td><p>Spare channel</p></td>
-<td><p>counts</p></td>
-</tr>
-</tbody>
-</table>
 <p><strong>Global attributes:</strong></p>
 <table class="docutils align-default">
 <colgroup>
@@ -464,12 +738,136 @@ that is CF-1.6.</p>
 </tr>
 </tbody>
 </table>
+<p>Data Quality Flags
+The data provided will have had some level of processing performed upon: be that instrument or post processing averaging, motion correction, or the variable may be derived from such core variables. These concepts were introduced in section 3. The quality of the data is provided via the Data Quality Control Flag. This flag is a mask and represents the provider’s considered opinion. Data users can apply the mask to the data or not - it is the user’s choice. By taking this approach, the data provided is of greatest versatility.</p>
+<p>A file containing just one data quality flag will contain the variable qc_flag. Where a  file contains more that on data quality flag variable the data quality flag named is structured as:  qc_flag_&lt;name&gt;
+qc_flag_temperature
+qc_flag_relative_humidity
+qc_flag_pressure
+qc_flag_wind
+qc_flag_radiation
+qc_flag_precipitation</p>
+<p>Flag variables are always of data type byte and are defined such that they have the same dimensions as the variables they are associated with: there is a flag value associated with every data point. They all follow a standard structure with the following attributes:
+units
+Definition: Units of a variable’s content. Where a variable is unit less the value 1 is used.
+Example: 1
+long_name
+Definition: Long descriptive name which is often used for labelling plots
+Example: Data Quality flag: Temperature
+flag_values
+Definition: Values the data flag can have
+Example: 0b, 1b, 2b, 3b
+flag_meanings
+Definition: How the flag should be interpreted
+Example:
+not_used
+good_data
+suspect_data_unspecified_instrument_performance_issues_contact_data_originator_for_more_information
+Suspect_data_time_stamp_error</p>
+<p>To reflect the fact that what affects data quality can vary, the flag_values and flag_meanings are not rigidly tied down. That is they may vary on a file-by-file basis. What does not vary is the structure and the usage: the qc_flag variable is structured and used so that for every flag_value there is a corresponding flag_meaning. In this standard we use an integer value in the range 0 to n (being of data type byte the maximum value of n is 255):
+0 is reserved for future use and is not used
+1 is always good data.</p>
+<p>Consider the variable air_temperature which has data:
+-20
+-3
+-2
+-1
+-2
+-3
+-2
+-1
+0
+-1
+0
+2
+3
+4
+2
+3
+20
+4
+3
+2</p>
+<p>While qc_flag_temperature has data:
+3
+1
+2
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+2
+1
+1
+3
+2
+1
+1</p>
+<p>The flag_values attribute is “0b, 1b, 2b, 3b” and the flag_meanings attribute gives:
+not_used
+good_data
+suspect_data_unspecified_instrument_performance_issues_contact_data_originator_for_more_information
+Bad_data_value_outside_instrument_measurement_range</p>
+<p>If the user wanted only to see “good” data (indicated by a qc_flag value of 1) all they would need to do would be to:
+Make a copy of the variable data array
+Set the value of the elements in the duplicate data array that correspond to elements on the qc_flag that have a value not equal to 1 to NaN.
+This will result in the temporary data variable looking like:
+NaN
+-3
+NaN
+-1
+-2
+-3
+-2
+-1
+0
+-1
+0
+2
+3
+NaN
+2
+3
+NaN
+NaN
+3
+2</p>
+<p>If the user wanted to accept “suspect” data in addition to “good” data (indicated by a qc_flag value of 1 and ) all they would need to do would be to:
+Make a copy of the variable data array
+Set the value of the elements in the duplicate data array that correspond to elements on the qc_flag that have a value not equal to 1 or 2 to NaN.
+This will result in the temporary data variable looking like:
+NaN
+-3
+-2
+-1
+-2
+-3
+-2
+-1
+0
+-1
+0
+2
+3
+4
+2
+3
+NaN
+4
+3
+2</p>
 </div>
 </div>
 <div class="section" id="level-0b-files">
-<h2>Level 0b files<a class="headerlink" href="#level-0b-files" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="id1">
-<h3>3GHz CAMRa time-series files<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<h1>Level 0b files<a class="headerlink" href="#level-0b-files" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id3">
+<h2>3GHz CAMRa time-series files<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
 <p>Level 0.5 files have been processed to remove redundant dimensions, and to make some changes to global attributes and variables.
 The files are in NetCDF-4 format with the following content:</p>
 <p><strong>Dimensions:</strong></p>
@@ -730,7 +1128,7 @@ values above this should be used.</p>
 204         .ZCX_scale  =   0.03125,         /</em> dB/count <em>/
 205         .ZLO_thresh = 3840, /</em> 0x0F00 <em>/ /</em> counts   <em>/
 206         .Bias       = 2047, /</em> 0x07FF <em>/ /</em> counts   <em>/
-207         .ADCBits    = 12                 /</em> Bits     <a href="#id2"><span class="problematic" id="id3">*</span></a>/</p>
+207         .ADCBits    = 12                 /</em> Bits     <a href="#id4"><span class="problematic" id="id5">*</span></a>/</p>
 <p><strong>Global attributes:</strong></p>
 <p><strong>Variables (CHM15K specific):</strong></p>
 <table class="docutils align-default">
@@ -854,7 +1252,7 @@ values above this should be used.</p>
 </table>
 </div>
 <div class="section" id="model-file">
-<h3>Model file<a class="headerlink" href="#model-file" title="Permalink to this headline">¶</a></h3>
+<h2>Model file<a class="headerlink" href="#model-file" title="Permalink to this headline">¶</a></h2>
 <p><strong>Dimensions:</strong></p>
 <table class="docutils align-default">
 <colgroup>
@@ -1501,7 +1899,7 @@ values above this should be used.</p>
 </table>
 </div>
 <div class="section" id="mwr-file">
-<h3>Mwr file<a class="headerlink" href="#mwr-file" title="Permalink to this headline">¶</a></h3>
+<h2>Mwr file<a class="headerlink" href="#mwr-file" title="Permalink to this headline">¶</a></h2>
 <p><strong>Dimensions:</strong></p>
 <table class="docutils align-default">
 <colgroup>
@@ -1546,7 +1944,7 @@ values above this should be used.</p>
 </table>
 </div>
 <div class="section" id="radar-file">
-<h3>Radar file<a class="headerlink" href="#radar-file" title="Permalink to this headline">¶</a></h3>
+<h2>Radar file<a class="headerlink" href="#radar-file" title="Permalink to this headline">¶</a></h2>
 <p><strong>Dimensions:</strong></p>
 <table class="docutils align-default">
 <colgroup>
@@ -1974,9 +2372,9 @@ values above this should be used.</p>
 </div>
 </div>
 <div class="section" id="level-1c-files">
-<h2>Level 1c files<a class="headerlink" href="#level-1c-files" title="Permalink to this headline">¶</a></h2>
+<h1>Level 1c files<a class="headerlink" href="#level-1c-files" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="categorize-file">
-<h3>Categorize file<a class="headerlink" href="#categorize-file" title="Permalink to this headline">¶</a></h3>
+<h2>Categorize file<a class="headerlink" href="#categorize-file" title="Permalink to this headline">¶</a></h2>
 <p><strong>Dimensions:</strong></p>
 <table class="docutils align-default">
 <colgroup>
@@ -2214,9 +2612,9 @@ values above this should be used.</p>
 </div>
 </div>
 <div class="section" id="level-2-files">
-<h2>Level 2 files<a class="headerlink" href="#level-2-files" title="Permalink to this headline">¶</a></h2>
+<h1>Level 2 files<a class="headerlink" href="#level-2-files" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="classification-file">
-<h3>Classification file<a class="headerlink" href="#classification-file" title="Permalink to this headline">¶</a></h3>
+<h2>Classification file<a class="headerlink" href="#classification-file" title="Permalink to this headline">¶</a></h2>
 <p><strong>Dimensions:</strong></p>
 <table class="docutils align-default">
 <colgroup>
@@ -2317,7 +2715,7 @@ values above this should be used.</p>
 </table>
 </div>
 <div class="section" id="drizzle-file">
-<h3>Drizzle file<a class="headerlink" href="#drizzle-file" title="Permalink to this headline">¶</a></h3>
+<h2>Drizzle file<a class="headerlink" href="#drizzle-file" title="Permalink to this headline">¶</a></h2>
 <p><strong>Dimensions:</strong></p>
 <table class="docutils align-default">
 <colgroup>
@@ -2502,7 +2900,7 @@ values above this should be used.</p>
 </table>
 </div>
 <div class="section" id="iwc-file">
-<h3>Iwc file<a class="headerlink" href="#iwc-file" title="Permalink to this headline">¶</a></h3>
+<h2>Iwc file<a class="headerlink" href="#iwc-file" title="Permalink to this headline">¶</a></h2>
 <p><strong>Dimensions:</strong></p>
 <table class="docutils align-default">
 <colgroup>
@@ -2603,7 +3001,7 @@ values above this should be used.</p>
 </table>
 </div>
 <div class="section" id="lwc-file">
-<h3>Lwc file<a class="headerlink" href="#lwc-file" title="Permalink to this headline">¶</a></h3>
+<h2>Lwc file<a class="headerlink" href="#lwc-file" title="Permalink to this headline">¶</a></h2>
 <p><strong>Dimensions:</strong></p>
 <table class="docutils align-default">
 <colgroup>
@@ -2698,14 +3096,12 @@ values above this should be used.</p>
 </table>
 </div>
 </div>
-</div>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="guide.html" class="btn btn-neutral float-right" title="Developer’s Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>

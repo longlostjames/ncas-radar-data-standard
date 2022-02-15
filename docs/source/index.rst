@@ -7,16 +7,14 @@
 NCAS Radar Data Standard
 ===============================
 
-Documentation for ncas-radar-data-format.
+Documentation for ncas-radar-data-standard.
 
 .. toctree::
    :maxdepth: 4
 
    overview
-   quickstart
    fileformat
-   guide
-
+   references
 
 
 Indices and tables

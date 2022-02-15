@@ -1,14 +1,43 @@
-Filename conventions
-====================
+..sectnum:: Filename conventions
+            ====================
 
 Each radar file is named as
 
 ``<instrument_name>_<platform_name>_<date>-[<time>]_<scan_type>_[<option1>_<option2>_<option3>]_v<version>.nc``
 
-NetCDF conventions
-==================
+..sectnum::  NetCDF conventions
+             ==================
 
-The NCAS-RADAR convention adheres to the CF/Radial-1.4 format, and its subconventions.
+The NCAS-RADAR convention adheres to the CfRadial-1.4 format, and its subconventions.
+
+
+Data types
+All data conform to defined data types. Depending on the software used to interrogate the files data types may be given a different name to that used here. To be precise:
+
+Python3 name
+Definition
+Range
+byte
+8-bit unsigned integer
+0 to 255
+int32
+32-bit signed integer
+-2,147,483,648 to +2,147,483,647
+int64
+64-bit signed integer
+-9,223,372,036,854,775,808 to +9,223,372,036,854,775,807
+
+
+float32
+32-bit Single-precision floating-point
+-3.4E+38 to +3.4E+38
+float64
+64-bit Double-precision floating-point
+-1.7E+308 to +1.7E+308
+
+
+Note the data type is not given as an explicit variable attribute.
+
 
 Metadata (Global Attributes)
 ----------------------------
@@ -402,6 +431,142 @@ These files are in NetCDF-3 format with the following content:
 +--------------------------------+------------------------------------------------------------------------------+
 |British_National_Grid_Reference |SU394386                                                                      |
 +--------------------------------+------------------------------------------------------------------------------+
+
+Data Quality Flags
+The data provided will have had some level of processing performed upon: be that instrument or post processing averaging, motion correction, or the variable may be derived from such core variables. These concepts were introduced in section 3. The quality of the data is provided via the Data Quality Control Flag. This flag is a mask and represents the provider's considered opinion. Data users can apply the mask to the data or not - it is the user's choice. By taking this approach, the data provided is of greatest versatility.
+
+A file containing just one data quality flag will contain the variable qc_flag. Where a  file contains more that on data quality flag variable the data quality flag named is structured as:  qc_flag_<name>
+qc_flag_temperature
+qc_flag_relative_humidity
+qc_flag_pressure
+qc_flag_wind
+qc_flag_radiation
+qc_flag_precipitation
+
+Flag variables are always of data type byte and are defined such that they have the same dimensions as the variables they are associated with: there is a flag value associated with every data point. They all follow a standard structure with the following attributes:
+units
+Definition: Units of a variable’s content. Where a variable is unit less the value 1 is used.
+Example: 1
+long_name
+Definition: Long descriptive name which is often used for labelling plots
+Example: Data Quality flag: Temperature
+flag_values
+Definition: Values the data flag can have
+Example: 0b, 1b, 2b, 3b
+flag_meanings
+Definition: How the flag should be interpreted
+Example:
+not_used
+good_data
+suspect_data_unspecified_instrument_performance_issues_contact_data_originator_for_more_information
+Suspect_data_time_stamp_error
+
+To reflect the fact that what affects data quality can vary, the flag_values and flag_meanings are not rigidly tied down. That is they may vary on a file-by-file basis. What does not vary is the structure and the usage: the qc_flag variable is structured and used so that for every flag_value there is a corresponding flag_meaning. In this standard we use an integer value in the range 0 to n (being of data type byte the maximum value of n is 255):
+0 is reserved for future use and is not used
+1 is always good data.
+
+Consider the variable air_temperature which has data:
+-20
+-3
+-2
+-1
+-2
+-3
+-2
+-1
+0
+-1
+0
+2
+3
+4
+2
+3
+20
+4
+3
+2
+
+While qc_flag_temperature has data:
+3
+1
+2
+1
+1
+1
+1
+1
+1
+1
+1
+1
+1
+2
+1
+1
+3
+2
+1
+1
+
+The flag_values attribute is “0b, 1b, 2b, 3b” and the flag_meanings attribute gives:
+not_used
+good_data
+suspect_data_unspecified_instrument_performance_issues_contact_data_originator_for_more_information
+Bad_data_value_outside_instrument_measurement_range
+
+If the user wanted only to see “good” data (indicated by a qc_flag value of 1) all they would need to do would be to:
+Make a copy of the variable data array
+Set the value of the elements in the duplicate data array that correspond to elements on the qc_flag that have a value not equal to 1 to NaN.
+This will result in the temporary data variable looking like:
+NaN
+-3
+NaN
+-1
+-2
+-3
+-2
+-1
+0
+-1
+0
+2
+3
+NaN
+2
+3
+NaN
+NaN
+3
+2
+
+
+If the user wanted to accept “suspect” data in addition to “good” data (indicated by a qc_flag value of 1 and ) all they would need to do would be to:
+Make a copy of the variable data array
+Set the value of the elements in the duplicate data array that correspond to elements on the qc_flag that have a value not equal to 1 or 2 to NaN.
+This will result in the temporary data variable looking like:
+NaN
+-3
+-2
+-1
+-2
+-3
+-2
+-1
+0
+-1
+0
+2
+3
+4
+2
+3
+NaN
+4
+3
+2
+
+
 
 
 Level 0b files

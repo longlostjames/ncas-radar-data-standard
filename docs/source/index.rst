@@ -13,6 +13,7 @@ Documentation for ncas-radar-data-standard.
    :maxdepth: 4
 
    overview
+   cfradial
    fileformat
    references
 

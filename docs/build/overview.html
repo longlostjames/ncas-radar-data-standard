@@ -43,7 +43,14 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#ncas-radar-data-standard">NCAS Radar Data Standard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ncas-radar-data-standard">NCAS Radar Data Standard</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#fair-principles">FAIR Principles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#netcdf">NetCDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cfradial-conventions">CfRadial conventions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-access-and-archiving">Data access and archiving</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#usage-license">Usage License</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="fileformat.html">Metadata (Global Attributes)</a></li>
@@ -88,51 +95,123 @@ observational science and facility provision.  These range in capabilty, some
 incorporating scanning antennas, and some operating in fixed, zenith pointing
 mode.  This document outlines the specification of a data standard developed for
 NCAS radar data. It forms part of a wider standardisation of data formats for
-NCAS observational data.  The guiding principles are those of FAIR (Findable
-Accessible Interoperable Reusable) data management <a class="reference internal" href="references.html#fair2016" id="id1"><span>[FAIR2016]</span></a>.</p>
-<p>There are now substantial drivers for data providers to implement the FAIR principles. These include:
-The G20 group of nations: At the 2016 Hangzhou summit, the G20 leaders issued a statement endorsing the application of FAIR principles to research.
-Increased emphasis on data and its reusability at policy level in national government and science funding bodies.
-Science publishers have a grow0ing requirement for data DOI’s and data traceability.
-The science community is expected to demonstrate data dissemination, usage, and deliver impact statements.</p>
-<p>The FAIR principles of data management and stewardship aim to make data:</p>
-<dl class="field-list simple">
-<dt class="field-odd">Findable</dt>
-<dd class="field-odd"><p></p></dd>
+NCAS observational data.</p>
+<div class="section" id="fair-principles">
+<h3>FAIR Principles<a class="headerlink" href="#fair-principles" title="Permalink to this headline">¶</a></h3>
+<p>The guiding principles for the NCAS Radar Data Standard are those of FAIR
+(<strong>F</strong>indable <strong>A</strong>ccessible <strong>I</strong>nteroperable and <strong>R</strong>eusable) data management
+<span id="id1">[<a class="reference internal" href="references.html#id2" title="Mark D. Wilkinson, Michel Dumontier, IJsbrand Jan Aalbersberg, Gabrielle Appleton, Myles Axton, Arie Baak, Niklas Blomberg, Jan-Willem Boiten, Luiz Bonino da Silva Santos, Philip E. Bourne, Jildau Bouwman, Anthony J. Brookes, Tim Clark, Mercè Crosas, Ingrid Dillo, Olivier Dumon, Scott Edmunds, Chris T. Evelo, Richard Finkers, Alejandra Gonzalez-Beltran, Alasdair J.G. Gray, Paul Groth, Carole Goble, Jeffrey S. Grethe, Jaap Heringa, Peter A.C 't Hoen, Rob Hooft, Tobias Kuhn, Ruben Kok, Joost Kok, Scott J. Lusher, Maryann E. Martone, Albert Mons, Abel L. Packer, Bengt Persson, Philippe Rocca-Serra, Marco Roos, Rene van Schaik, Susanna-Assunta Sansone, Erik Schultes, Thierry Sengstag, Ted Slater, George Strawn, Morris A. Swertz, Mark Thompson, Johan van der Lei, Erik van Mulligen, Jan Velterop, Andra Waagmeester, Peter Wittenburg, Katherine Wolstencroft, Jun Zhao, and Barend Mons. The FAIR guiding principles for scientific data management and stewardship. Scientific Data, mar 2016. doi:10.1038/sdata.2016.18.">1</a>]</span>.</p>
+<p>A detailed description of the FAIR principles may be found at <a class="reference external" href="https://go-fair.org/fair-principles/">https://go-fair.org/fair-principles/</a>.
+For ease of reference these are reproduced in part below.
+The FAIR principles of data management and stewardship aim to make data:</p>
+<p><strong>Findable</strong></p>
+<p>The first step in (re)using data is to find them. Metadata and data should be
+easy to find for both humans and computers.  Machine-readable metadata are
+essential for automatic discovery of datasets and services.</p>
+<p>This means:</p>
+<ul class="simple">
+<li><p>(Meta)data should be assigned a globally unique and persistent identifier.</p></li>
+<li><p>Data should be described with rich metadata.</p></li>
+<li><p>Metadata should clearly and explicitly include the identifier of the data they describe.</p></li>
+<li><p>(Meta)data should be registered or indexed in a searchable resource.</p></li>
+</ul>
+<p><strong>Accessible</strong></p>
+<p>Once the user finds the required data, they need to know how they can be accessed,
+possibly including authentication and authorisation.</p>
+<p>This means:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Metadata are retrievable by their identifier using a standardised communications protocol.</dt><dd><ul>
+<li><p>The protocol should be open, free, and universally implementable.</p></li>
+<li><p>The protocol should allow for an authentication and authorization procedure, where necessary.</p></li>
+</ul>
+</dd>
 </dl>
-<p>The first step in use and reuse data is to find them.
-Metadata and data should be easy to find for both humans and computers.
-Machine-readable metadata are essential for automatic discovery of datasets and services.</p>
-<dl class="field-list simple">
-<dt class="field-odd">This means</dt>
-<dd class="field-odd"><p></p></dd>
-</dl>
-<p>Metadata are assigned a globally unique and eternally persistent identifier.
-Data are described with rich metadata.
-Metadata are registered or indexed in a searchable resource.
-Metadata specify the data identifier.
-:Accessible:
-Once the user finds the required data, they need to know how they can be accessed, possibly including authentication and authorisation.
-:This means:
-Metadata are retrievable by their identifier using a standardised communications protocol.
-The protocol is open, free, and universally implementable.
-The protocol allows for an authentication and authorization procedure, where necessary.
-Metadata are accessible, even when the data are no longer available
-:Interoperable:
-Data usually needs to be integrated with other data.
-Data needs to interoperate with applications or workflows for analysis, storage, and processing.
-:This means:
-Metadata uses a formal, accessible, shared, and broadly applicable language for knowledge representation.
-Metadata use vocabularies that follow FAIR principles.
-Metadata include qualified references to other metadata.
-:Reusable:
-The ultimate goal of FAIR is to optimise the use and reuse of data.
-To achieve this, metadata and data should be well-described so that they can be replicated and/or combined in different settings.
-:This means:
-Metadata have a plurality of accurate and relevant attributes.
-Metadata are released with a clear and accessible data usage license.
-Metadata are associated with their provenance.
-Metadata meet domain-relevant community standards.</p>
+</li>
+<li><p>Metadata should be accessible, even when the data are no longer available</p></li>
+</ul>
+<p><strong>Interoperable</strong></p>
+<p>The data usually need to be integrated with other data.  In addition, the data
+need to interoperate with applications or workflows for analysis, storage, and
+processing.</p>
+<p>This means:</p>
+<ul class="simple">
+<li><p>(Meta)data should use a formal, accessible, shared, and broadly applicable language for knowledge representation.</p></li>
+<li><p>(Meta)data should use vocabularies that follow FAIR principles.</p></li>
+<li><p>(Meta)data should include qualified references to other (meta)data.</p></li>
+</ul>
+<p><strong>Reusable</strong></p>
+<p>The ultimate goal of FAIR is to optimise the use and reuse of data.
+To achieve this, metadata and data should be well-described so that they can be
+replicated and/or combined in different settings.</p>
+<p>This means:</p>
+<ul class="simple">
+<li><p>(Meta)data should be richly described with a plurality of accurate and relevant attributes.</p></li>
+<li><p>(Meta)data should be released with a clear and accessible data usage license.</p></li>
+<li><p>(Meta)data should be associated with detailed provenance.</p></li>
+<li><p>(Meta)data should meet domain-relevant community standards.</p></li>
+</ul>
+</div>
+<div class="section" id="netcdf">
+<h3>NetCDF<a class="headerlink" href="#netcdf" title="Permalink to this headline">¶</a></h3>
+<p>NCAS radar data products are provided in the <strong>netCDF</strong> format.
+NetCDF (Network Common Data Form) is a set of software libraries and platform
+independent data formats which are designed to support the creation, access, and sharing of array-oriented scientific data. NetCDF is designed to be</p>
+<ul class="simple">
+<li><p><strong>Self-describing.</strong> A netCDF file includes information about the data it contains (i.e. metadata).</p></li>
+<li><p><strong>Portable.</strong> A netCDF file can be accessed by computers with different ways of storing integers, characters, and floating-point numbers.</p></li>
+<li><p><strong>Scalable.</strong> A small subset of a large dataset may be accessed efficiently.</p></li>
+<li><p><strong>Appendable.</strong> Data may be appended to a properly structured netCDF file without copying the dataset or redefining its structure.</p></li>
+<li><p><strong>Shareable.</strong> One writer and many readers may simultaneously access the same netCDF file.</p></li>
+<li><p><strong>Archivable.</strong> Access to all earlier forms of netCDF data will be supported by current and future versions of the software.</p></li>
+</ul>
+<p>NetCDF is extremely commonly used, and is almost ubiquitous within the Earth sciences. Unidata (<a class="reference external" href="https://unidata.ucar.edu">https://unidata.ucar.edu</a>) provide and maintain software libraries for accessing netCDF data using C, C++, Java, and FORTRAN. Third-party libraries (which are generally bindings or wrappers to the Unidata libraries) are available for Python, IDL, MATLAB, R, Ruby, and Perl, among others.</p>
+<p>NetCDF files generally consist of four components:</p>
+<ul class="simple">
+<li><p><strong>Attributes:</strong> Attributes are metadata that can be attached to the netCDF file itself (called global attributes), to variables, and to groups (variable attributes and group attributes, respectively). Attributes may be textual or numeric; numeric attributes may be arrays.</p></li>
+<li><p><strong>Groups:</strong> Groups (available since netCDF4) provide a method to encapsulate related <em>dimensions,</em> <em>variables,</em> and <em>attributes</em>. They can be thought of as somewhat analogous to directories in a filesystem.</p></li>
+<li><p><strong>Dimensions:</strong> Dimensions specify the size of a single axis of a variable within a netCDF file. Common dimensions for geophysical data include time, latitude, and longitude, though they do not need to correspond to physical dimensions. There is no practical limit to the number of dimensions which may be defined in a netCDF file.</p></li>
+<li><p><strong>Variables:</strong> Variables are either scalar (single values pertaining the whole data set) or named <em>n</em>-dimensional arrays (thus associated with <em>n</em> <em>dimensions</em>) of a specified data type. Variables may have zero or more <em>attributes</em>, which act as metadata to describe the contents of the variable.</p></li>
+</ul>
+<p>Radar data are typically recorded as time-stamped rays, each providing values of
+an observable at a set of distances (ranges) from the radar.
+Such so-called field variables are thus organised into 2-dimensional arrays,
+along <em>time</em> and <em>range</em> dimensions.</p>
+<p>Below is a minimal example in Python of accessing a 2-dimensional field
+variable, <em>ZED</em>, along with its <em>units</em> attribute and a global <em>title</em> attribute
+from a netCDF file, is given below. Note that the netCDF library, <em>netCDF4</em>, is
+not included as part of the python standard library, but may be installed using
+your system package manager, pip, or conda.</p>
+<div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">netCDF4</span> <span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="k">with</span> <span class="n">Dataset</span><span class="p">(</span><span class="s1">&#39;somefile.nc&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">nc</span><span class="p">:</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="n">nc</span><span class="o">.</span><span class="n">title</span>
+    <span class="n">ZED_units</span> <span class="o">=</span> <span class="n">nc</span><span class="p">[</span><span class="s1">&#39;ZED&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">units</span>
+    <span class="n">ZED_data</span> <span class="o">=</span> <span class="n">nc</span><span class="p">[</span><span class="s1">&#39;ZED&#39;</span><span class="p">][:]</span>
+</pre></div>
+</td></tr></table></div>
+</div>
+<div class="section" id="cfradial-conventions">
+<h3>CfRadial conventions<a class="headerlink" href="#cfradial-conventions" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="data-access-and-archiving">
+<h3>Data access and archiving<a class="headerlink" href="#data-access-and-archiving" title="Permalink to this headline">¶</a></h3>
+<p>FAAM aim to process and make available a preliminary version of the core data product within 24 hours of a flight, although this may take slightly longer when on detachment.
+The preliminary file, indicated by the postfix <code class="docutils literal notranslate"><span class="pre">_prelim</span></code> in the filename will initially be made available to registered users through the FAAM website, where it will also be available in an interactive visualisation tool.
+The preliminary file is intended to be used for visualisation and initial analysis.</p>
+<p>Once all of the variables in this file have been checked by a FAAM staff member, the data will be archived at the Centre for Environmental Data Analysis (CEDA; <a class="reference external" href="https://www.ceda.ac.uk">https://www.ceda.ac.uk</a>).
+The archived verison will not include the <code class="docutils literal notranslate"><span class="pre">_prelim</span></code> postfix, and having gone through QC, may differ from the preliminary file.
+Users can access the data by first registering as a CEDA user, and then applying for access to FAAM core data. The core data file is generally freely available, however access may be restricted for upto one year at the request of a project PI.</p>
+</div>
+</div>
+<div class="section" id="usage-license">
+<h2>Usage License<a class="headerlink" href="#usage-license" title="Permalink to this headline">¶</a></h2>
+<p>FAAM data are licensed under the Open Government Licence (<a class="reference external" href="http://www.nationalarchives.gov.uk/doc/open-government-licence">http://www.nationalarchives.gov.uk/doc/open-government-licence</a>).</p>
 <p>NCAS (<a class="reference external" href="https://www.ncas.ac.uk/">https://www.ncas.ac.uk/</a>) is putting its own house inorder and applying the FAIR principles to the data it generates. Working with the data scientists at CEDA (<a class="reference external" href="https://www.ceda.ac.uk/">https://www.ceda.ac.uk/</a>), the UK archive for atmospheric and earth observation data, the NCAS-Observation team have:
 Defined data products for NCAS instrumentation.
 Uniquely named all the NCAS instrumentation.
@@ -150,26 +229,18 @@ Global attributes: including the metadata standards followed in the file, change
 Dimensions: information about the data array sizes. All data have a dimension of time
 Variables: attributes of each data variable included in the file, e.g. name(s), units</p>
 <p>Comment and feedback on the data file content, structure and supporting document is always welcome and appreciated. Please contact: <a class="reference external" href="mailto:barbara&#46;brooks&#37;&#52;&#48;ncas&#46;ac&#46;uk">barbara<span>&#46;</span>brooks<span>&#64;</span>ncas<span>&#46;</span>ac<span>&#46;</span>uk</a></p>
-<p>This documents the wivern2_chilbolton is a collection of Python routines for processing the radar data collected during the WIVERN-2 ground-based observation campaign at Chilbolton Observatory in the UK.</p>
-<p>These are the routines used to process raw (Level 0) time series data from the following radars:</p>
-<ul class="simple">
-<li><p>3GHz CAMRa radar</p></li>
-<li><p>35GHz Copernicus radar</p></li>
-<li><p>94GHz Galileo radar</p></li>
-</ul>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="_static/example_data.png"><img alt="_static/example_data.png" src="_static/example_data.png" style="width: 500px;" /></a>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Near real-time Cloudnet data can be accessed at <a class="reference external" href="https://cloudnet.fmi.fi">https://cloudnet.fmi.fi</a>.</p>
+<p>Something else we want to say.</p>
 </div>
 <p>See also:</p>
 <ul class="simple">
-<li><p>Cloudnet data portal: <a class="reference external" href="https://cloudnet.fmi.fi/">https://cloudnet.fmi.fi/</a></p></li>
-<li><p>CloudnetPy source: <a class="reference external" href="https://github.com/actris-cloudnet/cloudnetpy">https://github.com/actris-cloudnet/cloudnetpy</a></p></li>
-<li><p>ACTRIS home: <a class="reference external" href="http://actris.eu/">http://actris.eu/</a></p></li>
-<li><p>ACTRIS data portal: <a class="reference external" href="http://actris.nilu.no/">http://actris.nilu.no/</a></p></li>
+<li><p>Centre for Environmental Data Analysis: <a class="reference external" href="https://ceda.ac.uk/">https://ceda.ac.uk/</a></p></li>
+<li><p>Python ARM Radar Toolkit <a class="reference external" href="https://arm-doe.github.io/pyart/">https://arm-doe.github.io/pyart/</a></p></li>
+<li><p>LROSE: Lidar Radar Open Software Environment: <a class="reference external" href="https://lrose.net/">https://lrose.net/</a></p></li>
 </ul>
 </div>
 </div>

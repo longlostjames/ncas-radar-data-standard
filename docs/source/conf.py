@@ -48,8 +48,10 @@ extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.autosummary',
     'sphinx.ext.autosectionlabel',
-]
+    'sphinxcontrib.bibtex']
 
+bibtex_bibfiles = ['refs.bib']
+bibtex_default_style = 'unsrt'
 
 napoleon_google_docstring = True
 

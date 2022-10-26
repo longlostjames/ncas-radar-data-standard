@@ -99,7 +99,7 @@ and sharing of array-oriented scientific data. NetCDF is designed to be
 * **Archivable.** Access to all earlier forms of netCDF data will be supported
   by current and future versions of the software.
 
-NetCDF is extremely commonly used, and is almost ubiquitous within the Earth
+NetCDF is in common use, and is almost ubiquitous within the Earth
 sciences. Unidata (https://unidata.ucar.edu) provide and maintain software
 libraries for accessing netCDF data using C, C++, Java, and FORTRAN.
 Third-party libraries (which are generally bindings or wrappers to the Unidata
@@ -132,7 +132,7 @@ along *time* and *range* dimensions.
 
 Below is a minimal example in Python of accessing a 2-dimensional field
 variable, *DBZH*, along with its *units* attribute and a global *title*
-attribute from a netCDF file, is given below. Note that the netCDF library,
+attribute from a netCDF file. Note that the netCDF library,
 *netCDF4*, is not included as part of the Python standard library, but may be
 installed using your system package manager, pip, or conda.
 

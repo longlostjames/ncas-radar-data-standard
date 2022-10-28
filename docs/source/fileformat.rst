@@ -1,3 +1,4 @@
+====================
 Filename conventions
 ====================
 
@@ -5,6 +6,7 @@ Each radar file is named as
 
 ``<instrument_name>_<platform_name>_<date>-[<time>]_<scan_type>_[<option1>_<option2>_<option3>]_v<version>.nc``
 
+==================
 NetCDF conventions
 ==================
 

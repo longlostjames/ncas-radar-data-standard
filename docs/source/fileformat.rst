@@ -47,9 +47,13 @@ attributes required by the latter must be included.  The following global
 attributes are required by CfRadial-1.4:
 
 Conventions
-   A comma-separated list of the conventions that are followed by the dataset.
+   A space-delineated list of the conventions (and sub-conventions) that are
+   followed by the dataset.  As NCAS-RADAR-1.0 uses version 1.4 of the CfRadial
+   standard, this should be included explicitly. Sub-conventions such as
+   "radar_parameters" are inherited from CfRadial-1.4, i.e. NCAS-RADAR-1.0 does
+   not have a separate set of sub-conventions.
 
-  :Example: CfRadial-1.4, NCAS-RADAR-1.0
+  :Example: NCAS-RADAR-1.0 CfRadial-1.4 instrument_parameters radar_parameters radar_calibration
 
 title
   This is a short description of the file contents.
@@ -63,12 +67,13 @@ institution
   :Example: ``National Centre for Atmospheric Science (NCAS)``
 
 references
-  References that describe the data or the methods used to produce it.  For example, this may be a paper describing the instrument.
+  References that describe the data or the methods used to produce it.
+  For example, this may be a paper describing the instrument.
 
   :Example: ``https://doi.org/10.5194/amt-11-6481-2018``
 
 source
-  This is a descriptor that uniquely identifies the source of the data.
+  This is a descriptor that uniquely identifies the source of the original data.
 
   :Example: ``NCAS Mobile X-band Radar unit 1``
 
@@ -87,7 +92,8 @@ instrument_name
 
   :Example: ``ncas-mobile-x-band-radar-1``
 
-The following global attributes are optional within CF/Radial-1.4, but are required by NCAS-Radar-1.0:
+The following global attributes are optional within CF/Radial-1.4, but are
+required by NCAS-Radar-1.0:
 
 platform_is_mobile
 
@@ -111,6 +117,14 @@ instrument_serial_number
   in the file name and linked to the “source”
 
   :Example: 63270V
+
+instrument_pid
+  This is a unique persistent identifier (PID) for the instrument, for example
+  registered on the Handle.Net registry.  These PIDs are required when
+  submitting data to the ACTRIS data centre, and so incorporating them here
+  ensures correct cross-referencing.
+
+  :Example: https://hdl.handle.net/21.12132/3.191564170f8a4686
 
 instrument_software
   If known this is the name of the software running on the instrument that
@@ -142,21 +156,21 @@ creator_email
 creator_url
   The ORCID URL of the person who created the file is something that goes with
   them and unlike email using this to trace the creator has a greater chance of
-  success.
+  success.  Other PIDs may be used, but ORCID is the preferred option.
 
   :Example: ``https://orcid.org/0000-0000-0000-0000``
 
 processing_software_url
-  To go from the level 0 data produced by the source to the files archived
+  To go from the Level 0 data produced by the source to the files archived
   requires the creator to do some sort of data processing. This processing may
   involve various levels of QC and data formatting so that it meets the archive
   standard. Where this code is developed by the creator it is deposited on an
-  open repository - usually GitHub and this is the url to that code. The use of
-  a repository means that the code is version controlled and the exact version
-  used to create the file is accessible.
+  open repository - usually GitHub - and this is the url to that code. The use
+  of a repository means that the code is version controlled and the exact
+  version used to create the file is accessible.
 
-  This only applies to creator developed code - no manufacturer proprietary
-  software is ever deposited to the repository
+  This only applies to creator-developed code - no manufacturer proprietary
+  software is ever deposited in the repository
 
   :Example: ``https://github.com/name1/name2/``
 
@@ -165,28 +179,23 @@ processing_software_version
 
   :Example: v1.3
 
-  Calibrations are often accompanied by a certificate that is dated and if not
-  there is always a date as to when the calibration for the data provided was
-  done. The date provided here is either when the calibration was done and if there is a certificate the date of this
-
-
 product_version
   Over time, errors or new calibrations means that the data may need to be
-  reissued: it is the same data but just a different version. The version number
-  is part of the file name and should match this value. Major revisions occur
-  when a new calibration or processing method is applied while minor revisions
-  occur to correct typos. The reason for a the revision is detailed in the
-  history field
+  reissued: they are the same data but just a different version. The version
+  number is part of the file name and should match this value. Major revisions
+  occur when a new calibration or processing method is applied while minor
+  revisions occur to correct typos, etc. The reason for a the revision is
+  detailed in the history field
 
-  :Example: v <n.m> n - major revision, m - minor revision
+  :Example: v<n.m> n - major revision, m - minor revision
 
 processing_level
-  This indicated the amount of quality control that has been put into the data.
+  This indicates the level of quality control that has been applied to the data.
   See the “Data Processing Levels” section for a full discussion.
   Options: 1, 2, or 3
 
 last_revised_date
-  This is the date that this data file was processed. The time is UTC and is
+  This is the date of production of the data file. The time is UTC and is
   given in ISO format.
 
   :Example: 2013-06-06T12:00:00
@@ -195,7 +204,8 @@ project
   This is the full name and associated acronym of the project and should match
   that on official funding documents.
 
-  :Example: Dynamics-aerosol-chemistry-cloud interactions in West Africa. (DACCIWA)
+  :Example: Dynamics-aerosol-chemistry-cloud interactions in West Africa.
+  (DACCIWA)
 
 project_principal_investigator
   The name of the project Principal Investigator
@@ -208,7 +218,7 @@ project_principal_investigator_email
   :Example: B.Person@someplace.com
 
 project_principal_investigator_url
-  ORCID URL of PI.
+  ORCID URL or other persistent identifier of the PI.
 
   :Example: ``https://orcid.org/0000-0000-0000-0000``
 
@@ -220,57 +230,65 @@ licence
   information, mandates the Open Government Licence (OGL) as the default
   licence for Crown bodies and recommends OGL for other public sector bodies.
 
-  :Example: ``Data usage licence - UK Government Open Licence agreement:
+  :Example: ``Data usage licence - UK Open Government Licence agreement:
   http://www.nationalarchives.gov.uk/doc/open-government-licence``
 
 acknowledgement
   Obtaining and producing these data represents a substantial amount of effort
-  and investment of resources. It is expected that users of this data
+  and investment of resources. It is expected that users of these data
   acknowledge this by following the request directive given in this field.
 
   :Example: Acknowledgement of NCAS as the data provider is required whenever
   and wherever these data are used
 
 platform
-  The platform is where or on what the instrument was deployed for example if
-  it was deployed at Christmas Island then the value in this field would be
-  ``"christmas island”``. If the instrument was deployed on a ship called Oden then
-  the value in this field would be ``“oden”``
+  The platform is the site or mobile platform where the instrument was deployed.
+  For example if it was deployed at Christmas Island then the value in this
+  field would be ``"christmas island”``. If the instrument was deployed on a
+  ship called Oden then the value in this field would be ``“oden”``
 
 time_coverage_start
   This is the time value of the first ray of data in the file. The time is UTC
-  and in ISO format.
+  and in ISO format.  Note that CfRadial-1.4 also incorporates this as a global
+  string variable.  Including it here as a global attribute aligns with usage
+  in data files from other NCAS instruments.
 
   :Example: ``2013-02-01T00:00:00Z``
 
 time_coverage_end
   This is the time value of the last ray of data in the file. The time is UTC
-  and in ISO format.
+  and in ISO format. Note that CfRadial-1.4 also incorporates this as a global
+  string variable.  Including it here as a global attribute aligns with usage
+  in data files from other NCAS instruments.
 
   :Example: ``2013-03-31T23:59:59Z``
 
 geospatial_bounds
-  This field defines the latitude and longitude range associated with the file.
-  For a stationary_platform this is just the latitude and longitude part
-  (signed decimal). For a moving_platform it is the bounding box: : top left corner, bottom right corner presented as : latitude longitude, latitude longitude (signed decima)
+  For a stationary platform this is just the latitude and longitude part
+  (signed decimal). For a moving_platform it is the geographic bounding box
+  geospatial_lat_min geospatial_lon_min, geospatial_lat_max geospatial_lon_max
+  (signed decimals),  The main purpose of this field is to aid data discovery.
 
-  :Example: -111.29N 40.26E
-             	Bounding box: -111.29N  40.26E, -110.29N  41.26E
+  :Example 1: -111.29N 40.26E
+  :Example 2: Bounding box: -111.29N  40.26E, -110.29N  41.26E
 
-**``platform_altitude``**
+platform_altitude
   This is the altitude above the WGS84 geoid of the ground at the point of
   deployment. All instrument deployment heights are given with respect to this.
-  Where altitude is a variable this is given with respect to WGS84 and not respect to the local ground.
+  Where altitude is a variable this is given with respect to the WGS84 geoid
+  and not with respect to the local ground.
 
-  Example: 263m or 263 m
-  location_keywords
-  These are words with geographical relevance that aid archival searching.
+  :Example: 263m
 
-  Example: africa, ghana, kumasi, knust
-  amf_vocabularies_release
-  This is the url to the version controlled vocabulary used in defining the data file.
+location_keywords
+  These are words with geographical relevance that aid data discovery.
 
-  Example: https://github.com/ncasuk/AMF_CVs/releases
+  :Example: africa, ghana, kumasi, knust
+
+ncas_radar_vocabularies_release
+  This is the url to the version controlled vocabulary used in defining the
+  data file.  This is currently under development.
+
 
 
 Global Variables

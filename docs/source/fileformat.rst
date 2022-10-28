@@ -232,16 +232,14 @@ licence
   information, mandates the Open Government Licence (OGL) as the default
   licence for Crown bodies and recommends OGL for other public sector bodies.
 
-  :Example: ``Data usage licence - UK Open Government Licence agreement:
-  http://www.nationalarchives.gov.uk/doc/open-government-licence``
+  :Example: ``Data usage licence - UK Open Government Licence agreement: http://www.nationalarchives.gov.uk/doc/open-government-licence``
 
 acknowledgement
   Obtaining and producing these data represents a substantial amount of effort
   and investment of resources. It is expected that users of these data
   acknowledge this by following the request directive given in this field.
 
-  :Example: Acknowledgement of NCAS as the data provider is required whenever
-  and wherever these data are used
+  :Example: ``Acknowledgement of NCAS as the data provider is required whenever and wherever these data are used``
 
 platform
   The platform is the site or mobile platform where the instrument was deployed.
@@ -271,8 +269,8 @@ geospatial_bounds
   geospatial_lat_min geospatial_lon_min, geospatial_lat_max geospatial_lon_max
   (signed decimals),  The main purpose of this field is to aid data discovery.
 
-  :Example 1: -111.29N 40.26E
-  :Example 2: Bounding box: -111.29N  40.26E, -110.29N  41.26E
+  :Example 1: ``-111.29N 40.26E``
+  :Example 2: ``Bounding box: -111.29N  40.26E, -110.29N  41.26E``
 
 platform_altitude
   This is the altitude above the WGS84 geoid of the ground at the point of
@@ -280,12 +278,12 @@ platform_altitude
   Where altitude is a variable this is given with respect to the WGS84 geoid
   and not with respect to the local ground.
 
-  :Example: 263m
+  :Example: ``263m``
 
 location_keywords
   These are words with geographical relevance that aid data discovery.
 
-  :Example: africa, ghana, kumasi, knust
+  :Example: ``africa, ghana, kumasi, knust``
 
 ncas_radar_vocabularies_release
   This is the url to the version controlled vocabulary used in defining the

@@ -323,9 +323,9 @@ Global Variables
 |                              |               |                         | | variable is computed relative to this time.                                     |                                        |
 |                              |               |                         | | Format is yyyy-mm-ddThh:mm:ssZ                                                  |                                        |
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| time_coverage_end            | char          | (string_length)         | | UTC time reference. Resolution is integer seconds. If defined, the time(time)   | none                                   |
-|                              |               |                         | | variable is computed relative to this time instead of relative to               |                                        |
-|                              |               |                         | | time_coverage_start. Format is yyyy-mm-ddThh:mm:ssZ                             |                                        |
+| time_coverage_end            | char          | (string_length)         | | UTC time reference. Resolution is integer seconds. If defined,                  | none                                   |
+|                              |               |                         | | the time(time) variable is computed relative to this time instead of relative   |                                        |
+|                              |               |                         | | to time_coverage_start. Format is yyyy-mm-ddThh:mm:ssZ                          |                                        |
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
 | time_reference               | char          | (string_length)         | | UTC time of last ray in file. Resolution is integer seconds.                    | none                                   |
 |                              |               |                         | | Format is yyyy-mm-ddThh:mm:ssZ                                                  |                                        |

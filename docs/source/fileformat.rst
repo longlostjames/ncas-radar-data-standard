@@ -1,12 +1,12 @@
-.. sectnum:: Filename conventions
-=================================
+Filename conventions
+====================
 
 Each radar file is named as
 
 ``<instrument_name>_<platform_name>_<date>-[<time>]_<scan_type>_[<option1>_<option2>_<option3>]_v<version>.nc``
 
-.. sectnum::  NetCDF conventions
-================================
+NetCDF conventions
+==================
 
 The NCAS-RADAR convention adheres to the CfRadial-1.4 format, and its subconventions.
 

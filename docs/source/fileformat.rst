@@ -55,7 +55,7 @@ Conventions
    "radar_parameters" are inherited from CfRadial-1.4, i.e. NCAS-RADAR-1.0 does
    not have a separate set of sub-conventions.
 
-  :Example: NCAS-RADAR-1.0 CfRadial-1.4 instrument_parameters radar_parameters radar_calibration
+  :Example: ``NCAS-RADAR-1.0 CfRadial-1.4 instrument_parameters radar_parameters radar_calibration``
 
 title
   This is a short description of the file contents.
@@ -99,7 +99,7 @@ required by NCAS-Radar-1.0:
 
 platform_is_mobile
 
-  :Example: false
+  :Example: ``false``
 
 The following global attributes are required by NCAS-Radar-1.0 but are not part
 of the CfRadial-1.4 convention:
@@ -112,13 +112,13 @@ instrument_manufacturer
 instrument_model
   The instrument model name
 
-  :Example: MIRA-35
+  :Example: ``MIRA-35``
 
 instrument_serial_number
   The instrument serial number which is registered to the instrument name used
   in the file name and linked to the “source”
 
-  :Example: 63270V
+  :Example: ``63270V``
 
 instrument_pid
   This is a unique persistent identifier (PID) for the instrument, for example
@@ -126,7 +126,7 @@ instrument_pid
   submitting data to the ACTRIS data centre, and so incorporating them here
   ensures correct cross-referencing.
 
-  :Example: https://hdl.handle.net/21.12132/3.191564170f8a4686
+  :Example: ``https://hdl.handle.net/21.12132/3.191564170f8a4686``
 
 instrument_software
   If known this is the name of the software running on the instrument that
@@ -140,20 +140,20 @@ instrument_software_version
   to trace any such effect the version of software running is embedded in the
   metadata.
 
-  :Example: v2.08.11
+  :Example: ``v2.08.11``
 
 creator_name
   This is the name of the person who generated the file. This is the person to
   contact if there are any questions about the data presented and how they were
   produced.
 
-  :Example: A. Person
+  :Example: ``A. Person``
 
 creator_email
   The contact email for the person who created the file. People move and this
   may not always be valid.
 
-  :Example: A.Person@aplace.ac.uk
+  :Example: ``A.Person@aplace.ac.uk``
 
 creator_url
   The ORCID URL of the person who created the file is something that goes with
@@ -179,7 +179,7 @@ processing_software_url
 processing_software_version
   This is the version of the processing software.
 
-  :Example: v1.3
+  :Example: ``v1.3``
 
 product_version
   Over time, errors or new calibrations means that the data may need to be
@@ -289,7 +289,15 @@ ncas_radar_vocabularies_release
   This is the url to the version controlled vocabulary used in defining the
   data file.  This is currently under development.
 
+Dimensions
+----------
 
++------------------------------+-----------------------------------------+
+|**Dimension name**            |**Description**                          |
++==============================+===============+=========================+
+| time                         | | The number of rays. This dimension is |
+|                              | | optionally unlimited                  |
++------------------------------+-----------------------------------------+
 
 Global Variables
 ----------------

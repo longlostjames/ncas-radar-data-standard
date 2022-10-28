@@ -295,8 +295,8 @@ Dimensions
 +------------------------------+-----------------------------------------+
 |**Dimension name**            |**Description**                          |
 +==============================+===============+=========================+
-| time                         | | The number of rays. This dimension is |
-|                              | | optionally unlimited                  |
+| time                         | The number of rays. This dimension is   |
+|                              | optionally unlimited                    |
 +------------------------------+-----------------------------------------+
 
 Global Variables

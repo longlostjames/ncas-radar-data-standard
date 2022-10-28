@@ -3,9 +3,9 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-===============================
+========================
 NCAS Radar Data Standard
-===============================
+========================
 
 Documentation for ncas-radar-data-standard.
 
@@ -13,7 +13,6 @@ Documentation for ncas-radar-data-standard.
    :maxdepth: 4
 
    overview
-   cfradial
    fileformat
    references
 

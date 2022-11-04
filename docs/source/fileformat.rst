@@ -16,7 +16,7 @@ which should be used to complement what is given here.
 
 
 Strict variable and attribute names for non-field variables
------------------------------------------------------------
+===========================================================
 CfRadial requires strict adherance to naming conventions for dimensions and for
 non-field variables.  By the latter we mean variables such as *time*, *range*,
 *azimuth* and *elevation*, and other variables containing metadata such as
@@ -25,8 +25,10 @@ For details see the CfRadial-1.4 documentation on Github.
 
 
 Metadata (Global Attributes)
-----------------------------
+============================
 
+Attributes required by CfRadial-1.4
+-----------------------------------
 As the NCAS RADAR convention uses CfRadial-1.4 as its basis, all global
 attributes required by the latter must be included.  The following global
 attributes are required by CfRadial-1.4:
@@ -84,6 +86,8 @@ platform_is_mobile
 
   :Example: ``false``
 
+Additional attributes required by NCAS-RADAR-1.0
+------------------------------------------------
 The following global attributes are required by NCAS-Radar-1.0 but are not part
 of the CfRadial-1.4 convention:
 

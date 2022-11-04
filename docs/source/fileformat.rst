@@ -10,35 +10,18 @@ Each radar file is named as
 NetCDF conventions
 ==================
 
-The NCAS-RADAR convention adheres to the CfRadial-1.4 format, and its subconventions.
+The NCAS-RADAR convention has at its heart the CfRadial-1.4 format, and its subconventions.
+Full documentation for the latter may be found on Github at ``https://github.com/NCAR/CfRadial``,
+which should be used to complement what is given here.
 
 
-Data types
-All data conform to defined data types. Depending on the software used to interrogate the files data types may be given a different name to that used here. To be precise:
-
-Python3 name
-Definition
-Range
-byte
-8-bit unsigned integer
-0 to 255
-int32
-32-bit signed integer
--2,147,483,648 to +2,147,483,647
-int64
-64-bit signed integer
--9,223,372,036,854,775,808 to +9,223,372,036,854,775,807
-
-
-float32
-32-bit Single-precision floating-point
--3.4E+38 to +3.4E+38
-float64
-64-bit Double-precision floating-point
--1.7E+308 to +1.7E+308
-
-
-Note the data type is not given as an explicit variable attribute.
+Strict variable and attribute names for non-field variables
+-----------------------------------------------------------
+CfRadial requires strict adherance to naming conventions for dimensions and for
+non-field variables.  By the latter we mean variables such as *time*, *range*,
+*azimuth* and *elevation*, and other variables containing metadata such as
+calibration offsets.  The NCAS-RADAR convention inherits this requirments.
+For details see the CfRadial-1.4 documentation on Github.
 
 
 Metadata (Global Attributes)
@@ -206,8 +189,7 @@ project
   This is the full name and associated acronym of the project and should match
   that on official funding documents.
 
-  :Example: Dynamics-aerosol-chemistry-cloud interactions in West Africa.
-  (DACCIWA)
+  :Example: Microbiology-Ocean-Cloud-Coupling in the High Arctic (MOCCHA)
 
 project_principal_investigator
   The name of the project Principal Investigator
@@ -283,7 +265,7 @@ platform_altitude
 location_keywords
   These are words with geographical relevance that aid data discovery.
 
-  :Example: ``africa, ghana, kumasi, knust``
+  :Example: ``cumbria, sandwith``
 
 ncas_radar_vocabularies_release
   This is the url to the version controlled vocabulary used in defining the

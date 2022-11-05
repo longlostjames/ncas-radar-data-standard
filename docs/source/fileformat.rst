@@ -10,13 +10,16 @@ Each radar file is named as
 NetCDF conventions
 ==================
 
-The NCAS-RADAR convention has at its heart the CfRadial-1.4 format, and its subconventions.
-Full documentation for the latter may be found on Github at ``https://github.com/NCAR/CfRadial``,
-which should be used to complement what is given here.
+The NCAS-RADAR convention has at its heart the CfRadial-1.4 format, and its
+subconventions.  CfRadial-1.4 is a comprehensive specification, and we only
+discuss required elements here.  For more complex use, e.g. for pulsed radar
+systems with complicated pulsing schemes, the user should consult the full
+CfRadial-1.4 documentation, which may be found on Github at
+``https://github.com/NCAR/CfRadial``.
 
 
-Strict variable and attribute names for non-field variables
-===========================================================
+.. rubric:: Strict variable and attribute names for non-field variables
+
 CfRadial requires strict adherance to naming conventions for dimensions and for
 non-field variables.  By the latter we mean variables such as *time*, *range*,
 *azimuth* and *elevation*, and other variables containing metadata such as

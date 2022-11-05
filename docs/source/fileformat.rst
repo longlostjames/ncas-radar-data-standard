@@ -20,7 +20,7 @@ Strict variable and attribute names for non-field variables
 CfRadial requires strict adherance to naming conventions for dimensions and for
 non-field variables.  By the latter we mean variables such as *time*, *range*,
 *azimuth* and *elevation*, and other variables containing metadata such as
-calibration offsets.  The NCAS-RADAR convention inherits this requirments.
+calibration offsets.  The NCAS-RADAR convention inherits this requirement.
 For details see the CfRadial-1.4 documentation on Github.
 
 
@@ -37,7 +37,7 @@ Conventions
    A space-delineated list of the conventions (and sub-conventions) that are
    followed by the dataset.  As NCAS-RADAR-1.0 uses version 1.4 of the CfRadial
    standard, this should be included explicitly. Sub-conventions such as
-   "radar_parameters" are inherited from CfRadial-1.4, i.e. NCAS-RADAR-1.0 does
+   "radar_parameters" are inherited from CfRadial-1.4. NCAS-RADAR-1.0 does
    not have a separate set of sub-conventions.
 
   :Example: ``NCAS-RADAR-1.0 CfRadial-1.4 instrument_parameters radar_parameters radar_calibration``
@@ -72,13 +72,13 @@ comment
   This is free form text and is used to provide the user with any additional
   information that may be of use.
 
-  :Example:
-
 instrument_name
   This should be filled with the unique NCAS instrument name
 
   :Example: ``ncas-mobile-x-band-radar-1``
 
+Attributes required by NCAS-RADAR-1.0 that are optional in CfRadial-1.4
+-----------------------------------------------------------------------
 The following global attributes are optional within CF/Radial-1.4, but are
 required by NCAS-Radar-1.0:
 
@@ -176,34 +176,34 @@ product_version
   revisions occur to correct typos, etc. The reason for a the revision is
   detailed in the history field
 
-  :Example: v<n.m> n - major revision, m - minor revision
+  :Example: ``v2.1``
 
 processing_level
   This indicates the level of quality control that has been applied to the data.
   See the “Data Processing Levels” section for a full discussion.
-  Options: 1, 2, or 3
+  Options: ``1``, ``2``, or ``3``
 
 last_revised_date
   This is the date of production of the data file. The time is UTC and is
   given in ISO format.
 
-  :Example: 2013-06-06T12:00:00
+  :Example: ``2013-06-06T12:00:00``
 
 project
   This is the full name and associated acronym of the project and should match
   that on official funding documents.
 
-  :Example: Microbiology-Ocean-Cloud-Coupling in the High Arctic (MOCCHA)
+  :Example: ``Microbiology-Ocean-Cloud-Coupling in the High Arctic (MOCCHA)``
 
 project_principal_investigator
   The name of the project Principal Investigator
 
-  :Example: B. Person
+  :Example: ``B. Person``
 
 project_principal_investigator_email
   Contact email for project PI
 
-  :Example: B.Person@someplace.com
+  :Example: ``B.Person@someplace.com``
 
 project_principal_investigator_url
   ORCID URL or other persistent identifier of the PI.
@@ -230,8 +230,8 @@ acknowledgement
 platform
   The platform is the site or mobile platform where the instrument was deployed.
   For example if it was deployed at Christmas Island then the value in this
-  field would be ``"christmas island”``. If the instrument was deployed on a
-  ship called Oden then the value in this field would be ``“oden”``
+  field would be ``christmas island``. If the instrument was deployed on a
+  ship called Oden then the value in this field would be ``oden``
 
 time_coverage_start
   This is the time value of the first ray of data in the file. The time is UTC
@@ -271,12 +271,13 @@ location_keywords
 
   :Example: ``cumbria, sandwith``
 
-ncas_radar_vocabularies_release
-  This is the url to the version controlled vocabulary used in defining the
-  data file.  This is currently under development.
 
 Dimensions
 ----------
+
+As mentioned above, the naming of these dimensions must strictly adhere to the
+CfRadial-1.4 requirements.
+
 
 +------------------------------+-----------------------------------------+
 |**Dimension name**            |**Description**                          |
@@ -288,8 +289,13 @@ Dimensions
 +------------------------------+-----------------------------------------+
 | sweep                        | The number of sweeps                    |
 +------------------------------+-----------------------------------------+
-| string_length                | Length of char type variables           |
+| string_length [#f1]_         | Length of char type variables           |
 +------------------------------+-----------------------------------------+
+
+.. [#f1] any number of ‘string_length’ dimensions may be created and used. For example, you may declare the
+dimensions ‘string_length”, ‘string_length_short’ and ‘string_length_long’, and use them appropriately for strings of
+various lengths. These are only used to indicate the length of the strings actually stored, and have no effect on other
+parts of the format.
 
 
 Global Variables

@@ -292,10 +292,11 @@ CfRadial-1.4 requirements.
 | string_length [#f1]_         | Length of char type variables           |
 +------------------------------+-----------------------------------------+
 
-.. [#f1] any number of ‘string_length’ dimensions may be created and used. For example, you may declare the
-dimensions ‘string_length”, ‘string_length_short’ and ‘string_length_long’, and use them appropriately for strings of
-various lengths. These are only used to indicate the length of the strings actually stored, and have no effect on other
-parts of the format.
+.. [#f1] any number of ‘string_length’ dimensions may be created and used. For
+   example, you may declare the dimensions ‘string_length', ‘string_length_short’
+   and ‘string_length_long’, and use them appropriately for strings of
+   various lengths. These are only used to indicate the length of the strings
+   actually stored, and have no effect on other parts of the format.
 
 
 Global Variables

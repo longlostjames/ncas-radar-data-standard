@@ -276,7 +276,7 @@ location_keywords
 
 
 Dimensions
-----------
+==========
 
 As mentioned above, the naming of these dimensions must strictly adhere to the
 CfRadial-1.4 requirements.
@@ -303,7 +303,7 @@ CfRadial-1.4 requirements.
 
 
 Global Variables
-----------------
+================
 
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
 |**Name**                      |**Data type**  |**Dimension**            |**Long name***                                                                     |**Units**                               |

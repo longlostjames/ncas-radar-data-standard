@@ -304,12 +304,9 @@ CfRadial-1.4 requirements.
 
 Global Variables
 ================
-.. role:: gbg
-  :class: cell_highlight
-
 
 +-------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|**Name**                 |**Data type**  |**Dimension**            |**Long name***                                                                     |**Units**                               |
+|**Name**                 |**Data type**  |**Dimension**            |**Long name**                                                                     |**Units**                               |
 +=========================+===============+=========================+===================================================================================+========================================+
 | volume_number           | int           | none                    | | Volume numbers are sequential, relative to some arbitrary start time,           |1                                       |
 |                         |               |                         | | and may wrap.                                                                   |                                        |
@@ -318,7 +315,7 @@ Global Variables
 |                         |               |                         | | *"aircraft_aft"*, *"aircraft_tail"*, *"aircraft_belly"*, *"aircraft_roof"*,     |                                        |
 |                         |               |                         | | *"aircraft_nose"*, *"satellite_orbit"*, *"satellite_geostat"*                   |                                        |
 +-------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| time_coverage_start     | :gbg: char    | (string_length)         | | UTC time of first ray in file. Resolution is integer seconds. The time(time)    | none                                   |
+| time_coverage_start     | char          | (string_length)         | | UTC time of first ray in file. Resolution is integer seconds. The time(time)    | none                                   |
 |                         |               |                         | | variable is computed relative to this time.                                     |                                        |
 |                         |               |                         | | Format is yyyy-mm-ddThh:mm:ssZ                                                  |                                        |
 +-------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+

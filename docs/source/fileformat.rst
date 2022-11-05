@@ -305,27 +305,27 @@ CfRadial-1.4 requirements.
 Global Variables
 ================
 
-+-------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|**Name**                 |**Data type**  |**Dimension**            |**Long name**                                                                      |**Units**                               |
-+=========================+===============+=========================+===================================================================================+========================================+
-| volume_number           | int           | none                    | | Volume numbers are sequential, relative to some arbitrary start time,           |1                                       |
-|                         |               |                         | | and may wrap.                                                                   |                                        |
-+-------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| platform_type           | char          | (string_length)         | | Options are: *"fixed"*, *"vehicle"*, *"ship"*, *"aircraft"*, *"aircraft_fore"*, |none                                    |
-|                         |               |                         | | *"aircraft_aft"*, *"aircraft_tail"*, *"aircraft_belly"*, *"aircraft_roof"*,     |                                        |
-|                         |               |                         | | *"aircraft_nose"*, *"satellite_orbit"*, *"satellite_geostat"*                   |                                        |
-+-------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| time_coverage_start     | char          | (string_length)         | | UTC time of first ray in file. Resolution is integer seconds. The time(time)    | none                                   |
-|                         |               |                         | | variable is computed relative to this time.                                     |                                        |
-|                         |               |                         | | Format is yyyy-mm-ddThh:mm:ssZ                                                  |                                        |
-+-------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| time_coverage_end       | char          | (string_length)         | | UTC time reference. Resolution is integer seconds. If defined,                  | none                                   |
-|                         |               |                         | | the time(time) variable is computed relative to this time instead of relative   |                                        |
-|                         |               |                         | | to time_coverage_start. Format is yyyy-mm-ddThh:mm:ssZ                          |                                        |
-+-------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| time_reference          | char          | (string_length)         | | UTC time of last ray in file. Resolution is integer seconds.                    | none                                   |
-|                         |               |                         | | Format is yyyy-mm-ddThh:mm:ssZ                                                  |                                        |
-+-------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
++-------------------------+---------------+-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
+|**Name**                 |**Data type**  |**Dimension**          |**Long name**                                                                      |**Units**                               |
++=========================+===============+=======================+===================================================================================+========================================+
+| volume_number           | int           | none                  | | Volume numbers are sequential, relative to some arbitrary start time,           |1                                       |
+|                         |               |                       | | and may wrap.                                                                   |                                        |
++-------------------------+---------------+-------------------------+---------------------------------------------------------------------------------+----------------------------------------+
+| platform_type           | char          | (string_length)       | | Options are: *"fixed"*, *"vehicle"*, *"ship"*, *"aircraft"*, *"aircraft_fore"*, |none                                    |
+|                         |               |                       | | *"aircraft_aft"*, *"aircraft_tail"*, *"aircraft_belly"*, *"aircraft_roof"*,     |                                        |
+|                         |               |                       | | *"aircraft_nose"*, *"satellite_orbit"*, *"satellite_geostat"*                   |                                        |
++-------------------------+---------------+-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
+| time_coverage_start     | char          | (string_length)       | | UTC time of first ray in file. Resolution is integer seconds. The               | none                                   |
+|                         |               |                       | | time(time) variable is computed relative to this time.                          |                                        |
+|                         |               |                       | | Format is yyyy-mm-ddThh:mm:ssZ                                                  |                                        |
++-------------------------+---------------+-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
+| time_coverage_end       | char          | (string_length)       | | UTC time reference. Resolution is integer seconds. If defined,                  | none                                   |
+|                         |               |                       | | the time(time) variable is computed relative to this time instead of            |                                        |
+|                         |               |                       | | realtive to time_coverage_start. Format is yyyy-mm-ddThh:mm:ssZ                 |                                        |
++-------------------------+---------------+-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
+| time_reference          | char          | (string_length)       | | UTC time of last ray in file. Resolution is integer seconds.                    | none                                   |
+|                         |               |                       | | Format is yyyy-mm-ddThh:mm:ssZ                                                  |                                        |
++-------------------------+---------------+-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
 
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
 |**Name**                      |**Data type**  |**Dimension**            |**Long name**                                                                      |**Units**                               |

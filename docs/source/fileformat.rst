@@ -10,12 +10,14 @@ Each radar file is named as
 NetCDF conventions
 ==================
 
-The NCAS-RADAR convention has at its heart the CfRadial-1.4 format, and its
-subconventions.  CfRadial-1.4 is a comprehensive specification, and we only
-discuss required elements here.  For more complex use, e.g. for pulsed radar
+The NCAS-Radar convention has at its heart the CfRadial format, and its
+subconventions.  CfRadial is a comprehensive specification, and we only
+discuss required elements here. For more complex use, e.g. for pulsed radar
 systems with complicated pulsing schemes, the user should consult the full
-CfRadial-1.4 documentation, which may be found on Github at
+CfRadial documentation, which may be found on Github at
 ``https://github.com/NCAR/CfRadial``.
+
+Version 1.0 of the NCAS-Radar standard is based on CfRadial-1.4.
 
 
 .. rubric:: Strict variable and attribute names for non-field variables
@@ -23,8 +25,8 @@ CfRadial-1.4 documentation, which may be found on Github at
 CfRadial requires strict adherance to naming conventions for dimensions and for
 non-field variables.  By the latter we mean variables such as *time*, *range*,
 *azimuth* and *elevation*, and other variables containing metadata such as
-calibration offsets.  The NCAS-RADAR convention inherits this requirement.
-For details see the CfRadial-1.4 documentation on Github.
+calibration offsets.  The NCAS-Radar convention inherits this requirement.
+For details see the CfRadial documentation on Github.
 
 
 Metadata (Global Attributes)
@@ -32,18 +34,18 @@ Metadata (Global Attributes)
 
 Attributes required by CfRadial-1.4
 -----------------------------------
-As the NCAS RADAR convention uses CfRadial-1.4 as its basis, all global
+As the NCAS-Radar-1.0 convention uses CfRadial-1.4 as its basis, all global
 attributes required by the latter must be included.  The following global
 attributes are required by CfRadial-1.4:
 
 Conventions
    A space-delineated list of the conventions (and sub-conventions) that are
-   followed by the dataset.  As NCAS-RADAR-1.0 uses version 1.4 of the CfRadial
+   followed by the dataset.  As NCAS-Radar-1.0 uses version 1.4 of the CfRadial
    standard, this should be included explicitly. Sub-conventions such as
-   "radar_parameters" are inherited from CfRadial-1.4. NCAS-RADAR-1.0 does
+   "radar_parameters" are inherited from CfRadial-1.4. NCAS-Radar-1.0 does
    not have a separate set of sub-conventions.
 
-  :Example: ``NCAS-RADAR-1.0 CfRadial-1.4 instrument_parameters radar_parameters radar_calibration``
+  :Example: ``NCAS-Radar-1.0 CfRadial-1.4 instrument_parameters radar_parameters radar_calibration``
 
 title
   This is a short description of the file contents.
@@ -80,16 +82,16 @@ instrument_name
 
   :Example: ``ncas-mobile-x-band-radar-1``
 
-Attributes required by NCAS-RADAR-1.0 that are optional in CfRadial-1.4
+Attributes required by NCAS-Radar-1.0 that are optional in CfRadial-1.4
 -----------------------------------------------------------------------
-The following global attributes are optional within CF/Radial-1.4, but are
+The following global attributes are optional within CfRadial-1.4, but are
 required by NCAS-Radar-1.0:
 
 platform_is_mobile
 
   :Example: ``false``
 
-Additional attributes required by NCAS-RADAR-1.0
+Additional attributes required by NCAS-Radar-1.0
 ------------------------------------------------
 The following global attributes are required by NCAS-Radar-1.0 but are not part
 of the CfRadial-1.4 convention:
@@ -109,14 +111,6 @@ instrument_serial_number
   in the file name and linked to the “source”
 
   :Example: ``63270V``
-
-instrument_pid
-  This is a unique persistent identifier (PID) for the instrument, for example
-  registered on the Handle.Net registry.  These PIDs are required when
-  submitting data to the ACTRIS data centre, and so incorporating them here
-  ensures correct cross-referencing.
-
-  :Example: ``https://hdl.handle.net/21.12132/3.191564170f8a4686``
 
 instrument_software
   If known this is the name of the software running on the instrument that
@@ -274,11 +268,22 @@ location_keywords
 
   :Example: ``cumbria, sandwith``
 
+Optional (but recommended) attributes in NCAS-Radar-1.0
+-------------------------------------------------------
+
+instrument_pid
+  This is a unique persistent identifier (PID) for the instrument, for example
+  registered on the Handle.Net registry.  These PIDs are required when
+  submitting data to the ACTRIS data centre, and so incorporating them here
+  ensures correct cross-referencing.
+
+    :Example: ``https://hdl.handle.net/21.12132/3.191564170f8a4686``
+
 
 Dimensions
 ==========
 
-As mentioned above, the naming of these dimensions must strictly adhere to the
+As mentioned above, the naming of these dimensions must adhere strictly to the
 CfRadial-1.4 requirements.
 
 
@@ -295,7 +300,7 @@ CfRadial-1.4 requirements.
 | string_length [#f1]_         | Length of char type variables           |
 +------------------------------+-----------------------------------------+
 
-.. [#f1] any number of ‘string_length’ dimensions may be created and used. For
+.. [#f1] Any number of ‘string_length’ dimensions may be created and used. For
    example, you may declare the dimensions ‘string_length', ‘string_length_short’
    and ‘string_length_long’, and use them appropriately for strings of
    various lengths. These are only used to indicate the length of the strings
@@ -305,176 +310,123 @@ CfRadial-1.4 requirements.
 Global Variables
 ================
 
+Variables named in **bold** in the following table are required by Cf-Radial-1.4
+and NCAS-Radar-1.0.  Others are optional.
+
 +-------------------------+---------------+-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|**Name**                 |**Data type**  |**Dimension**          |**Long name**                                                                      |**Units**                               |
+|**Name**                 |**Data type**  |**Dimension**          |**Comments**                                                                       |**Units**                               |
 +=========================+===============+=======================+===================================================================================+========================================+
-| volume_number           | int           | none                  | | Volume numbers are sequential, relative to some arbitrary                       |1                                       |
+| **volume_number**       | int           | none                  | | Volume numbers are sequential, relative to some arbitrary                       |1                                       |
 |                         |               |                       | | start time, and may wrap.                                                       |                                        |
 +-------------------------+---------------+-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
 | platform_type           | char          | (string_length)       | | Options are: *"fixed"*, *"vehicle"*, *"ship"*, *"aircraft"*, *"aircraft_fore"*, |none                                    |
 |                         |               |                       | | *"aircraft_aft"*, *"aircraft_tail"*, *"aircraft_belly"*, *"aircraft_roof"*,     |                                        |
 |                         |               |                       | | *"aircraft_nose"*, *"satellite_orbit"*, *"satellite_geostat"*                   |                                        |
 +-------------------------+---------------+-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| time_coverage_start     | char          | (string_length)       | | UTC time of first ray in file. Resolution is integer seconds. The               | none                                   |
+| **time_coverage_start** | char          | (string_length)       | | UTC time of first ray in file. Resolution is integer seconds. The               | none                                   |
 |                         |               |                       | | time(time) variable is computed relative to this time.                          |                                        |
 |                         |               |                       | | Format is yyyy-mm-ddThh:mm:ssZ                                                  |                                        |
 +-------------------------+---------------+-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| time_coverage_end       | char          | (string_length)       | | UTC time reference. Resolution is integer seconds. If defined,                  | none                                   |
+| **time_coverage_end**   | char          | (string_length)       | | UTC time reference. Resolution is integer seconds. If defined,                  | none                                   |
 |                         |               |                       | | the time(time) variable is computed relative to this time instead of            |                                        |
-|                         |               |                       | | realtive to time_coverage_start. Format is yyyy-mm-ddThh:mm:ssZ                 |                                        |
+|                         |               |                       | | relative to time_coverage_start. Format is yyyy-mm-ddThh:mm:ssZ                 |                                        |
 +-------------------------+---------------+-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
 | time_reference          | char          | (string_length)       | | UTC time of last ray in file. Resolution is integer seconds.                    | none                                   |
 |                         |               |                       | | Format is yyyy-mm-ddThh:mm:ssZ                                                  |                                        |
 +-------------------------+---------------+-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
 
+Coordinate Variables
+====================
+
+Variables in the following table are required by Cf-Radial-1.4 and
+NCAS-Radar-1.0.
+
++-------------------------+---------------+---------------------------+
+|**Name**                 |**Data type**  |**Dimension**              |
++=========================+===============+===========================+
+| **time**                | double        | (time)                    |
++-------------------------+---------------+---------------------------+
+| **range**               | float         | (range) or (sweep,range)  |
++-------------------------+---------------+---------------------------+
+
+Attributes for the time coordinate variable
+-------------------------------------------
+
++-------------------------+---------------+---------------------------------------------------+
+|**Name**                 |**Type**       |**Value**                                          |
++=========================+===============+===================================================+
+| **standard_name**       | string        | "time"                                            |
++-------------------------+---------------+---------------------------------------------------+
+| | **long_name**         | | string      | | "time_in_seconds_since_volume_start" or         |
+| |                       | |             | | "time_since_time_reference"                     |
++-------------------------+---------------+---------------------------------------------------+
+| | **units**             | | string      | | "seconds since *yyyy*-*mm*-*dd*T*hh*:*mm*:*ss*Z"|
+| |                       | |             | | where the actual reference time values are used.|
++-------------------------+---------------+---------------------------------------------------+
+| calendar                | string        | Defaults to "gregorian" if missing.               |
++-------------------------+---------------+---------------------------------------------------+
+
+Attributes for the range coordinate variable
+--------------------------------------------
+
++--------------------------------------+---------------+---------------------------------------------------+
+|**Name**                              |**Type**       |**Value**                                          |
++======================================+===============+===================================================+
+| **standard_name**                    | string        | "projection_range_coordinate"                     |
++--------------------------------------+---------------+---------------------------------------------------+
+| | **long_name**                      | | string      | | e.g. "range_to_measurement_volume" or           |
+| |                                    | |             | | "range_to_middle_of_each_range_gate"            |
++--------------------------------------+---------------+---------------------------------------------------+
+| **units**                            | string        | "metres" or "meters"                              |
++--------------------------------------+---------------+---------------------------------------------------+
+| **spacing_is_constant**              | string        | "true" or "false"                                 |
++--------------------------------------+---------------+---------------------------------------------------+
+| | **meters_to_center_of_first_gate** | | float or    | Start range                                       |
+| |                                    | | float(sweep)|                                                   |
++--------------------------------------+---------------+---------------------------------------------------+
+| | meters_between_gates               | | float or    | | Gate spacing.  Required if spacing_is_constant  |
+| |                                    | | float(sweep)| | is "true"                                       |
++--------------------------------------+---------------+---------------------------------------------------+
+| **axis**                             | string        | "radial_range_coordinate"                         |
++--------------------------------------+---------------+---------------------------------------------------+
+
+Location Variables
+==================
+
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|**Name**                      |**Data type**  |**Dimension**            |**Long name**                                                                      |**Units**                               |
+|**Name**                      |**Data type**  |**Dimension**            |**Comments**                                                                       |**Units**                               |
 +==============================+===============+=========================+===================================================================================+========================================+
-|longitude                     |float32        |                         |longitude of the antenna                                                           |degree_east                             |
+|**latitude**                  |double         |none or (time)           |Latitude of the instrument                                                         |degree_north                            |
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|height                        |float32        |                         |height of the elevation axis above mean sea level (Ordnance Survey Great Britain)  |m                                       |
+|**longitude**                 |double         |none or (time)           |Longitude of the instrument                                                        |degree_east                             |
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|frequency                     |float32        |                         |frequency of transmitted radiation                                                 |GHz                                     |
+| |**altitude**                | | double      | | none or (time)        | | Altitude of the instrument above the geoid.  For a scanning radar this is the   | | metres or meters                     |
+| |                            | |             | |                       | | altitude of the elevation axis.                                                 | |                                      |
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|prf                           |float32        |                         |pulse repetition frequency                                                         |Hz                                      |
+
+Sweep Variables
+===============
+
+Sweep variables are always required, even if the volume only contains a single sweep.
+
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|beamwidthH                    |float32        |                         |horizontal angular beamwidth                                                       |degree                                  |
+|**Name**                      |**Data type**  |**Dimension**            |**Comments**                                                                       |**Units**                               |
++==============================+===============+=========================+===================================================================================+========================================+
+|**sweep_number**              |int            |(sweep)                  |The number of the sweep in the volume scan, starting at 0.                         |                                        |
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|beamwidthV                    |float32        |                         |vertical angular beamwidth                                                         |degree                                  |
+| | **sweep_mode**             | | char        | | (sweep,string_length) | | Options are "sector", "coplane", "rhi", "vertical_pointing", "idle",            | |                                      |
+| |                            | |             | |                       | | "azimuth_surveillance", "elevation_surveillance", "sunscan", "pointing",        | |                                      |
+| |                            | |             | |                       | | "manual_ppi", "manual_rhi"                                                      | |                                      |
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|antenna_diameter              |float32        |                         |antenna diameter                                                                   |m                                       |
+|**fixed_angle**               | float         |(sweep)                  | Target angle for the sweep.                                                       | degree                                 |
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|pulse_period                  |float32        |                         |pulse period                                                                       |us                                      |
+|**sweep_start_ray_index**     | int           |(sweep)                  | Index of the first ray in sweep relative to the start of volume. 0-based.         |                                        |
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|transmit_power                |float32        |                         |peak transmitted power                                                             |W                                       |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|clock                         |float32        |                         |clock input to ISACTRL                                                             |Hz                                      |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|range                         |float32        |range                    |distance from the antenna to the middle of each range gate                         |m                                       |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|unaveraged_range              |float32        |unaveraged_range         |distance from the antenna to the middle of each range gate                         |m                                       |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|time                          |float32        |time                     |time                                                                               |seconds since 2020-09-22 00:00:00 +00:00|
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|dish_time                     |float32        |time                     |dish_time                                                                          |seconds since 2020-09-22 00:00:00 +00:00|
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|elevation                     |float32        |time                     |elevation angle above the horizon at the start of the beamwidth                    |degree                                  |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|azimuth                       |float32        |time                     |azimuth angle clockwise from grid north at the start of the beamwidth              |degree                                  |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|ZLO                           |short          |time, pulses, samples    |radar reflectivity factor low                                                      |counts                                  |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|ZHI                           |short          |time, pulses, samples    |radar reflectivity factor high                                                     |counts                                  |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|ZCX                           |short          |time, pulses, samples    |crosspolar radar reflectivity factor                                               |counts                                  |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|ITX                           |short          |time, pulses, samples    |TX I channel                                                                       |counts                                  |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|QTX                           |short          |time, pulses, samples    |TX Q channel                                                                       |counts                                  |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|IRX                           |short          |time, pulses, samples    |RX I channel                                                                       |counts                                  |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|QRX                           |short          |time, pulses, samples    |RX Q channel                                                                       |counts                                  |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|SPR                           |short          |time, pulses, samples    |Spare channel                                                                      |counts                                  |
+|**sweep_end_ray_index**       | int           |(sweep)                  | Index of the last ray in sweep relative to the start of volume. 0-based.          |                                        |
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
 
 
-Level 0a files
---------------
 
-3GHz CAMRa time-series files
-............................
-
-These files are in NetCDF-3 format with the following content:
-
-**Dimensions:**
-
-+------------------------------+
-|**Name**                      |
-+------------------------------+
-|time                          |
-+------------------------------+
-|range                         |
-+------------------------------+
-|unaveraged_range              |
-+------------------------------+
-|pulses                        |
-+------------------------------+
-|samples                       |
-+------------------------------+
-
-**Variables:**
-
-
-
-**Global attributes:**
-
-+--------------------------------+------------------------------------------------------------------------------+
-|Name                            |Example                                                                       |
-+================================+==============================================================================+
-|radar                           |CAMRa                                                                         |
-+--------------------------------+------------------------------------------------------------------------------+
-|source                          |3-GHz Advanced Meteorological Radar (CAMRa)                                   |
-+--------------------------------+------------------------------------------------------------------------------+
-| | history                      | | Tue Sep 22 14:58:06 2020 - /usr/local/bin/radar-camra-rec \\               |
-| |                              | | -fix 3600 115 90 -gates 5 201 -cellsize 1 -pulse_pairs 3050 -op rad \\     |
-| |                              | | -id 0 -file 8030 -scan 7530 -date 20200922145806 -tsdump -tssamples 200    |
-+--------------------------------+------------------------------------------------------------------------------+
-|file_number                     |8030                                                                          |
-+--------------------------------+------------------------------------------------------------------------------+
-|scan_number                     |7530                                                                          |
-+--------------------------------+------------------------------------------------------------------------------+
-|scantype                        |Fixed                                                                         |
-+--------------------------------+------------------------------------------------------------------------------+
-|experiment_id                   |0                                                                             |
-+--------------------------------+------------------------------------------------------------------------------+
-|operator                        |rad                                                                           |
-+--------------------------------+------------------------------------------------------------------------------+
-|scan_velocity                   |0.f                                                                           |
-+--------------------------------+------------------------------------------------------------------------------+
-|min_range                       |-526.7335f                                                                    |
-+--------------------------------+------------------------------------------------------------------------------+
-|max_range                       |14088.15f                                                                     |
-+--------------------------------+------------------------------------------------------------------------------+
-|min_angle                       |90.f                                                                          |
-+--------------------------------+------------------------------------------------------------------------------+
-|max_angle                       |90.f                                                                          |
-+--------------------------------+------------------------------------------------------------------------------+
-|scan_angle                      |25.f                                                                          |
-+--------------------------------+------------------------------------------------------------------------------+
-|scan_datetime                   |20200922145806                                                                |
-+--------------------------------+------------------------------------------------------------------------------+
-|ADC_bits_per_sample             |12                                                                            |
-+--------------------------------+------------------------------------------------------------------------------+
-|samples_per_pulse               |196                                                                           |
-+--------------------------------+------------------------------------------------------------------------------+
-|pulses_per_daq_cycle            |6100                                                                          |
-+--------------------------------+------------------------------------------------------------------------------+
-|ADC_channels                    |8                                                                             |
-+--------------------------------+------------------------------------------------------------------------------+
-|delay_clocks                    |8                                                                             |
-+--------------------------------+------------------------------------------------------------------------------+
-|pulses_per_ray                  |6100                                                                          |
-+--------------------------------+------------------------------------------------------------------------------+
-|pulse_compression               |0                                                                             |
-+--------------------------------+------------------------------------------------------------------------------+
-|extra_attenuation               |0.f                                                                           |
-+--------------------------------+------------------------------------------------------------------------------+
-|radar_constant                  |64.7f                                                                         |
-+--------------------------------+------------------------------------------------------------------------------+
-|receiver_gain                   |45.5f                                                                         |
-+--------------------------------+------------------------------------------------------------------------------+
-|cable_losses                    |4.8f                                                                          |
-+--------------------------------+------------------------------------------------------------------------------+
-|year                            |2020                                                                          |
-+--------------------------------+------------------------------------------------------------------------------+
-|month                           |9                                                                             |
-+--------------------------------+------------------------------------------------------------------------------+
-|day                             |22                                                                            |
-+--------------------------------+------------------------------------------------------------------------------+
-|British_National_Grid_Reference |SU394386                                                                      |
-+--------------------------------+------------------------------------------------------------------------------+
 
 Data Quality Flags
 The data provided will have had some level of processing performed upon: be that instrument or post processing averaging, motion correction, or the variable may be derived from such core variables. These concepts were introduced in section 3. The quality of the data is provided via the Data Quality Control Flag. This flag is a mask and represents the provider's considered opinion. Data users can apply the mask to the data or not - it is the user's choice. By taking this approach, the data provided is of greatest versatility.
@@ -613,86 +565,8 @@ NaN
 
 
 
-Level 0b files
---------------
-
-3GHz CAMRa time-series files
-............................
-
-Level 0.5 files have been processed to remove redundant dimensions, and to make some changes to global attributes and variables.
-The files are in NetCDF-4 format with the following content:
-
-**Dimensions:**
-
-+------------------------------+
-|Name                          |
-+==============================+
-|time                          |
-+------------------------------+
-|range                         |
-+------------------------------+
-|pulses                        |
-+------------------------------+
 
 
-**Scalar Variables:**
-
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|Name                          |Data type      |Dimension        |Long name                                                                            |Units                                   |
-+==============================+===============+=================+=====================================================================================+========================================+
-|latitude                      |float32        |none             |latitude of the antenna                                                              |degree_north                            |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|longitude                     |float32        |none             |longitude of the antenna                                                             |degree_east                             |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|altitude                      |float32        |none             |altitude of the elevation axis above mean sea level (Ordnance Survey Great Britain)  |m                                       |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|frequency                     |float32        |none             |frequency of transmitted radiation                                                   |GHz                                     |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|prf                           |float32        |none             |pulse repetition frequency                                                           |Hz                                      |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|beamwidthH                    |float32        |none             |horizontal angular beamwidth                                                         |degree                                  |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|beamwidthV                    |float32        |none             |vertical angular beamwidth                                                           |degree                                  |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|antenna_diameter              |float32        |none             |antenna diameter                                                                     |m                                       |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|pulse_width                   |float32        |none             |pulse width                                                                          |us                                      |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|transmit_power                |float32        |none             |peak transmitted power                                                               |W                                       |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|clock                         |float32        |none             |clock input to ISACTRL                                                               |Hz                                      |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|samples_per_pulse             |int            |none             |number of samples per pulse                                                          |1                                       |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|pulses_per_daq_cycle          |int            |none             |number of pulses per data acquisition cycle                                          |1                                       |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|pulses_per_ray                |int            |none             |number of pulses per ray                                                             |1                                       |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|delay_clocks                  |int            |none             |clock cycles before sampling is initiated                                            |1                                       |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|radar_constant                |float32        |none             |radar constant                                                                       |dB                                      |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|receiver_gain                 |float32        |none             |receiver gain                                                                        |dB                                      |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|cable_losses                  |float32        |none             |cable losses                                                                         |dB                                      |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|extra_attenuation             |float32        |none             |extra attenuation introduced to receiver chain                                       |dB                                      |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-
-
-**Coordinate Variables:**
-
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|Name                          |Data type      |Dimension        |Long name                                                                        |Units                                   |
-+==============================+===============+=================+=====================================================================================+========================================+
-|range                         |float          |range            |distance from the antenna to the middle of each range gate                           |m                                       |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|time                          |float          |time             |time                                                                                 |seconds since 2020-09-22 00:00:00 +00:00|
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|elevation                     |float          |time             |elevation angle of antenna boresight above the horizon                               |degree                                  |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
-|azimuth                       |float          |time             |azimuth angle of antenna boresight clockwise from grid north                         |degree                                  |
-+------------------------------+---------------+-----------------+-------------------------------------------------------------------------------------+----------------------------------------+
 
 **Field Variables**
 
@@ -737,53 +611,3 @@ threshold should be used.
 
 Similarly ``ZHI`` has the attribute ``valid_min`` set to ``3841``, and only
 values above this should be used.
-
-
-
-.ZLO_min    = -70.0,             /* dB       */
-200	    .ZLO_scale  =   0.015625,        /* dB/count */
-201	    .ZHI_min    = -38.0,             /* dB       */
-202	    .ZHI_scale  =   0.015625,        /* dB/count */
-203	    .ZCX_min    = -77.0,             /* dB       */
-204	    .ZCX_scale  =   0.03125,         /* dB/count */
-205	    .ZLO_thresh = 3840, /* 0x0F00 */ /* counts   */
-206	    .Bias       = 2047, /* 0x07FF */ /* counts   */
-207	    .ADCBits    = 12                 /* Bits     */
-
-**Global attributes:**
-
-+--------------------------------+--------------------------------------------------------------------------------------------------+
-|**Name**                        |**Example**                                                                                       |
-+================================+==================================================================================================+
-|title                           |Time series from CAMRa collected for ESA WIVERN-2 campaign at Chilbolton Observatory (2020-2021)  |
-+--------------------------------+--------------------------------------------------------------------------------------------------+
-|institution                     |National Centre for Atmospheric Science (NCAS)                                                    |
-+--------------------------------+--------------------------------------------------------------------------------------------------+
-|instrument_name                 |ncas-radar-camra-1                                                                                |
-+--------------------------------+--------------------------------------------------------------------------------------------------+
-|references                      |https://doi.org/10.1049/ecej:19940205; http://purl.org/net/epubs/work/63318                       |
-+--------------------------------+--------------------------------------------------------------------------------------------------+
-|source                          |3-GHz Advanced Meteorological Radar (CAMRa)                                                       |
-+--------------------------------+--------------------------------------------------------------------------------------------------+
-|history                         |Tue Sep 22 14:58:06 2020 - /usr/local/bin/radar-camra-rec -fix 3600 115 90                        |
-+                                +-gates 5 201 -cellsize 1 -pulse_pairs 3050 -op rad -id 0 -file 8030                               +
-|                                |-scan 7530 -date 20200922145806 -tsdump -tssamples 200                                            |
-+--------------------------------+--------------------------------------------------------------------------------------------------+
-|comment                         |                                                                                                  |
-+--------------------------------+--------------------------------------------------------------------------------------------------+
-|scantype                        |fixed                                                                                             |
-+--------------------------------+--------------------------------------------------------------------------------------------------+
-|experiment_id                   |0                                                                                                 |
-+--------------------------------+--------------------------------------------------------------------------------------------------+
-|operator                        |rad                                                                                               |
-+--------------------------------+--------------------------------------------------------------------------------------------------+
-|time_coverage_start             |2020-09-22T14:58:06Z                                                                              |
-+--------------------------------+--------------------------------------------------------------------------------------------------+
-|time_coverage_end               |2020-09-22T15:13:05Z                                                                              |
-+--------------------------------+--------------------------------------------------------------------------------------------------+
-|pulse_compression               |false                                                                                                |
-+--------------------------------+--------------------------------------------------------------------------------------------------+
-|ADC_bits_per_sample             |12                                                                                                |
-+--------------------------------+--------------------------------------------------------------------------------------------------+
-|ADC_channels                    |8                                                                                                 |
-+--------------------------------+--------------------------------------------------------------------------------------------------+

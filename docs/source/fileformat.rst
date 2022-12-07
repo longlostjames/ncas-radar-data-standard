@@ -28,6 +28,30 @@ non-field variables.  By the latter we mean variables such as *time*, *range*,
 calibration offsets.  The NCAS-Radar convention inherits this requirement.
 For details see the CfRadial documentation on Github.
 
+Overview of data content
+========================
+The data fields containing observables from a radar instrument, i.e. the
+moments of the Doppler velocity spectrum are produced over a time or angular
+interval at a sequence of ranges increasing radially away from the instrument.
+The term "ray" is used to refer to a set of range gates at a given time or angle.
+In most cases the spacing between range gates is constant along a ray, but this
+is not compulsory.
+
+Data fields are typically stored as 2-D arrays, with dimnesions **(time,range)**.
+This is typical for NCAS radars where each ray has the same number of gates.
+CfRadial does allow for the more general case where rays have a variable number
+of gates.  For details see the CfRadial documentation.
+
+In addition to the **time** and **range** dimensions, CfRadial introduces a third
+"pseudo"-dimension, which allows the field data to be subdivided into so-called
+"sweeps".  For example, a single constant elevation PPI scan constitutes an
+example of a sweep, and a typical NetCDF data file will have a **volume** that
+comprises one or more such sweeps.  The convention uses start and stop indices
+to identify which rays belong to a given sweep.  Also, some rays may contain
+data collected during the transition between sweeps, and these are indicated
+using an "antenna_transition" flag.
+
+
 
 Metadata (Global Attributes)
 ============================
@@ -425,8 +449,10 @@ Sweep variables are always required, even if the volume only contains a single s
 |**sweep_end_ray_index**       | int           |(sweep)                  | Index of the last ray in sweep relative to the start of volume. 0-based.          |                                        |
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
 
+Moments Field Data Variables
+============================
 
-
+Field data variables
 
 Data Quality Flags
 The data provided will have had some level of processing performed upon: be that instrument or post processing averaging, motion correction, or the variable may be derived from such core variables. These concepts were introduced in section 3. The quality of the data is provided via the Data Quality Control Flag. This flag is a mask and represents the provider's considered opinion. Data users can apply the mask to the data or not - it is the user's choice. By taking this approach, the data provided is of greatest versatility.

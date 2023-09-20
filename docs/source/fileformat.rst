@@ -63,11 +63,11 @@ attributes required by the latter must be included.  The following global
 attributes are required by CfRadial-1.4:
 
 Conventions
-   A space-delineated list of the conventions (and sub-conventions) that are
-   followed by the dataset.  As NCAS-Radar-1.0 uses version 1.4 of the CfRadial
-   standard, this should be included explicitly. Sub-conventions such as
-   "radar_parameters" are inherited from CfRadial-1.4. NCAS-Radar-1.0 does
-   not have a separate set of sub-conventions.
+  A space-delineated list of the conventions (and sub-conventions) that are
+  followed by the dataset.  As NCAS-Radar-1.0 uses version 1.4 of the CfRadial
+  standard, this should be included explicitly. Sub-conventions such as
+  "radar_parameters" are inherited from CfRadial-1.4. NCAS-Radar-1.0 does
+  not have a separate set of sub-conventions.
 
   :Example: ``NCAS-Radar-1.0 CfRadial-1.4 instrument_parameters radar_parameters radar_calibration``
 
@@ -109,11 +109,11 @@ instrument_name
 Attributes required by NCAS-Radar-1.0 that are optional in CfRadial-1.4
 -----------------------------------------------------------------------
 The following global attributes are optional within CfRadial-1.4, but are
-required by NCAS-Radar-1.0:
+required by NCAS-Radar-1.0.
 
 platform_is_mobile
 
-  :Example: ``false``
+:Example: ``false``
 
 Additional attributes required by NCAS-Radar-1.0
 ------------------------------------------------
@@ -135,6 +135,14 @@ instrument_serial_number
   in the file name and linked to the “source”
 
   :Example: ``63270V``
+
+instrument_pid
+  This is a unique persistent identifier (PID) for the instrument, for example
+  registered on the Handle.Net registry.  These PIDs are required when
+  submitting data to the ACTRIS data centre, and so incorporating them here
+  ensures correct cross-referencing.
+  
+  :Example: ``https://hdl.handle.net/21.12132/3.191564170f8a4686``
 
 instrument_software
   If known this is the name of the software running on the instrument that
@@ -171,15 +179,15 @@ creator_url
   :Example: ``https://orcid.org/0000-0000-0000-0000``
 
 processing_software_url
-  To go from the Level 0 data produced by the source to the files archived
-  requires the creator to do some sort of data processing. This processing may
-  involve various levels of QC and data formatting so that it meets the archive
-  standard. Where this code is developed by the creator it is deposited on an
-  open repository - usually GitHub - and this is the url to that code. The use
-  of a repository means that the code is version controlled and the exact
-  version used to create the file is accessible.
+  To go from the Level 0 data produced by the source to the files that are 
+  to be archived requires the creator to do some sort of data processing. 
+  This processing may involve various levels of QC and data formatting so that 
+  it meets the archive standard. Where this code is developed by the creator 
+  it is deposited on an open repository --- usually GitHub --- and this is the 
+  url to that code. The use of a repository means that the code is version 
+  controlled and the exact version used to create the file is accessible.
 
-  This only applies to creator-developed code - no manufacturer proprietary
+  This only applies to creator-developed code -- no manufacturer proprietary
   software is ever deposited in the repository
 
   :Example: ``https://github.com/name1/name2/``
@@ -190,12 +198,14 @@ processing_software_version
   :Example: ``v1.3``
 
 product_version
-  Over time, errors or new calibrations means that the data may need to be
-  reissued: they are the same data but just a different version. The version
-  number is part of the file name and should match this value. Major revisions
-  occur when a new calibration or processing method is applied while minor
-  revisions occur to correct typos, etc. The reason for a the revision is
-  detailed in the history field
+  Over time, the discovery of errors, introduction of new processing algorithms 
+  or the refinement of calibration values may mean that the data need to be 
+  reissued. This is indicated by a version number.  The version number is part 
+  of the file name and should match this value. Major revisions (indicated by 
+  the number to the left of the decimal point) occur when a new calibration or 
+  processing method is applied while minor revisions (indicated by the number 
+  to the right of the decimal point) relate to the correction of typos, etc. 
+  The reason for a the revision is detailed in the history field
 
   :Example: ``v2.1``
 
@@ -253,6 +263,10 @@ platform
   For example if it was deployed at Christmas Island then the value in this
   field would be ``christmas island``. If the instrument was deployed on a
   ship called Oden then the value in this field would be ``oden``
+  
+deployment_mode
+  Instruments can be deployed either on *land*, *sea* or *air*. The value in this field 
+  indicates which.
 
 time_coverage_start
   This is the time value of the first ray of data in the file. The time is UTC
@@ -280,28 +294,17 @@ geospatial_bounds
   :Example 2: ``Bounding box: -111.29N  40.26E, -110.29N  41.26E``
 
 platform_altitude
-  This is the altitude above the WGS84 geoid of the ground at the point of
-  deployment. All instrument deployment heights are given with respect to this.
-  Where altitude is a variable this is given with respect to the WGS84 geoid
-  and not with respect to the local ground.
-
-  :Example: ``263m``
+  This is the altitude of the platform at the location where the instrument is
+  deployed (i.e. the orthometric height relative to the local geoid). 
+  For a land-based deployment this is the orthometric height of the local ground 
+  level. For clarity the comment attribute should be used to 
+  specify the geoid model (e.g. OSGM15, EGM2008).
 
 location_keywords
   These are words with geographical relevance that aid data discovery.
 
   :Example: ``cumbria, sandwith``
 
-Optional (but recommended) attributes in NCAS-Radar-1.0
--------------------------------------------------------
-
-instrument_pid
-  This is a unique persistent identifier (PID) for the instrument, for example
-  registered on the Handle.Net registry.  These PIDs are required when
-  submitting data to the ACTRIS data centre, and so incorporating them here
-  ensures correct cross-referencing.
-
-    :Example: ``https://hdl.handle.net/21.12132/3.191564170f8a4686``
 
 
 Dimensions
@@ -376,19 +379,17 @@ NCAS-Radar-1.0.
 Attributes for the time coordinate variable
 -------------------------------------------
 
-+-------------------------+---------------+---------------------------------------------------+
-|**Name**                 |**Type**       |**Value**                                          |
-+=========================+===============+===================================================+
-| **standard_name**       | string        | "time"                                            |
-+-------------------------+---------------+---------------------------------------------------+
-| | **long_name**         | | string      | | "time_in_seconds_since_volume_start" or         |
-| |                       | |             | | "time_since_time_reference"                     |
-+-------------------------+---------------+---------------------------------------------------+
-| | **units**             | | string      | | "seconds since *yyyy*-*mm*-*dd*T*hh*:*mm*:*ss*Z"|
-| |                       | |             | | where the actual reference time values are used.|
-+-------------------------+---------------+---------------------------------------------------+
-| calendar                | string        | Defaults to "gregorian" if missing.               |
-+-------------------------+---------------+---------------------------------------------------+
++-------------------+---------+------------------------------------------+
++===================+=========+==========================================+
+| **standard_name** | string  | "time"                                   |
++-------------------+---------+------------------------------------------+
+|| **long_name**    || string || "time_in_seconds_since_volume_start" or |
+||                  ||        || "time_since_time_reference"             |
++-------------------+---------+------------------------------------------+
+| **units**         | string  |                                          |
++-------------------+---------+------------------------------------------+
+| calendar          | string  | Defaults to "gregorian" if missing.      |
++-------------------+---------+------------------------------------------+
 
 Attributes for the range coordinate variable
 --------------------------------------------
@@ -424,8 +425,8 @@ Location Variables
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
 |**longitude**                 |double         |none or (time)           |Longitude of the instrument                                                        |degree_east                             |
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| |**altitude**                | | double      | | none or (time)        | | Altitude of the instrument above the geoid.  For a scanning radar this is the   | | metres or meters                     |
-| |                            | |             | |                       | | altitude of the elevation axis.                                                 | |                                      |
+| | **altitude**               | | double      | | none or (time)        | | Altitude of the instrument above the geoid.  For a scanning radar this is the   | | metres or meters                     |
+| |                            | |             | |                       | | altitude of the centre of rotation of the antenna.                              | |                                      |
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
 
 Sweep Variables
@@ -436,7 +437,7 @@ Sweep variables are always required, even if the volume only contains a single s
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
 |**Name**                      |**Data type**  |**Dimension**            |**Comments**                                                                       |**Units**                               |
 +==============================+===============+=========================+===================================================================================+========================================+
-|**sweep_number**              |int            |(sweep)                  |The number of the sweep in the volume scan, starting at 0.                         |                                        |
+|**sweep_number**              | int           |(sweep)                  |The number of the sweep in the volume scan, starting at 0.                         |                                        |
 +------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
 | | **sweep_mode**             | | char        | | (sweep,string_length) | | Options are "sector", "coplane", "rhi", "vertical_pointing", "idle",            | |                                      |
 | |                            | |             | |                       | | "azimuth_surveillance", "elevation_surveillance", "sunscan", "pointing",        | |                                      |

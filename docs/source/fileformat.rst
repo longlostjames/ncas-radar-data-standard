@@ -38,7 +38,7 @@ In most cases the spacing between range gates is constant along a ray, but this
 is not compulsory.
 
 Data fields are typically stored as 2-D arrays, with dimnesions **(time,range)**.
-This is typical for NCAS radars where each ray has the same number of gates.
+This is typical for current NCAS radars where each ray has the same number of gates.
 CfRadial does allow for the more general case where rays have a variable number
 of gates.  For details see the CfRadial documentation.
 
@@ -94,8 +94,9 @@ source
   :Example: ``NCAS Mobile X-band Radar unit 1``
 
 history
-  This is freeform text that gives the history of the data from collection to
-  the present version.
+  This is free form text that gives the history of the data from collection to
+  the present version.  A time-stamped new line should be appended to describe 
+  each processing step. 
 
 comment
   This is free form text and is used to provide the user with any additional
@@ -138,9 +139,7 @@ instrument_serial_number
 
 instrument_pid
   This is a unique persistent identifier (PID) for the instrument, for example
-  registered on the Handle.Net registry.  These PIDs are required when
-  submitting data to the ACTRIS data centre, and so incorporating them here
-  ensures correct cross-referencing.
+  registered on the Handle.Net registry.  
   
   :Example: ``https://hdl.handle.net/21.12132/3.191564170f8a4686``
 
@@ -166,7 +165,8 @@ creator_name
   :Example: ``A. Person``
 
 creator_email
-  The contact email for the person who created the file. People move and this
+  The contact email for the person who created the file. It is, however, 
+  recognized that people move institution, and that this
   may not always be valid.
 
   :Example: ``A.Person@aplace.ac.uk``
@@ -188,7 +188,7 @@ processing_software_url
   controlled and the exact version used to create the file is accessible.
 
   This only applies to creator-developed code -- no manufacturer proprietary
-  software is ever deposited in the repository
+  software is deposited in the repository.
 
   :Example: ``https://github.com/name1/name2/``
 
@@ -200,14 +200,13 @@ processing_software_version
 product_version
   Over time, the discovery of errors, introduction of new processing algorithms 
   or the refinement of calibration values may mean that the data need to be 
-  reissued. This is indicated by a version number.  The version number is part 
-  of the file name and should match this value. Major revisions (indicated by 
-  the number to the left of the decimal point) occur when a new calibration or 
-  processing method is applied while minor revisions (indicated by the number 
-  to the right of the decimal point) relate to the correction of typos, etc. 
-  The reason for a the revision is detailed in the history field
+  reissued. Three levels of revision are indicated in the format ``v<n>.<m>.<p>``, 
+  where ``n`` is a major revision (e.g. application of a new processing algorithm),
+  ``m`` is a minor revision, and ``p`` is a patch (e.g. correction of typographical 
+  errors). The reason for a the revision should always be detailed in the history 
+  field.  
 
-  :Example: ``v2.1``
+  :Example: ``v2.1.1``
 
 processing_level
   This indicates the level of quality control that has been applied to the data.
@@ -338,29 +337,27 @@ Global Variables
 ================
 
 Variables named in **bold** in the following table are required by Cf-Radial-1.4
-and NCAS-Radar-1.0.  Others are optional.
+and NCAS-Radar-1.0.  Others are optional. 
 
-+-------------------------+---------------+-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|**Name**                 |**Data type**  |**Dimension**          |**Comments**                                                                       |**Units**                               |
-+=========================+===============+=======================+===================================================================================+========================================+
-| **volume_number**       | int           | none                  | | Volume numbers are sequential, relative to some arbitrary                       |1                                       |
-|                         |               |                       | | start time, and may wrap.                                                       |                                        |
-+-------------------------+---------------+-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| platform_type           | char          | (string_length)       | | Options are: *"fixed"*, *"vehicle"*, *"ship"*, *"aircraft"*, *"aircraft_fore"*, |none                                    |
-|                         |               |                       | | *"aircraft_aft"*, *"aircraft_tail"*, *"aircraft_belly"*, *"aircraft_roof"*,     |                                        |
-|                         |               |                       | | *"aircraft_nose"*, *"satellite_orbit"*, *"satellite_geostat"*                   |                                        |
-+-------------------------+---------------+-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| **time_coverage_start** | char          | (string_length)       | | UTC time of first ray in file. Resolution is integer seconds. The               | none                                   |
-|                         |               |                       | | time(time) variable is computed relative to this time.                          |                                        |
-|                         |               |                       | | Format is yyyy-mm-ddThh:mm:ssZ                                                  |                                        |
-+-------------------------+---------------+-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| **time_coverage_end**   | char          | (string_length)       | | UTC time reference. Resolution is integer seconds. If defined,                  | none                                   |
-|                         |               |                       | | the time(time) variable is computed relative to this time instead of            |                                        |
-|                         |               |                       | | relative to time_coverage_start. Format is yyyy-mm-ddThh:mm:ssZ                 |                                        |
-+-------------------------+---------------+-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| time_reference          | char          | (string_length)       | | UTC time of last ray in file. Resolution is integer seconds.                    | none                                   |
-|                         |               |                       | | Format is yyyy-mm-ddThh:mm:ssZ                                                  |                                        |
-+-------------------------+---------------+-----------------------+-----------------------------------------------------------------------------------+----------------------------------------+
++--------------------------+----------+------------------+-----------------------------------------------------------------------------------------+
+|**Variable name**         | **Type** |**Dimension**     |**Comments**                                                                             |  
++==========================+==========+==================+=========================================================================================+
+| volume_number            | int      | none             | Volume numbers are sequential, relative to some arbitrary start time, and may wrap      |
++--------------------------+----------+------------------+-----------------------------------------------------------------------------------------+
+| platform_type            | char     | (string_length)  | Options are: *"fixed"*, *"vehicle"*, *"ship"*, *"aircraft"*, *"aircraft_fore"*,         |
+|                          |          |                  | *"aircraft_aft"*, *"aircraft_tail"*, *"aircraft_belly"*, *"aircraft_roof"*,             |
+|                          |          |                  | *"aircraft_nose"*, *"satellite_orbit"*, *"satellite_geostat"*.                          |
+|                          |          |                  | Assumed *"fixed"* if missing.                                                           |
++--------------------------+----------+------------------+-----------------------------------------------------------------------------------------+
+| **time_coverage_start**  | char     | (string_length)  | UTC time of first ray in file. Resolution is integer seconds. The time(time) variable   |
+|                          |          |                  | is computed relative to this time. Format is yyyy-mm-ddTHH:MM:SSZ                       |
++--------------------------+----------+------------------+-----------------------------------------------------------------------------------------+
+| **time_coverage_end**    | char     | (string_length)  | UTC time of last ray in file. Resolution is integer seconds.                            |
++--------------------------+----------+------------------+-----------------------------------------------------------------------------------------+
+| time_reference           | char     | (string_length)  | UTC time reference. Resolution is integer seconds. If defined, the time(time) variable  |
+|                          |          |                  | is computed relative to this time instead of relative to **time_coverage_start**.       |
++--------------------------+----------+------------------+-----------------------------------------------------------------------------------------+
+
 
 Coordinate Variables
 ====================
@@ -380,15 +377,18 @@ Attributes for the time coordinate variable
 -------------------------------------------
 
 +-------------------+---------+------------------------------------------+
+|**Attribute name** |**Type** |**Value**                                 |
 +===================+=========+==========================================+
-| **standard_name** | string  | "time"                                   |
+| standard_name     | string  | "time"                                   |
 +-------------------+---------+------------------------------------------+
-|| **long_name**    || string || "time_in_seconds_since_volume_start" or |
-||                  ||        || "time_since_time_reference"             |
+| long_name         | string  |"time_in_seconds_since_volume_start" or   |
+|                   |         |"time_since_time_reference"               |
 +-------------------+---------+------------------------------------------+
-| **units**         | string  |                                          |
+| units             | string  | *"seconds since yyyy-mm-ddTHH:MM:SSZ"*   |
+|                   |         | where the actual reference time values   | 
+|                   |         | are used.                                |
 +-------------------+---------+------------------------------------------+
-| calendar          | string  | Defaults to "gregorian" if missing.      |
+|calendar           | string  | Defaults to "gregorian" if missing.      |
 +-------------------+---------+------------------------------------------+
 
 Attributes for the range coordinate variable

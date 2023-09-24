@@ -174,15 +174,3 @@ weather radar data processing.  Hence, there is a strong motivation for aligning
 NCAS radar data with CfRadial in order to be able to allow users to employ some
 of the most widely used software tools.
 
-
--------------
-Usage License
--------------
-
-NCAS radar data are licensed under the Open Government Licence
-(http://www.nationalarchives.gov.uk/doc/open-government-licence).
-
-
-See also:
-
-- Centre for Environmental Data Analysis: https://ceda.ac.uk/

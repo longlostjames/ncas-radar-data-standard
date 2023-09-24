@@ -454,144 +454,43 @@ Moments Field Data Variables
 
 Field data variables
 
-Data Quality Flags
-The data provided will have had some level of processing performed upon: be that instrument or post processing averaging, motion correction, or the variable may be derived from such core variables. These concepts were introduced in section 3. The quality of the data is provided via the Data Quality Control Flag. This flag is a mask and represents the provider's considered opinion. Data users can apply the mask to the data or not - it is the user's choice. By taking this approach, the data provided is of greatest versatility.
 
-A file containing just one data quality flag will contain the variable qc_flag. Where a  file contains more that on data quality flag variable the data quality flag named is structured as:  qc_flag_<name>
-qc_flag_temperature
-qc_flag_relative_humidity
-qc_flag_pressure
-qc_flag_wind
-qc_flag_radiation
-qc_flag_precipitation
+Quality control
+---------------
 
-Flag variables are always of data type byte and are defined such that they have the same dimensions as the variables they are associated with: there is a flag value associated with every data point. They all follow a standard structure with the following attributes:
-units
-Definition: Units of a variable’s content. Where a variable is unit less the value 1 is used.
-Example: 1
-long_name
-Definition: Long descriptive name which is often used for labelling plots
-Example: Data Quality flag: Temperature
-flag_values
-Definition: Values the data flag can have
-Example: 0b, 1b, 2b, 3b
-flag_meanings
-Definition: How the flag should be interpreted
-Example:
-not_used
-good_data
-suspect_data_unspecified_instrument_performance_issues_contact_data_originator_for_more_information
-Suspect_data_time_stamp_error
+In CfRadial-1.4 a field variable may make use of more than one reserved value, to indicate a variety of conditions. 
+For example, with radar data, you may wish to indicate that the beam is blocked for a given gate, and that no echo 
+will ever be detected at that gate. That provides more information than just using *_FillValue*. The *flag_values* and 
+*flag_meanings* attributes can be used in this case, which specifies the associated quality-control field variable.
 
-To reflect the fact that what affects data quality can vary, the flag_values and flag_meanings are not rigidly tied down. That is they may vary on a file-by-file basis. What does not vary is the structure and the usage: the qc_flag variable is structured and used so that for every flag_value there is a corresponding flag_meaning. In this standard we use an integer value in the range 0 to n (being of data type byte the maximum value of n is 255):
-0 is reserved for future use and is not used
-1 is always good data.
+Although CfRadial-1.4 allows the assignment of flag values directly to a moment field, this is **not** the 
+preferred approach in NCAS-Radar. Instead, quality control for a field variable is specified through one or more 
+associated "quality control fields", which are specified by the *ancillary_variables* attribute.  
 
-Consider the variable air_temperature which has data:
--20
--3
--2
--1
--2
--3
--2
--1
-0
--1
-0
-2
-3
-4
-2
-3
-20
-4
-3
-2
+For example, we might use a quality control field named *qc_flag* as follows:
 
-While qc_flag_temperature has data:
-3
-1
-2
-1
-1
-1
-1
-1
-1
-1
-1
-1
-1
-2
-1
-1
-3
-2
-1
-1
+	float DBZH(time, range) ;
+		DBZH:ancillary_variables = "qc_flag" ;
+	
+  ubyte qc_flag(time, range) ;
+		qc_flag:is_quality = "true" ;
+		qc_flag:qualified_variables = "dBZH vel" ;
+		qc_flag:long_name = "Quality control flag" ;
+		qc_flag:flag_values = 0UB, 1UB, 2UB, 3UB, 4UB, 255UB ;
+		qc_flag:flag_meanings = "not_used good_data probably_good_data bad_data data_in_blind_range no_qc_
+performed" ;
 
-The flag_values attribute is “0b, 1b, 2b, 3b” and the flag_meanings attribute gives:
-not_used
-good_data
-suspect_data_unspecified_instrument_performance_issues_contact_data_originator_for_more_information
-Bad_data_value_outside_instrument_measurement_range
+A quality control field uses the attribute *qualified_variables* to specify (as a space delimited list) 
+which field variables it qualifies. 
+
+A given field variable may be associated with more than one quality control field.  For example, 
+in addition to a quality control flag we may have an associated quality control field to specify 
+the uncertainty in the field variable.
 
 If the user wanted only to see “good” data (indicated by a qc_flag value of 1) all they would need to do would be to:
 Make a copy of the variable data array
 Set the value of the elements in the duplicate data array that correspond to elements on the qc_flag that have a value not equal to 1 to NaN.
 This will result in the temporary data variable looking like:
-NaN
--3
-NaN
--1
--2
--3
--2
--1
-0
--1
-0
-2
-3
-NaN
-2
-3
-NaN
-NaN
-3
-2
-
-
-If the user wanted to accept “suspect” data in addition to “good” data (indicated by a qc_flag value of 1 and ) all they would need to do would be to:
-Make a copy of the variable data array
-Set the value of the elements in the duplicate data array that correspond to elements on the qc_flag that have a value not equal to 1 or 2 to NaN.
-This will result in the temporary data variable looking like:
-NaN
--3
--2
--1
--2
--3
--2
--1
-0
--1
-0
-2
-3
-4
-2
-3
-NaN
-4
-3
-2
-
-
-
-
-
 
 
 **Field Variables**

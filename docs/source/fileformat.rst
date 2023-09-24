@@ -283,15 +283,14 @@ time_coverage_end
 
   :Example: ``2013-03-31T23:59:59Z``
 
-geospatial_bounds
-  For a stationary platform this is just the latitude and longitude part
-  (signed decimal). For a moving_platform it is the geographic bounding box
-  geospatial_lat_min geospatial_lon_min, geospatial_lat_max geospatial_lon_max
-  (signed decimals),  The main purpose of this field is to aid data discovery.
+.. rubric:: Note about geospatial metadata
 
-  :Example 1: ``-111.29N 40.26E``
-  :Example 2: ``Bounding box: -111.29N  40.26E, -110.29N  41.26E``
-
+The specification of geospatial bounds for radar data involves consideration of 
+grid mapping to convert from polar coordinates centred at the radar location.  
+This is not part of CfRadial-1.4, but has been addressed in CfRadial-2.0 and 
+later conventions.  Hence, NCAS -Radar 1.0 does not include *geospatial_bounds* 
+as a global attribute.
+  
 platform_altitude
   This is the altitude of the platform at the location where the instrument is
   deployed (i.e. the orthometric height relative to the local geoid). 

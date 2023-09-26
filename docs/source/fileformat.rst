@@ -283,20 +283,22 @@ time_coverage_end
 
   :Example: ``2013-03-31T23:59:59Z``
 
-.. rubric:: Note about geospatial metadata
+geospatial_bounds
+  This field defines the latitude and longitude bounds associated with the file. 
+  For a vertically pointing radar on a stationary platform this is just the latitude and longitude of the 
+  point of deployment (as signed decimals). Otherwise it is the bounding box, i.e. a rectangle enclosing the 
+  extent of the data resource described in latitude and longitude.
 
-The specification of geospatial bounds for radar data involves consideration of 
-grid mapping to convert from polar coordinates centred at the radar location.  
-This is not part of CfRadial-1.4, but has been addressed in CfRadial-2.0 and 
-later conventions.  Hence, NCAS -Radar 1.0 does not include *geospatial_bounds* 
-as a global attribute.
+  :Example: ``Bounding box: -111.29N  40.26E, -110.29N  41.26E``
   
 platform_altitude
-  This is the altitude of the platform at the location where the instrument is
-  deployed (i.e. the orthometric height relative to the local geoid). 
-  For a land-based deployment this is the orthometric height of the local ground 
-  level. For clarity the comment attribute should be used to 
-  specify the geoid model (e.g. OSGM15, EGM2008).
+  This is the altitude above the geoid of the platform at the location where 
+  the instrument is deployed (i.e. the orthometric height), using the WGS84 
+  ellipsoid and EGM2008 geoid model.   For a land-based deployment this is the 
+  orthometric height of the local ground level. 
+  For a mobile platform this is the altitude at the start of the data volume.  
+  Note that the altitude of the instrument is given in the variable *altitude* and 
+  may be offset from the platform altitude.
 
 location_keywords
   These are words with geographical relevance that aid data discovery.
@@ -338,24 +340,27 @@ Global Variables
 Variables named in **bold** in the following table are required by Cf-Radial-1.4
 and NCAS-Radar-1.0.  Others are optional. 
 
-+--------------------------+----------+------------------+-----------------------------------------------------------------------------------------+
-|**Variable name**         | **Type** |**Dimension**     |**Comments**                                                                             |  
-+==========================+==========+==================+=========================================================================================+
-| volume_number            | int      | none             | Volume numbers are sequential, relative to some arbitrary start time, and may wrap      |
-+--------------------------+----------+------------------+-----------------------------------------------------------------------------------------+
-| platform_type            | char     | (string_length)  | Options are: *"fixed"*, *"vehicle"*, *"ship"*, *"aircraft"*, *"aircraft_fore"*,         |
-|                          |          |                  | *"aircraft_aft"*, *"aircraft_tail"*, *"aircraft_belly"*, *"aircraft_roof"*,             |
-|                          |          |                  | *"aircraft_nose"*, *"satellite_orbit"*, *"satellite_geostat"*.                          |
-|                          |          |                  | Assumed *"fixed"* if missing.                                                           |
-+--------------------------+----------+------------------+-----------------------------------------------------------------------------------------+
-| **time_coverage_start**  | char     | (string_length)  | UTC time of first ray in file. Resolution is integer seconds. The time(time) variable   |
-|                          |          |                  | is computed relative to this time. Format is yyyy-mm-ddTHH:MM:SSZ                       |
-+--------------------------+----------+------------------+-----------------------------------------------------------------------------------------+
-| **time_coverage_end**    | char     | (string_length)  | UTC time of last ray in file. Resolution is integer seconds.                            |
-+--------------------------+----------+------------------+-----------------------------------------------------------------------------------------+
-| time_reference           | char     | (string_length)  | UTC time reference. Resolution is integer seconds. If defined, the time(time) variable  |
-|                          |          |                  | is computed relative to this time instead of relative to **time_coverage_start**.       |
-+--------------------------+----------+------------------+-----------------------------------------------------------------------------------------+
+.. table:: Sample Table
+ :widths: 30 20 40 40
+ 
++--------------------------+----------+------------------+---------------------------------------------------------------------------------------------------+
+|**Variable name**         | **Type** |**Dimension**     |**Comments**                                                                                       |  
++==========================+==========+==================+===================================================================================================+
+| volume_number            | int      | none             | Volume numbers are sequential, relative to some arbitrary start time, and may wrap                |
++--------------------------+----------+------------------+---------------------------------------------------------------------------------------------------+
+| platform_type            | char     | (string_length)  | Options are: *"fixed"*, *"vehicle"*, *"ship"*, *"aircraft"*, *"aircraft_fore"*,                   |
+|                          |          |                  | *"aircraft_aft"*, *"aircraft_tail"*, *"aircraft_belly"*, *"aircraft_roof"*,                       |
+|                          |          |                  | *"aircraft_nose"*, *"satellite_orbit"*, *"satellite_geostat"*.                                    |
+|                          |          |                  | Assumed *"fixed"* if missing.                                                                     |
++--------------------------+----------+------------------+---------------------------------------------------------------------------------------------------+
+| **time_coverage_start**  | char     | (string_length)  | UTC time of first ray in file. Resolution is integer seconds. The ''time(time)'' variable         |
+|                          |          |                  | is computed relative to this time unless time_reference is defined. Format is yyyy-mm-ddTHH:MM:SSZ|
++--------------------------+----------+------------------+---------------------------------------------------------------------------------------------------+
+| **time_coverage_end**    | char     | (string_length)  | UTC time of last ray in file. Resolution is integer seconds.                                      |
++--------------------------+----------+------------------+---------------------------------------------------------------------------------------------------+
+| time_reference           | char     | (string_length)  | UTC time reference. Resolution is integer seconds. If defined, the time(time) variable            |
+|                          |          |                  | is computed relative to this time instead of relative to **time_coverage_start**.                 |
++--------------------------+----------+------------------+---------------------------------------------------------------------------------------------------+
 
 
 Coordinate Variables
@@ -452,7 +457,23 @@ Sweep variables are always required, even if the volume only contains a single s
 Moments Field Data Variables
 ============================
 
-Field data variables
+The field data will be stored using one of the following:
+
++-------------+------------+-----------------------+
+| netCDF type | Byte width | Description           |
++=============+============+=======================+
+|ncbyte       |1           | scaled signed integer |
++-------------+------------+-----------------------+
+|short        |2           | scaled signed integer |
++-------------+------------+-----------------------+
+|int          |4           | scaled signed integer |
++-------------+------------+-----------------------+
+|float        |4           | floating point        |
++-------------+------------+-----------------------+
+|double       |8           | floating point        |
++-------------+------------+-----------------------+
+
+The netCDF variable name is interpreted as the short name for the field.
 
 
 Quality control
@@ -486,53 +507,3 @@ which field variables it qualifies.
 A given field variable may be associated with more than one quality control field.  For example, 
 in addition to a quality control flag we may have an associated quality control field to specify 
 the uncertainty in the field variable.
-
-If the user wanted only to see “good” data (indicated by a qc_flag value of 1) all they would need to do would be to:
-Make a copy of the variable data array
-Set the value of the elements in the duplicate data array that correspond to elements on the qc_flag that have a value not equal to 1 to NaN.
-This will result in the temporary data variable looking like:
-
-
-**Field Variables**
-
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------+----------------------------------------+
-|Name                          |Date type      |Dimensions               |Long name                                                                    |Units                                   |
-+==============================+===============+=========================+=============================================================================+========================================+
-|ZLO                           |short          |time, pulses, range      |radar equivalent reflectivity factor low                                     |dBZ                                     |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------+----------------------------------------+
-|ZHI                           |short          |time, pulses, range      |radar equivalent reflectivity factor high                                    |dBZ                                     |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------+----------------------------------------+
-|ZCX                           |short          |time, pulses, range      |crosspolar radar equivalent reflectivity factor                              |dB                                      |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------+----------------------------------------+
-|ITX                           |short          |time, pulses, range      |in-phase video signal on transmission                                        |1                                       |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------+----------------------------------------+
-|QTX                           |short          |time, pulses, range      |quadrature video signal on transmission                                      |1                                       |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------+----------------------------------------+
-|IRX                           |short          |time, pulses, range      |in-phase video signal on reception                                           |1                                       |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------+----------------------------------------+
-|QRX                           |short          |time, pulses, range      |quadrature video signal on reception                                         |1                                       |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------+----------------------------------------+
-
-Field variables are stored in packed form of type ``short`` and have the following attributes:
-
-+----------------------------------------+------------------+
-|Attribute name**                        |Type*             |
-+========================================+==================+
-|scale_factor                            |float32           |
-+----------------------------------------+------------------+
-|add_offset                              |float32           |
-+----------------------------------------+------------------+
-|valid_min                               |short             |
-+----------------------------------------+------------------+
-|valid_max                               |short             |
-+----------------------------------------+------------------+
-|_FillValue                              |short             |
-+----------------------------------------+------------------+
-
-For example for ``ZLO`` the packed values derive from the analogue to digital
-converter, and lie in the range ``[0,4095]``.
-The attribute ``valid_max`` is set to ``3840``, and only values below this
-threshold should be used.
-
-Similarly ``ZHI`` has the attribute ``valid_min`` set to ``3841``, and only
-values above this should be used.

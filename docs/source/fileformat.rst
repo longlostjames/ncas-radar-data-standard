@@ -340,9 +340,11 @@ Global Variables
 Variables named in **bold** in the following table are required by Cf-Radial-1.4
 and NCAS-Radar-1.0.  Others are optional. 
 
-.. table:: Sample Table
- :widths: 30 20 40 40
- 
+ .. list-table:: global-vars
+   :widths: 20 10 30 50 
+   :header-rows: 1
+   :class: tight-table 
+
 +--------------------------+----------+------------------+---------------------------------------------------------------------------------------------------+
 |**Variable name**         | **Type** |**Dimension**     |**Comments**                                                                                       |  
 +==========================+==========+==================+===================================================================================================+

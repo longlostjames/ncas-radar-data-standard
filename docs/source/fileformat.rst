@@ -376,8 +376,9 @@ Variables in the following table are required by Cf-Radial-1.4 and
 NCAS-Radar-1.0.
 
 .. list-table::
-   :widths: 15 10 40
+   :widths: 25 15 60
    :header-rows: 1
+   :class: tight-table
 
    * - Name
      - Data type
@@ -397,6 +398,7 @@ Attributes for the time coordinate variable
 .. list-table::
   :widths: 25 15 60
   :header-rows: 1
+  :class: tight-table
 
   * - Attribute name
     - Type

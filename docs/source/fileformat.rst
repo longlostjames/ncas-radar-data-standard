@@ -313,6 +313,10 @@ Dimensions
 As mentioned above, the naming of these dimensions must adhere strictly to the
 CfRadial-1.4 requirements.
 
+ .. table:: dimensions
+   :widths: 30 70 
+   :header-rows: 1
+   :class: tight-table 
 
 +------------------------------+-----------------------------------------+
 |**Dimension name**            |**Description**                          |
@@ -340,7 +344,7 @@ Global Variables
 Variables named in **bold** in the following table are required by Cf-Radial-1.4
 and NCAS-Radar-1.0.  Others are optional. 
 
- .. list-table:: global-vars
+ .. table:: global-vars
    :widths: 20 10 30 50 
    :header-rows: 1
    :class: tight-table 
@@ -371,31 +375,46 @@ Coordinate Variables
 Variables in the following table are required by Cf-Radial-1.4 and
 NCAS-Radar-1.0.
 
-+-------------------------+---------------+---------------------------+
-|**Name**                 |**Data type**  |**Dimension**              |
-+=========================+===============+===========================+
-| **time**                | double        | (time)                    |
-+-------------------------+---------------+---------------------------+
-| **range**               | float         | (range) or (sweep,range)  |
-+-------------------------+---------------+---------------------------+
+.. list-table::
+   :widths: 15 10 40
+   :header-rows: 1
+
+   * - Name
+     - Data type
+     - Dimension
+   * - **time**
+     - double
+     - (time)
+   * - **range**
+     - float
+     - (range) or (sweep,range)
+
+
 
 Attributes for the time coordinate variable
 -------------------------------------------
 
-+-------------------+---------+------------------------------------------+
-|**Attribute name** |**Type** |**Value**                                 |
-+===================+=========+==========================================+
-| standard_name     | string  | "time"                                   |
-+-------------------+---------+------------------------------------------+
-| long_name         | string  |"time_in_seconds_since_volume_start" or   |
-|                   |         |"time_since_time_reference"               |
-+-------------------+---------+------------------------------------------+
-| units             | string  | *"seconds since yyyy-mm-ddTHH:MM:SSZ"*   |
-|                   |         | where the actual reference time values   | 
-|                   |         | are used.                                |
-+-------------------+---------+------------------------------------------+
-|calendar           | string  | Defaults to "gregorian" if missing.      |
-+-------------------+---------+------------------------------------------+
+.. list-table::
+  :widths: 25 15 60
+  :header-rows: 1
+
+  * - Attribute name
+    - Type
+    - Value
+  * - standard_name
+    - string
+    - "time"
+  * - long_name
+    - string
+    - "time_in_seconds_since_volume_start" or "time_since_time_reference"
+  * - units
+    - string
+    - "seconds since yyyy-mm-ddTHH:MM:SSZ", where the actual reference 
+      time values are used. 
+  * - calendar
+    - string
+    - Defaults to "gregorian" if missing.
+  
 
 Attributes for the range coordinate variable
 --------------------------------------------

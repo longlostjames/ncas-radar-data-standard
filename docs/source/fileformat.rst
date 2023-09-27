@@ -19,14 +19,35 @@ CfRadial documentation, which may be found on Github at
 
 Version 1.0 of the NCAS-Radar standard is based on CfRadial-1.4.
 
+Sub-conventions
+---------------
+
+The CfRadial-1.4 standard describes a number of sub-conventions related to instrument parameters and calibration.
+The following sub-conventions are **obligatory** within the NCAS Radar 1.0 standard:
+
+* instrument_parameters
+* radar_parameters
+* radar_calibration
+
+NCAS Radar format files need to comply with the requirements set out for these sub-conventions within the 
+`CfRadial Version-1.4 <https://github.com/NCAR/CfRadial/blob/62cb351e16574baa9e7f2b54c6b93b13468077fb/docs/CfRadialDoc.v1.4.20160801.pdf>`_
+documentation.
 
 .. rubric:: Strict variable and attribute names for non-field variables
 
+In CfRadial a ‘field’ variable stores such quantities as radar moments, derived quantities, quality
+control measures, etc. These variables store the fundamental scientific data associated 
+with the instrument.  By contrast, metadata variables store the dimensional information such as *time*, 
+*range*, *azimuth* and *elevation*, and other metadata such as calibration and radar characteristics.
+
 CfRadial requires strict adherance to naming conventions for dimensions and for
-non-field variables.  By the latter we mean variables such as *time*, *range*,
-*azimuth* and *elevation*, and other variables containing metadata such as
-calibration offsets.  The NCAS-Radar convention inherits this requirement.
+metadata variables. The NCAS-Radar convention inherits this requirement.
 For details see the CfRadial documentation on Github.
+
+This strictness requirement only applies to non-field metadata variables. The 
+field variables will be handled as usual in CF, where the standard 
+name is the definitive guide to the contents of the field. Suggested standard names for radar 
+variables not yet supported by CF have been proposed in the CfRadial documentation.
 
 Overview of data content
 ========================
@@ -412,13 +433,13 @@ Attributes for the time coordinate variable
   * - Attribute name
     - Type
     - Value
-  * - standard_name
+  * - **standard_name**
     - string
     - "time"
-  * - long_name
+  * - **long_name**
     - string
     - "time_in_seconds_since_volume_start" or "time_since_time_reference"
-  * - units
+  * - **units**
     - string
     - "seconds since yyyy-mm-ddTHH:MM:SSZ", where the actual reference 
       time values are used. 
@@ -438,25 +459,25 @@ Attributes for the range coordinate variable
   * - Attribute name
     - Type
     - Comments
-  * - standard_name
+  * - **standard_name**
     - string
     - "projection_range_coordinate"
-  * - long_name
+  * - **long_name**
     - string
     - e.g. "range_to_measurement_volume" or "range_to_middle_of_each_range_gate"
-  * - units
+  * - **units**
     - string
     -  "metres" or "meters"
-  * - spacing_is_constant
+  * - **spacing_is_constant**
     - string
     - "true" or "false"
-  * - meters_to_center_of_first_gate
+  * - **meters_to_center_of_first_gate**
     - float or float(sweep)
     - Start range
   * - meters_between_gates
     - float or float(sweep)
     - Gate spacing.  Required if spacing_is_constant is "true".
-  * - axis
+  * - **axis**
     - string
     - "radial_range_coordinate"
 
@@ -485,9 +506,11 @@ Location Variables
     - double
     - none or (time)
     - Altitude of the instrument above the geoid (i.e. the orthometric height), using the WGS84 
-      ellipsoid and EGM2008 geoid model.  For a scanning radar this is the altitude of the centre of 
+      ellipsoid and EGM2008 geoid model [#f2]_.  For a scanning radar this is the altitude of the centre of 
       rotation of the antenna.
 
+.. [#f2] This definition is more specific than that given in the CfRadial-1.4 specification and aligns with that 
+   used in CfRadial-2.1.
 
 Sweep Variables
 ===============
@@ -536,6 +559,12 @@ Sweep variables are always required, even if the volume only contains a single s
 Moments Field Data Variables
 ============================
 
+Handling of moments field variables in NCAS Radar 1.0 follows that documented for CfRadial-1.4.
+Most commonly data from NCAS radars will have a fixed number of range gates per ray, and the field variables
+will be 2-dimensional arrays with the dimensions *time* and *range*.  For the special case of variable 
+numbers of gates per ray see  `CfRadial Version-1.4 <https://github.com/NCAR/CfRadial/blob/62cb351e16574baa9e7f2b54c6b93b13468077fb/docs/CfRadialDoc.v1.4.20160801.pdf>`_
+documentation for more details.
+
 The field data will be stored using one of the following:
 
 .. list-table::
@@ -559,35 +588,70 @@ The field data will be stored using one of the following:
 
 The netCDF variable name is interpreted as the short name for the field.
 
+The following attributes are required for field variables:
+
+.. list-table::
+  :widths: 10 10 10 50
+  :header-rows: 1
+  :class: tight-table
+
+  * - Attribute name
+    - Type
+    - Convention
+    - Description
+  * - **long_name**
+    - string
+    - CF
+    - Long name describing the field.
+  * - **standard_name** or **proposed_standard_name**
+    - string
+    - CF
+    - Proposed CF standard name for the field
+  * - **units**
+    - string
+    - CF
+    - Units for the field
+  * - **_FillValue**
+    - same type as field data
+    - CF
+    - Indicates data are missing at this range bin.
+  * - **coordinates**
+    - string
+    - CF
+    - See note below
+
+.. rubric:: Use of coordinates attribute
+The *"coordinates"* attribute lists the variables needed to compute the location of a data point in space.
+For stationary platforms it should be set to *"elevation azimuth range"*.  For moving platforms it should be 
+*"elevation azimuth range heading roll pitch rotation tilt"
 
 Quality control
 ---------------
 
-In CfRadial-1.4 a field variable may make use of more than one reserved value, to indicate a variety of conditions. 
+In CfRadial-1.4 a field variable may make use of more than one reserved value to indicate a variety of conditions. 
 For example, with radar data, you may wish to indicate that the beam is blocked for a given gate, and that no echo 
 will ever be detected at that gate. That provides more information than just using *_FillValue*. The *flag_values* and 
 *flag_meanings* attributes can be used in this case, which specifies the associated quality-control field variable.
 
-Although CfRadial-1.4 allows the assignment of flag values directly to a moment field, this is **not** the 
+Although CfRadial-1.4 allows the assignment of *flag_values* directly to a moment field, this is **not** the 
 preferred approach in NCAS-Radar. Instead, quality control for a field variable is specified through one or more 
 associated "quality control fields", which are specified by the *ancillary_variables* attribute.  
 
 For example, we might use a quality control field named *qc_flag* as follows:
 
-	float DBZH(time, range) ;
-		DBZH:ancillary_variables = "qc_flag" ;
-	
-  ubyte qc_flag(time, range) ;
-		qc_flag:is_quality = "true" ;
-		qc_flag:qualified_variables = "dBZH vel" ;
-		qc_flag:long_name = "Quality control flag" ;
-		qc_flag:flag_values = 0UB, 1UB, 2UB, 3UB, 4UB, 255UB ;
-		qc_flag:flag_meanings = "not_used good_data probably_good_data bad_data data_in_blind_range no_qc_
-performed" ;
+.. code-block:: text
+    
+ ubyte qc_flag(time, range) ;
+ qc_flag:is_quality = "true" ;
+ qc_flag:qualified_variables = "dBZH vel" ;
+ qc_flag:long_name = "Quality control flag" ;
+ qc_flag:flag_values = 0UB, 1UB, 2UB, 4UB, 255UB ;
+ qc_flag:flag_meanings = "not_used good_data bad_data data_in_blind_range no_qc_performed" ;
 
-A quality control field uses the attribute *qualified_variables* to specify (as a space delimited list) 
-which field variables it qualifies. 
+A quality control field uses the attribute *qualified_variables* (in this example variables with the short names 
+*dBZH* and *vel*) to specify (as a space delimited list) which field variables it qualifies.
 
 A given field variable may be associated with more than one quality control field.  For example, 
 in addition to a quality control flag we may have an associated quality control field to specify 
 the uncertainty in the field variable.
+

@@ -313,23 +313,21 @@ Dimensions
 As mentioned above, the naming of these dimensions must adhere strictly to the
 CfRadial-1.4 requirements.
 
- .. table:: dimensions
-   :widths: 30 70 
+ .. list-table:: 
+   :widths: 20 30 
    :header-rows: 1
    :class: tight-table 
-
-+------------------------------+-----------------------------------------+
-|**Dimension name**            |**Description**                          |
-+==============================+===============+=========================+
-| time                         | The number of rays. This dimension is   |
-|                              | optionally unlimited.                   |
-+------------------------------+-----------------------------------------+
-| range                        | The number of range bins                |
-+------------------------------+-----------------------------------------+
-| sweep                        | The number of sweeps                    |
-+------------------------------+-----------------------------------------+
-| string_length [#f1]_         | Length of char type variables           |
-+------------------------------+-----------------------------------------+
+   
+   * - Dimension name
+     - Description
+   * - time
+     - The number of rays.  This dimension is optionally unlimited.
+   * - range
+     - The number of range bins.
+   * - sweep
+     - The number of sweeps.
+   * - string_length [#f1]_
+     - Length of char type variables.
 
 .. [#f1] Any number of ‘string_length’ dimensions may be created and used. For
    example, you may declare the dimensions ‘string_length', ‘string_length_short’
@@ -344,29 +342,40 @@ Global Variables
 Variables named in **bold** in the following table are required by Cf-Radial-1.4
 and NCAS-Radar-1.0.  Others are optional. 
 
- .. table:: global-vars
-   :widths: 20 10 30 50 
-   :header-rows: 1
-   :class: tight-table 
+ .. list-table:: 
+    :widths: 20 10 20 50 
+    :header-rows: 1
+    :class: tight-table 
 
-+--------------------------+----------+------------------+---------------------------------------------------------------------------------------------------+
-|**Variable name**         | **Type** |**Dimension**     |**Comments**                                                                                       |  
-+==========================+==========+==================+===================================================================================================+
-| volume_number            | int      | none             | Volume numbers are sequential, relative to some arbitrary start time, and may wrap                |
-+--------------------------+----------+------------------+---------------------------------------------------------------------------------------------------+
-| platform_type            | char     | (string_length)  | Options are: *"fixed"*, *"vehicle"*, *"ship"*, *"aircraft"*, *"aircraft_fore"*,                   |
-|                          |          |                  | *"aircraft_aft"*, *"aircraft_tail"*, *"aircraft_belly"*, *"aircraft_roof"*,                       |
-|                          |          |                  | *"aircraft_nose"*, *"satellite_orbit"*, *"satellite_geostat"*.                                    |
-|                          |          |                  | Assumed *"fixed"* if missing.                                                                     |
-+--------------------------+----------+------------------+---------------------------------------------------------------------------------------------------+
-| **time_coverage_start**  | char     | (string_length)  | UTC time of first ray in file. Resolution is integer seconds. The ''time(time)'' variable         |
-|                          |          |                  | is computed relative to this time unless time_reference is defined. Format is yyyy-mm-ddTHH:MM:SSZ|
-+--------------------------+----------+------------------+---------------------------------------------------------------------------------------------------+
-| **time_coverage_end**    | char     | (string_length)  | UTC time of last ray in file. Resolution is integer seconds.                                      |
-+--------------------------+----------+------------------+---------------------------------------------------------------------------------------------------+
-| time_reference           | char     | (string_length)  | UTC time reference. Resolution is integer seconds. If defined, the time(time) variable            |
-|                          |          |                  | is computed relative to this time instead of relative to **time_coverage_start**.                 |
-+--------------------------+----------+------------------+---------------------------------------------------------------------------------------------------+
+    * - Variable name
+      - Type
+      - Dimension
+      - Comments
+    * - volume_number
+      - int
+      - none
+      - Volume numbers are sequential, relative to some arbitrary start time, and may wrap.
+    * - platform_type
+      - char
+      - (string_length)
+      - Options are: *"fixed"*, *"vehicle"*, *"ship"*, *"aircraft"*, *"aircraft_fore"*, 
+        *"aircraft_aft"*, *"aircraft_tail"*, *"aircraft_belly"*, *"aircraft_roof"*,
+        *"aircraft_nose"*, *"satellite_orbit"*, *"satellite_geostat"*.
+        Assumed *"fixed"* if missing. 
+    * - **time_coverage_start**
+      - char
+      - (string_length)
+      - UTC time of first ray in file. Resolution is integer seconds. The ''time(time)'' variable
+        is computed relative to this time unless time_reference is defined. Format is yyyy-mm-ddTHH:MM:SSZ
+    * - **time_coverage_end**
+      - char
+      - (string_length)
+      - UTC time of last ray in file. Resolution is integer seconds.
+    * - time_reference
+      - char
+      - (string_length)
+      - UTC time reference. Resolution is integer seconds. If defined, the time(time) variable
+        is computed relative to this time instead of relative to **time_coverage_start**.
 
 
 Coordinate Variables
@@ -376,7 +385,7 @@ Variables in the following table are required by Cf-Radial-1.4 and
 NCAS-Radar-1.0.
 
 .. list-table::
-   :widths: 25 15 60
+   :widths: 20 10 70
    :header-rows: 1
    :class: tight-table
 
@@ -396,7 +405,7 @@ Attributes for the time coordinate variable
 -------------------------------------------
 
 .. list-table::
-  :widths: 25 15 60
+  :widths: 20 10 70
   :header-rows: 1
   :class: tight-table
 
@@ -421,80 +430,132 @@ Attributes for the time coordinate variable
 Attributes for the range coordinate variable
 --------------------------------------------
 
-+--------------------------------------+---------------+---------------------------------------------------+
-|**Name**                              |**Type**       |**Value**                                          |
-+======================================+===============+===================================================+
-| **standard_name**                    | string        | "projection_range_coordinate"                     |
-+--------------------------------------+---------------+---------------------------------------------------+
-| | **long_name**                      | | string      | | e.g. "range_to_measurement_volume" or           |
-| |                                    | |             | | "range_to_middle_of_each_range_gate"            |
-+--------------------------------------+---------------+---------------------------------------------------+
-| **units**                            | string        | "metres" or "meters"                              |
-+--------------------------------------+---------------+---------------------------------------------------+
-| **spacing_is_constant**              | string        | "true" or "false"                                 |
-+--------------------------------------+---------------+---------------------------------------------------+
-| | **meters_to_center_of_first_gate** | | float or    | Start range                                       |
-| |                                    | | float(sweep)|                                                   |
-+--------------------------------------+---------------+---------------------------------------------------+
-| | meters_between_gates               | | float or    | | Gate spacing.  Required if spacing_is_constant  |
-| |                                    | | float(sweep)| | is "true"                                       |
-+--------------------------------------+---------------+---------------------------------------------------+
-| **axis**                             | string        | "radial_range_coordinate"                         |
-+--------------------------------------+---------------+---------------------------------------------------+
+.. list-table::
+  :widths: 20 10 70
+  :header-rows: 1
+  :class: tight-table
+
+  * - Attribute name
+    - Type
+    - Comments
+  * - standard_name
+    - string
+    - "projection_range_coordinate"
+  * - long_name
+    - string
+    - e.g. "range_to_measurement_volume" or "range_to_middle_of_each_range_gate"
+  * - units
+    - string
+    -  "metres" or "meters"
+  * - spacing_is_constant
+    - string
+    - "true" or "false"
+  * - meters_to_center_of_first_gate
+    - float or float(sweep)
+    - Start range
+  * - meters_between_gates
+    - float or float(sweep)
+    - Gate spacing.  Required if spacing_is_constant is "true".
+  * - axis
+    - string
+    - "radial_range_coordinate"
+
 
 Location Variables
 ==================
 
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|**Name**                      |**Data type**  |**Dimension**            |**Comments**                                                                       |**Units**                               |
-+==============================+===============+=========================+===================================================================================+========================================+
-|**latitude**                  |double         |none or (time)           |Latitude of the instrument                                                         |degree_north                            |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|**longitude**                 |double         |none or (time)           |Longitude of the instrument                                                        |degree_east                             |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| | **altitude**               | | double      | | none or (time)        | | Altitude of the instrument above the geoid.  For a scanning radar this is the   | | metres or meters                     |
-| |                            | |             | |                       | | altitude of the centre of rotation of the antenna.                              | |                                      |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
+.. list-table::
+  :widths: 20 10 15 50
+  :header-rows: 1
+  :class: tight-table
+
+  * - Name
+    - Data type
+    - Dimension
+    - Comments
+  * - **latitude**
+    - double
+    - none or (time)
+    - Latitude of the instrument
+  * - **longitude**
+    - double
+    - none or (time)
+    - Longitude of the instrument
+  * - **altitude**
+    - double
+    - none or (time)
+    - Altitude of the instrument above the geoid (i.e. the orthometric height), using the WGS84 
+      ellipsoid and EGM2008 geoid model.  For a scanning radar this is the altitude of the centre of 
+      rotation of the antenna.
+
 
 Sweep Variables
 ===============
 
 Sweep variables are always required, even if the volume only contains a single sweep.
 
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|**Name**                      |**Data type**  |**Dimension**            |**Comments**                                                                       |**Units**                               |
-+==============================+===============+=========================+===================================================================================+========================================+
-|**sweep_number**              | int           |(sweep)                  |The number of the sweep in the volume scan, starting at 0.                         |                                        |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-| | **sweep_mode**             | | char        | | (sweep,string_length) | | Options are "sector", "coplane", "rhi", "vertical_pointing", "idle",            | |                                      |
-| |                            | |             | |                       | | "azimuth_surveillance", "elevation_surveillance", "sunscan", "pointing",        | |                                      |
-| |                            | |             | |                       | | "manual_ppi", "manual_rhi"                                                      | |                                      |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|**fixed_angle**               | float         |(sweep)                  | Target angle for the sweep.                                                       | degree                                 |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|**sweep_start_ray_index**     | int           |(sweep)                  | Index of the first ray in sweep relative to the start of volume. 0-based.         |                                        |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
-|**sweep_end_ray_index**       | int           |(sweep)                  | Index of the last ray in sweep relative to the start of volume. 0-based.          |                                        |
-+------------------------------+---------------+-------------------------+-----------------------------------------------------------------------------------+----------------------------------------+
+.. list-table::
+  :widths: 20 10 15 10 50
+  :header-rows: 1
+  :class: tight-table
+
+  * - Name
+    - Data type
+    - Dimension
+    - Units
+    - Comments
+  * - **sweep_number**
+    - int
+    - (sweep)
+    - 
+    - The number of the sweep in the volume scan, starting at 0.
+  * - **sweep_mode**
+    - char
+    - (sweep,string_length)
+    - 
+    - Options are "sector", "coplane", "rhi", "vertical_pointing", "idle", 
+      "azimuth_surveillance", "elevation_surveillance", "sunscan", "pointing",
+      "manual_ppi", "manual_rhi" 
+  * - **fixed_angle**
+    - float
+    - (sweep)
+    - degree
+    - Target angle for the sweep.
+  * - sweep_start_ray_index
+    - int
+    - (sweep)
+    - 
+    - Index of the first ray in sweep relative to the start of volume, 0-based.
+  * - sweep_end_ray_index
+    - int
+    - (sweep)
+    - 
+    - Index of the last ray in sweep relaitve to the start of the volume. 0-based.
+
 
 Moments Field Data Variables
 ============================
 
 The field data will be stored using one of the following:
 
-+-------------+------------+-----------------------+
-| netCDF type | Byte width | Description           |
-+=============+============+=======================+
-|ncbyte       |1           | scaled signed integer |
-+-------------+------------+-----------------------+
-|short        |2           | scaled signed integer |
-+-------------+------------+-----------------------+
-|int          |4           | scaled signed integer |
-+-------------+------------+-----------------------+
-|float        |4           | floating point        |
-+-------------+------------+-----------------------+
-|double       |8           | floating point        |
-+-------------+------------+-----------------------+
+.. list-table::
+  :widths: 10 10
+  :header-rows: 1
+  :class: tight-table
+
+  * - Type
+    - Byte width
+  * - byte
+    - 1
+  * - short
+    - 2
+  * - int
+    - 4
+  * - float
+    - 4
+  * - double
+    - 8
+  
 
 The netCDF variable name is interpreted as the short name for the field.
 

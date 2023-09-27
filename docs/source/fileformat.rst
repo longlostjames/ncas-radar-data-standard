@@ -621,9 +621,10 @@ The following attributes are required for field variables:
     - See note below
 
 .. rubric:: Use of coordinates attribute
+
 The *"coordinates"* attribute lists the variables needed to compute the location of a data point in space.
 For stationary platforms it should be set to *"elevation azimuth range"*.  For moving platforms it should be 
-*"elevation azimuth range heading roll pitch rotation tilt"
+*"elevation azimuth range heading roll pitch rotation tilt"*
 
 Quality control
 ---------------
@@ -637,21 +638,30 @@ Although CfRadial-1.4 allows the assignment of *flag_values* directly to a momen
 preferred approach in NCAS-Radar. Instead, quality control for a field variable is specified through one or more 
 associated "quality control fields", which are specified by the *ancillary_variables* attribute.  
 
+Quality control fields may be constructed using sets of *flag_values* together with associated *flag_meanings*. 
 For example, we might use a quality control field named *qc_flag* as follows:
 
 .. code-block:: text
     
  ubyte qc_flag(time, range) ;
- qc_flag:is_quality = "true" ;
+ qc_flag:is_quality_field = "true" ;
  qc_flag:qualified_variables = "dBZH vel" ;
  qc_flag:long_name = "Quality control flag" ;
  qc_flag:flag_values = 0UB, 1UB, 2UB, 4UB, 255UB ;
  qc_flag:flag_meanings = "not_used good_data bad_data data_in_blind_range no_qc_performed" ;
 
+Note the use of the *is_quality_field* attribute to indicate that this is a quality control field. 
+This is important as it defaults to "false" if not present.
+
 A quality control field uses the attribute *qualified_variables* (in this example variables with the short names 
 *dBZH* and *vel*) to specify (as a space delimited list) which field variables it qualifies.
 
+Instead of a list of *flag_values*, we also have the option of specifying quality control using a flag_mask field. 
+This is an integer-type field variable where each element is constructed using a bit-wise OR to combine conditions.  
+In this case the *flag_masks* and *flag_meanings* attributes are used to indicate the valid values and 
+meanings.
+
 A given field variable may be associated with more than one quality control field.  For example, 
 in addition to a quality control flag we may have an associated quality control field to specify 
-the uncertainty in the field variable.
-
+the uncertainty in the field variable.  Such a field would be of the same type as the field variable 
+it qualifies.

@@ -665,3 +665,523 @@ A given field variable may be associated with more than one quality control fiel
 in addition to a quality control flag we may have an associated quality control field to specify 
 the uncertainty in the field variable.  Such a field would be of the same type as the field variable 
 it qualifies.
+
+
+
+.. list-table::
+  :widths: 50 10 20 20
+  :header-rows: 1
+  :class: tight-table
+
+  * - Standard name
+    - Short name
+    - Units
+    - Aready in CF?
+  * - equivalent_reflectivity_factor
+    - DBZ
+    - dBZ
+    - yes
+  * - linear_equivalent_reflectivity_factor
+    - Z
+    - Z
+    - no
+  * - radial_velocity_of_scatterers_away_from_instrument
+    - VEL
+    - m s-1
+    - yes
+  * - doppler_spectrum_width
+    - WIDTH
+    - m s-1
+    - no
+  * - log_differential_reflectivity_hv
+    - ZDR
+    - dB
+    - no
+  * - log_linear_depolarization_ratio_hv
+    - LDR
+    - dB
+    - no
+  * - log_linear_depolarization_ratio_h
+    - LDRH
+    - dB
+    - no
+  * - log_linear_depolarization_ratio_v
+    - LDRV
+    - dB
+    - no
+  * - differential_phase_hv
+    - PHIDP
+    - degree
+    - no
+  * - specific_differential_phase_hv
+    - KDP
+    - degree km-1
+    - no
+  * - cross_polar_differential_phase
+    - PHIHX
+    - degree
+    - no
+  * - cross_correlation_ratio_hv
+    - RHOHV
+    - 
+    - no
+  * - co_to_cross_polar_correlation_ratio_h
+    - RHOXH
+    - 
+    - no
+  * - co_to_cross_polar_correlation_ratio_v
+    - RHOXV
+    - 
+    - no
+  * - log_power
+    - DBM
+    - dBm
+    - no
+  * - log_power_co_polar_h
+    - DBMHC
+    - dBm
+    - no
+  * - log_power_cross_polar_h
+    - DBMHX
+    - dBm
+    - no
+  * - log_power_co_polar_v
+    - DBMVC
+    - dBm
+    - no 
+  * - log_power_cross_polar_v
+    - DBMVX
+    - dBm
+    - no
+  * - linear_power
+    - PWR
+    - mW
+    - no
+  * - linear_power_co_polar_h
+    - PWRHC 
+    - mW
+    - no
+  * - linear_power_cross_polar_h
+    - PWRHX 
+    - mW
+    - no
+  * - linear_power_co_polar_v
+    - PWRVC 
+    - mW
+    - no
+  * - linear_power_cross_polar_v
+    - PWRVX 
+    - mW
+    - no
+  * - signal_to_noise_ratio
+    - SNR
+    - dB
+    - no
+  * - signal_to_noise_ratio_co_polar_h
+    - SNRHC
+    - dB
+    - no
+  * - signal_to_noise_ratio_cross_polar_h
+    - SNRHX
+    - dB
+    - no
+  * - signal_to_noise_ratio_co_polar_v
+    - SNRVC
+    - dB
+    - no
+  * - signal_to_noise_ratio_cross_polar_v
+    - SNRVX
+    - dB
+    - no
+  * - normalized_coherent_power
+    - NCP
+    - 
+    - no
+  * - corrected_equivalent_reflectivity_factor
+    - DBZc
+    - dBZ
+    - no
+  * - corrected_radial_velocity_of_scatterers_away_from_instrument
+    - VELc
+    - m s-1
+    - no
+  * - corrected_log_differential_reflectivity_hv
+    - ZDRc
+    - dB
+    - no
+  * - radar_estimated_rain_rate
+    - RRR
+    - mm h-1
+    - no
+  * - rain_rate
+    - RR
+    - kg m-2 s-1
+    - yes
+  * - radar_echo_classification
+    - REC
+    - legend
+    - no
+
+.. list-table::
+  :widths: 30 50 20
+  :header-rows: 1
+  :class: tight-table
+
+  * - Variable name
+    - Long name
+    - Units
+  * - altitude_agl
+    - altitude_above_ground_level
+    - meters or metres
+  * - altitude_correction
+    - altitude_correction
+    - meters or metres
+  * - altitude
+    - altitude
+    - meters or metres
+  * - antenna_transition
+    - antenna_is_in_transition_between_sweeps
+    - 
+  * - azimuth_correction
+    - azimuth_angle_correction
+    - degrees
+  * - azimuth
+    - ray_azimuth_angle
+    - degrees
+  * - drift_correction
+    - platform_drift_angle_correction
+    - degrees
+  * - drift
+    - platform_drift_angle
+    - degrees
+  * - eastward_velocity_correction
+    - platform_eastward_velocity_correction
+    - m s-1
+  * - eastward_velocity
+    - platform_eastward_velocity
+    - m s-1
+  * - eastward_wind
+    - eastward_wind
+    - m s-1
+  * - elevation_correction 
+    - ray_elevation_angle_correction
+    - degrees
+  * - time_coverage_end
+    - data_volume_end_time_utc
+    - seconds
+  * - fixed_angle
+    - target_fixed_angle
+    - degrees
+  * - follow_mode
+    - follow_mode_for_scan_strategy
+    - 
+  * - frequency 
+    - radiation_frequency
+    - s-1
+  * - heading_change_rate
+    - platform_heading_angle_rate_of_change
+    - degrees
+  * - heading_correction
+    - platform_heading_angle_correction
+    - degrees
+  * - heading 
+    - platform_heading_angle
+    - degrees
+  * - instrument_name
+    - name_of_instrument
+    - 
+  * - instrument_type
+    - type_of_instrument
+    - 
+  * - latitude_correction
+    - latitude_correction
+    - degrees
+  * - latitude
+    - latitude
+    - degrees_north
+  * - longitude
+    - longitude
+    - degrees_east
+  * - northward_velocity_correction 
+    - platform_northward_velocity_correction
+    - m s-1
+  * - northward_velocity
+    - platform_northward_velocity
+    - m s-1
+  * - northward_wind
+    - northward_wind
+    - m s-1
+  * - nyquist_velocity
+    - unambiguous_doppler_velocity
+    - m s-1
+  * - n_samples
+    - number_of_samples_used_to_compute_moments
+    - 
+  * - pitch_change_rate 
+    - platform_pitch_angle_rate_of_change
+    - degrees
+  * - pitch_correction
+    - platform_pitch_angle_correction
+    - degrees
+  * - pitch
+    - platform_pitch_angle
+    - degrees
+  * - platform_is_mobile
+    - platform_is_mobile
+    -
+  * - platform_type 
+    - platform_type
+    -
+  * - polarization_mode
+    - transmit_receive_polarization_mode
+    -
+  * - prt_mode
+    - transmit_pulse_mode
+    -
+  * - pressure_altitude_correction 
+    - pressure_altitude_correction
+    - meters or metres
+  * - primary_axis
+    - primary_axis_of_rotation
+    - 
+  * - prt 
+    - pulse_repetition_time
+    - seconds
+  * - prt_ratio 
+    - multiple_pulse_repetition_frequency_ratio
+    -
+  * - pulse_width
+    - transmitter_pulse_width
+    - seconds
+  * - radar_antenna_gain_h 
+    - nominal_radar_antenna_gain_h_channel
+    - dB
+  * - radar_antenna_gain_v 
+    - nominal_radar_antenna_gain_v_channel
+    - dB
+  * - radar_beam_width_h 
+    - half_power_radar_beam_width_h_channel
+    - degrees
+  * - radar_beam_width_v 
+    - half_power_radar_beam_width_v_channel
+    - degrees
+  * - radar_receiver_bandwidth
+    - radar_receiver_bandwidth
+    - s-1
+  * - radar_measured_transmit_power_h 
+    - radar_measured_transmit_power_h_channel
+    - dBm
+  * - radar_measured_transmit_power_v 
+    - radar_measured_transmit_power_v_channel
+    - dBm
+  * - range_correction 
+    - range_to_center_of_measurement_volume_correction
+    - meters
+  * - range 
+    - projection_range_coordinate
+    - meters
+  * - roll_correction 
+    - platform_roll_angle_correction
+    - degrees
+  * - roll 
+    - platform_roll_angle
+    - degrees
+  * - rotation_correction 
+    - ray_rotation_angle_relative_to_platform_correction
+    - degrees
+  * - rotation 
+    - ray_rotation_angle_relative_to_platform
+    - degrees
+  * - r_calib_antenna_gain_h 
+    - calibrated_radar_antenna_gain_h_channel
+    - dB
+  * - r_calib_antenna_gain_v 
+    - calibrated_radar_antenna_gain_v_channel
+    - dB
+  * - r_calib_base_dbz_1km_hc 
+    - radar_reflectivity_at_1km_at_zero_snr_h_co_polar_channel
+    - dBZ
+  * - r_calib_base_dbz_1km_hx 
+    - radar_reflectivity_at_1km_at_zero_snr_h_cross_polar_channel
+    - dBZ
+  * - r_calib_base_dbz_1km_vc 
+    - radar_reflectivity_at_1km_at_zero_snr_v_co_polar_channel
+    - dBZ
+  * - r_calib_base_dbz_1km_vx
+    - radar_reflectivity_at_1km_at_zero_snr_v_cross_polar_channel
+    - dBZ
+  * - r_calib_coupler_forward_loss_h 
+    - radar_calibration_coupler_forward_loss_h_channel
+    - dB
+  * - r_calib_coupler_forward_loss_v 
+    - radar_calibration_coupler_forward_loss_v_channel
+    - dB
+  * - r_calib_index 
+    - calibration_data_array_index_per_ray
+    - 
+  * - r_calib_ldr_correction_h 
+    - calibrated_radar_ldr_correction_h_channel
+    - dB
+  * - r_calib_ldr_correction_v 
+    - calibrated_radar_ldr_correction_v_channel
+    - dB
+  * - r_calib_noise_hc 
+    - calibrated_radar_receiver_noise_h_co_polar_channel
+    - dBm
+  * - r_calib_noise_hx
+    - calibrated_radar_receiver_noise_h_cross_polar_channel
+    - dBm
+  * - r_calib_noise_vc 
+    - calibrated_radar_receiver_noise_v_co_polar_channel
+    - dBm
+  * - r_calib_noise_vx 
+    - calibrated_radar_receiver_noise_v_cross_polar_channel
+    - dBm
+  * - r_calib_noise_source_power_h 
+    - radar_calibration_noise_source_power_h_channel
+    - dBm
+  * - r_calib_noise_source_power_v 
+    - radar_calibration_noise_source_power_v_channel
+    - dBm
+  * - r_calib_power_measure_loss_h 
+    - radar_calibration_power_measurement_loss_h_channel
+    - dB
+  * - r_calib_power_measure_loss_v 
+    - radar_calibration_power_measurement_loss_v_channel
+    - dB
+  * - r_calib_pulse_width 
+    - radar_calibration_pulse_width
+    - seconds
+  * - r_calib_radar_constant_h 
+    - calibrated_radar_constant_h_channel
+    - (m/mW)dB
+  * - r_calib_radar_constant_v 
+    - calibrated_radar_constant_v_channel
+    - (m/mW)dB
+  * - r_calib_receiver_gain_hc 
+    - calibrated_radar_receiver_gain_h_co_polar_channel
+    - dB
+  * - r_calib_receiver_gain_hx 
+    - calibrated_radar_receiver_gain_h_cross_polar_channel
+    - dB
+  * - r_calib_receiver_gain_vc 
+    - calibrated_radar_receiver_gain_v_co_polar_channel
+    - dB
+  * - r_calib_receiver_gain_vx 
+    - calibrated_radar_receiver_gain_v_cross_polar_channel
+    - dB
+  * - r_calib_receiver_mismatch_loss 
+    - radar_calibration_receiver_mismatch_loss
+    - dB
+  * - r_calib_receiver_slope_hc 
+    - calibrated_radar_receiver_slope_h_co_polar_channel
+    - 
+  * - r_calib_receiver_slope_hx 
+    - calibrated_radar_receiver_slope_h_cross_polar_channel
+    - 
+  * - r_calib_receiver_slope_vc 
+    - calibrated_radar_receiver_slope_v_co_polar_channel
+    - 
+  * - r_calib_receiver_slope_vx 
+    - calibrated_radar_receiver_slope_v_cross_polar_channel
+    - 
+  * - r_calib_sun_power_hc 
+    - calibrated_radar_sun_power_h_co_polar_channel
+    - dBm
+  * - r_calib_sun_power_hx 
+    - calibrated_radar_sun_power_h_cross_polar_channel
+    - dBm
+  * - r_calib_sun_power_vc 
+    - calibrated_radar_sun_power_v_co_polar_channel
+    - dBm
+  * - r_calib_sun_power_vx 
+    - calibrated_radar_sun_power_v_cross_polar_channel
+    - dBm
+  * - r_calib_system_phidp 
+    - calibrated_radar_system_phidp
+    - degrees
+  * - r_calib_test_power_h 
+    - radar_calibration_test_power_h_channel
+    - dBm
+  * - r_calib_test_power_v 
+    - radar_calibration_test_power_v_channel
+    - dBm
+  * - r_calib_time 
+    - radar_calibration_time_utc
+    - 
+  * - r_calib_two_way_radome_loss_h 
+    - radar_calibration_two_way_radome_loss_h_channel
+    - dB
+  * - r_calib_two_way_radome_loss_v
+    - radar_calibration_two_way_radome_loss_v_channel
+    - dB
+  * - r_calib_two_way_waveguide_loss_h 
+    - radar_calibration_two_way_waveguide_loss_h_channel
+    - dB
+  * - r_calib_two_way_waveguide_loss_v 
+    - radar_calibration_two_way_waveguide_loss_v_channel
+    - dB
+  * - r_calib_xmit_power_h 
+    - calibrated_radar_xmit_power_h_channel
+    - dBm
+  * - r_calib_xmit_power_v 
+    - calibrated_radar_xmit_power_v_channel
+    - dBm
+  * - r_calib_zdr_correction 
+    - calibrated_radar_zdr_correction
+    - dB
+  * - scan_name 
+    - name_of_antenna_scan_strategy
+    - unitless
+  * - scan_rate 
+    - antenna_angle_scan_rate
+    - unitless
+  * - site_name 
+    - name_of_instrument_site
+    - unitless
+  * - spacing_is_constant 
+    - spacing_between_range_gates_is_constant
+    - unitless
+  * - sweep_end_ray_index 
+    - index_of_last_ray_in_sweep
+    - unitless
+  * - sweep_mode 
+    - scan_mode_for_sweep
+    - unitless
+  * - sweep_number 
+    - sweep_index_number_0_based
+    - unitless
+  * - sweep_start_ray_index 
+    - index_of_first_ray_in_sweep
+    - unitless
+  * - sweep_unambiguous_range 
+    - unambiguous_range_for_sweep
+    - meters
+  * - tilt_correction 
+    - ray_tilt_angle_relative_to_platform_correction
+    - degrees
+  * - tilt 
+    - ray_tilt_angle_relative_to_platform
+    - degrees
+  * - time 
+    - time
+    - seconds
+  * - time_coverage_start 
+    - data_volume_start_time_utc
+    - unitless
+  * - unambiguous_range 
+    - unambiguous_range
+    - meters
+  * - vertical_velocity_correction 
+    - platform_vertical_velocity_correction
+    - m/s
+  * - vertical_velocity 
+    - platform_vertical_velocity
+    - m/s
+  * - vertical_wind 
+    - upward_air_velocity
+    - m/s
+  * - volume_number 
+    - data_volume_index_number
+    - unitless
+

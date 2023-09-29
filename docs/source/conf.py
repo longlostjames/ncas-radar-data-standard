@@ -15,12 +15,12 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../..'))
-sys.path.insert(0, os.path.abspath('../../ncas-radar_data-format/'))
+sys.path.insert(0, os.path.abspath('../../ncas-radar_data-standard/'))
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'ncas-radar-data-format'
+project = 'ncas-radar-data-standard'
 copyright = '2023, National Centre for Atmospheric Science'
 author = 'Chris Walden'
 

@@ -42,13 +42,17 @@ with the instrument.  By contrast, metadata variables store the dimensional info
 
 CfRadial requires strict adherance to naming conventions for dimensions and for
 metadata variables. The NCAS-Radar convention inherits this requirement.
-For details see the CfRadial documentation on Github.
+For details see the CfRadial documentation on Github.  A summary of metadata variables may be found in the
+following :ref:`table <metadata_variables_table>`
 
 This strictness requirement only applies to non-field metadata variables. The 
 field variables will be handled as usual in CF, where the standard 
 name is the definitive guide to the contents of the field. Suggested standard names for radar 
-variables not yet supported by CF have been proposed in the CfRadial documentation.
+variables not yet supported by CF have been proposed in the CfRadial documentation.  
+For convenience a summary of field variables relevant to radar instruments is 
+reproduced in the following :ref:`table <field_variables_table>` 
 
+========================
 Overview of data content
 ========================
 The data fields containing observables from a radar instrument, i.e. the
@@ -326,8 +330,20 @@ location_keywords
 
   :Example: ``cumbria, sandwith``
 
+Special case of a stationary vertically pointing radar
+------------------------------------------------------
+Vertically pointing radars on a stationary platform produce a series of profile features at the same 
+horizontal position with monotonically increasing times.  
+As such the data products conform to a CF-compliant feature type, and we should add the 
+following global attribute (and value).
 
+featureType: 
+  ``timeSeriesProfile``
+  
+  This attribute should be omitted for other radar configurations (e.g. scanning radars on a stationary 
+  platform, or radars on a mobile platform).
 
+==========
 Dimensions
 ==========
 
@@ -356,7 +372,7 @@ CfRadial-1.4 requirements.
    various lengths. These are only used to indicate the length of the strings
    actually stored, and have no effect on other parts of the format.
 
-
+================
 Global Variables
 ================
 
@@ -398,7 +414,7 @@ and NCAS-Radar-1.0.  Others are optional.
       - UTC time reference. Resolution is integer seconds. If defined, the time(time) variable
         is computed relative to this time instead of relative to **time_coverage_start**.
 
-
+====================
 Coordinate Variables
 ====================
 
@@ -481,7 +497,7 @@ Attributes for the range coordinate variable
     - string
     - "radial_range_coordinate"
 
-
+==================
 Location Variables
 ==================
 
@@ -512,6 +528,7 @@ Location Variables
 .. [#f2] This definition is more specific than that given in the CfRadial-1.4 specification and aligns with that 
    used in CfRadial-2.1.
 
+===============
 Sweep Variables
 ===============
 
@@ -556,6 +573,7 @@ Sweep variables are always required, even if the volume only contains a single s
     - Index of the last ray in sweep relaitve to the start of the volume. 0-based.
 
 
+============================
 Moments Field Data Variables
 ============================
 
@@ -666,7 +684,14 @@ in addition to a quality control flag we may have an associated quality control 
 the uncertainty in the field variable.  Such a field would be of the same type as the field variable 
 it qualifies.
 
+===================
+Naming of variables
+===================
 
+.. _field_variables_table:
+
+Table of field variables and proposed standard names
+----------------------------------------------------
 
 .. list-table::
   :widths: 50 10 20 20
@@ -822,6 +847,10 @@ it qualifies.
     - legend
     - no
 
+.. _metadata_variables_table:
+
+Table of metadata variables with strict names and suggested long names
+----------------------------------------------------------------------
 .. list-table::
   :widths: 30 50 20
   :header-rows: 1

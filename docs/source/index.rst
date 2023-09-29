@@ -17,8 +17,5 @@ Documentation for ncas-radar-data-standard.
    references
 
 
-Indices and tables
-==================
 
-* :ref:`genindex`
 

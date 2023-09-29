@@ -948,7 +948,7 @@ Table of metadata variables with strict names and suggested long names
     - 
   * - pitch_change_rate 
     - platform_pitch_angle_rate_of_change
-    - degrees
+    - degree s-1
   * - pitch_correction
     - platform_pitch_angle_correction
     - degrees
@@ -1005,10 +1005,10 @@ Table of metadata variables with strict names and suggested long names
     - dBm
   * - range_correction 
     - range_to_center_of_measurement_volume_correction
-    - meters
+    - meters or metres
   * - range 
     - projection_range_coordinate
-    - meters
+    - meters or metres
   * - roll_correction 
     - platform_roll_angle_correction
     - degrees
@@ -1083,10 +1083,10 @@ Table of metadata variables with strict names and suggested long names
     - seconds
   * - r_calib_radar_constant_h 
     - calibrated_radar_constant_h_channel
-    - (m/mW)dB
+    - (m mW-1)dB
   * - r_calib_radar_constant_v 
     - calibrated_radar_constant_v_channel
-    - (m/mW)dB
+    - (m mW-1)dB
   * - r_calib_receiver_gain_hc 
     - calibrated_radar_receiver_gain_h_co_polar_channel
     - dB
@@ -1161,31 +1161,31 @@ Table of metadata variables with strict names and suggested long names
     - dB
   * - scan_name 
     - name_of_antenna_scan_strategy
-    - unitless
+    - 
   * - scan_rate 
     - antenna_angle_scan_rate
-    - unitless
+    - degree s-1
   * - site_name 
     - name_of_instrument_site
-    - unitless
+    - 
   * - spacing_is_constant 
     - spacing_between_range_gates_is_constant
-    - unitless
+    - 
   * - sweep_end_ray_index 
     - index_of_last_ray_in_sweep
-    - unitless
+    - 
   * - sweep_mode 
     - scan_mode_for_sweep
-    - unitless
+    - 
   * - sweep_number 
     - sweep_index_number_0_based
-    - unitless
+    - 
   * - sweep_start_ray_index 
     - index_of_first_ray_in_sweep
-    - unitless
+    - 
   * - sweep_unambiguous_range 
     - unambiguous_range_for_sweep
-    - meters
+    - meters or metres
   * - tilt_correction 
     - ray_tilt_angle_relative_to_platform_correction
     - degrees
@@ -1197,20 +1197,20 @@ Table of metadata variables with strict names and suggested long names
     - seconds
   * - time_coverage_start 
     - data_volume_start_time_utc
-    - unitless
+    - 
   * - unambiguous_range 
     - unambiguous_range
-    - meters
+    - meters or metres
   * - vertical_velocity_correction 
     - platform_vertical_velocity_correction
-    - m/s
+    - m s-1
   * - vertical_velocity 
     - platform_vertical_velocity
-    - m/s
+    - m s-1
   * - vertical_wind 
     - upward_air_velocity
-    - m/s
+    - m s-1
   * - volume_number 
     - data_volume_index_number
-    - unitless
+    - 
 

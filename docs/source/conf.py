@@ -20,8 +20,8 @@ sys.path.insert(0, os.path.abspath('../../ncas-radar_data-format/'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'ncas_radar_data_format'
-copyright = '2022, UK Research and Innovation'
+project = 'ncas-radar-data-format'
+copyright = '2023, National Centre for Atmospheric Science'
 author = 'Chris Walden'
 
 # The short X.Y version
@@ -127,7 +127,7 @@ def setup(app):
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'ncas_radar_data_standard'
+htmlhelp_basename = 'ncas-radar-data-standard'
 
 
 # -- Options for LaTeX output ------------------------------------------------
@@ -154,8 +154,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'ncas_radar_data_standard.tex', 'ncas_radar_data_standard Documentation',
-     'UK Research and Innovation', 'manual'),
+    (master_doc, 'ncas-radar-data-standard.tex', 'ncas-radar-data-standard Documentation',
+     'National Centre for Atmospheric Science', 'manual'),
 ]
 
 
@@ -164,7 +164,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'ncas_radar_data_standard', 'ncas_radar_data_standard Documentation',
+    (master_doc, 'ncas-radar-data-standard', 'ncas-radar-data-standard Documentation',
      [author], 1)
 ]
 
@@ -175,7 +175,7 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'ncas_radar_data_standard', 'ncas_radar_data_standard Documentation',
+    (master_doc, 'ncas-radar-data-standard', 'ncas-radar-data-standard Documentation',
      author, 'Chris Walden', 'Documentation for the NCAS Radar Data Standard',
      'Miscellaneous'),
 ]

@@ -468,7 +468,7 @@ Attributes for the range coordinate variable
 --------------------------------------------
 
 .. list-table::
-  :widths: 20 10 70
+  :widths: 30 10 60
   :header-rows: 1
   :class: tight-table
 

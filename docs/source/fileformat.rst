@@ -2,9 +2,22 @@
 Filename conventions
 ====================
 
-Each radar file is named as
+Each radar filename is constructed as follows:
 
-``<instrument_name>_<platform_name>_<date>-[<time>]_<scan_type>_[<option1>_<option2>_<option3>]_v<version>.nc``
+``<instrument_name>_<platform_name>_<date>-[<time>]_<scan_name>_[<option1>_<option2>_<option3>]_v<version>.nc``
+
+Items in square brackets may or may not be present, depending on the data.
+For example, if the data represent an entire day, the ``<time>`` will not be included.
+The ``<scan_name>`` is the name of the scan strategy employed. If the file contains a single sweep (see below)
+this should indicate the type of this sweep, e.g. ``rhi``, ``ppi``.  If there are multiple sweeps in the file 
+the ``<scan_name>`` will represent the strategy used, e.g. ``vol`` for a volume scan.  
+More specific names for the scan strategy may be used such as ``hsrhi`` :cite:p:`Kollias_2014` for "hemispheric sky RHI", which is a volume
+scan comprising a sequence of horizon-to-horizon RHI scans equally spaced in azimuth.
+
+
+For NCAS instruments, the ``<instrument_name>`` follows a controlled vocabulary.
+
+
 
 ==================
 NetCDF conventions

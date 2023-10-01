@@ -1,3 +1,7 @@
+.. rubric:: 
+   This document should be read in conjunction with the documentation for  
+   `CfRadial Version-1.4 <https://github.com/NCAR/CfRadial/blob/62cb351e16574baa9e7f2b54c6b93b13468077fb/docs/CfRadialDoc.v1.4.20160801.pdf>`_
+
 ========
 Overview
 ========

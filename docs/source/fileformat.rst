@@ -703,8 +703,12 @@ Naming of variables
 
 .. _field_variables_table:
 
+
 Table of field variables and proposed standard names
 ----------------------------------------------------
+
+The attribute ``standard_name`` should only be used where it has already been accepted as a standard name 
+in the CF convention.  Otherwise, the attribute ``proposed_standard_name`` shoud be used.
 
 .. list-table::
   :widths: 50 10 20 20
